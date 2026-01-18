@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Museo VR</title>
+
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
+
+    <script src="./components/aframe-lounge.js"></script>
+    <script src="./components/star-sky.js"></script>
+  </head>
+
+  <body>
+    <a-scene antialias="true">
+
+      
+    <a-entity light="type: ambient;
+                     color: #ffffff;
+                     intensity: 0.85">
+    </a-entity>
+    
+    <a-entity light="type: ambient;
+                     color: #ebd9e9;
+                     intensity: 0.3">
+    </a-entity>
+    
+
+      <a-entity id="lounge"
+        lounge="
+          width: 30;
+          depth: 80;
+          height: 10;
+          ceiling: true;
+          north: barrier;
+          east: glass;
+          south: wall;
+          west: wall;
+          floorTexture: assets/floor-texture.jpg;
+          wallTexture: assets/jeroglifico.jpg;
+          ceilingTexture: assets/jeroglifico.jpg;
+        ">
+      </a-entity>
+
+      <a-entity lounge-entry-point>
+        <a-entity
+          id="camera1"
+          camera
+          position="-10 2 20"
+          look-controls
+          wasd-controls>
+        </a-entity>
+      </a-entity>
+
+      <a-sky color="#000000"></a-sky>
+<a-entity star-sky></a-entity>
+
+
+    </a-scene>
+  </body>
+</html>
