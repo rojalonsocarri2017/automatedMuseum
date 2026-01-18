@@ -77,7 +77,7 @@ html = f"""
 </html>
 """
 
-with open("room.html", "w") as f:
+with open("index.html", "w") as f:
     f.write(html)
 
-print("room.html generado correctamente")
+print("index.html generado correctamente")
