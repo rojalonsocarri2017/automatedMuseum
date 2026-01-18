@@ -1,6 +1,6 @@
 room:
-  width: 45
-  depth: 70
+  width: 200
+  depth: 300
   height: 100
   ceiling: true
 
