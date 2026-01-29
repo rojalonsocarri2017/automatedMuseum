@@ -106,9 +106,7 @@ Entrada:
 
     headers = {
         "Authorization": f"Bearer {api_key}",
-        "Content-Type": "application/json",
-        "HTTP-Referer": "http://localhost",
-        "X-Title": "TFG-Habitaciones"
+        "Content-Type": "application/json"
     }
 
     payload = {
