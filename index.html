@@ -21,25 +21,20 @@
                      intensity: 0.85">
     </a-entity>
     
-    <a-entity light="type: ambient;
-                     color: #ebd9e9;
-                     intensity: 0.3">
-    </a-entity>
-    
 
       <a-entity id="lounge"
         lounge="
-          width: 10;
-          depth: 40;
+          width: 20;
+          depth: 20;
           height: 30;
           ceiling: true;
           north: wall;
           east: wall;
           south: wall;
           west: wall;
-          floorTexture: assets/floor-texture.jpg;
-          wallTexture: assets/jeroglifico.jpg;
-          ceilingTexture: assets/jeroglifico.jpg;
+          floorTexture: assets/floor.jpg;
+          wallTexture: assets/wall.jpg;
+          ceilingTexture: assets/ceiling.jpg;
         ">
       </a-entity>
 
@@ -47,14 +42,13 @@
         <a-entity
           id="camera1"
           camera
-          position="-10 2 20"
+          position="0 0 0"
           look-controls
           wasd-controls>
         </a-entity>
       </a-entity>
 
       <a-sky color="#000000"></a-sky>
-<a-entity star-sky></a-entity>
 
 
     </a-scene>

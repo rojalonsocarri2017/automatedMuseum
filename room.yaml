@@ -1,6 +1,6 @@
 room:
-  width: 10
-  depth: 40
+  width: 20
+  depth: 20
   height: 30
   ceiling: true
   walls:
@@ -9,20 +9,17 @@ room:
     south: wall
     west: wall
   textures:
-    floor: assets/floor-texture.jpg
-    wall: assets/jeroglifico.jpg
-    ceiling: assets/jeroglifico.jpg
+    floor: assets/floor.jpg
+    wall: assets/wall.jpg
+    ceiling: assets/ceiling.jpg
   entryPoint:
-    x: -10
-    'y': 2
-    z: 20
+    x: 0
+    'y': 0
+    z: 0
   environment:
     skyColor: '#000000'
-    stars: true
+    stars: false
   lights:
     - type: ambient
       color: '#ffffff'
       intensity: 0.85
-    - type: ambient
-      color: '#ebd9e9'
-      intensity: 0.3
