@@ -14,7 +14,7 @@ room:
     ceiling: assets/jeroglifico.jpg
   entryPoint:
     x: -10
-    'y': 2
+    y: 2
     z: 20
   environment:
     skyColor: '#ff0000'
