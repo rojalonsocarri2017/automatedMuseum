@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Voice → Room YAML → GitHub</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    #status { margin-top: 20px; font-weight: bold; color: darkblue; }
+    pre { background: #f0f0f0; padding: 10px; border-radius: 5px; }
+  </style>
+</head>
+<body>
+
+  <h1>Generación de habitación por voz</h1>
+
+  <button id="start">Hablar</button>
+  <button id="stop">Parar</button>
+
+  <div id="status">Estado: Inactivo</div>
+  <pre id="yamlOutput"></pre>
+
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+  <script src="pushAutomatedGitHub.js"></script>
+</body>
+</html>
