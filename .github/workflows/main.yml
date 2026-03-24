@@ -28,7 +28,7 @@ jobs:
 
       - name: Generate HTML from YAML
         run: |
-          python TFG/program.py
+          python program.py
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4.0.0
