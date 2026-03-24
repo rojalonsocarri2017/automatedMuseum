@@ -62,7 +62,7 @@ room:
       color: '#00ff00'
       position:
         x: -12
-        'y': 6
+        'y': 2
         z: 0
       rotation:
         x: 0
@@ -77,7 +77,7 @@ room:
       color: '#00ff00'
       position:
         x: -12
-        'y': 10
+        'y': 2
         z: 0
       rotation:
         x: 0
@@ -92,7 +92,7 @@ room:
       color: '#00ff00'
       position:
         x: -12
-        'y': 14
+        'y': 2
         z: 0
       rotation:
         x: 0
@@ -102,3 +102,17 @@ room:
         x: 3
         'y': 3
         z: 3
+    - name: silla_1
+      model: chair_basic
+      position:
+        x: 12
+        'y': 0
+        z: 12
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 1
+        'y': 1
+        z: 1
