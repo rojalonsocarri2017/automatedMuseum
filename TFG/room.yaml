@@ -1,0 +1,118 @@
+room:
+  width: 50
+  depth: 50
+  height: 70
+  ceiling: true
+  walls:
+    north: barrier
+    east: glass
+    south: wall
+    west: wall
+  textures:
+    floor: ./assets/floor-texture.jpg
+    wall: ./assets/jeroglifico.jpg
+    ceiling: ./assets/jeroglifico.jpg
+  entryPoint:
+    x: -10
+    'y': 2
+    z: 20
+  environment:
+    skyColor: '#000000'
+    stars: true
+  lights:
+    - type: ambient
+      color: '#ffffff'
+      intensity: 0.85
+    - type: ambient
+      color: '#ebd9e9'
+      intensity: 0.3
+  objects:
+    - name: esfera_roja
+      primitive: sphere
+      color: '#ff0000'
+      position:
+        x: -20
+        'y': 2
+        z: 0
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: cubo_1
+      primitive: box
+      color: '#00ff00'
+      position:
+        x: -12
+        'y': 2
+        z: 0
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: cubo_2
+      primitive: box
+      color: '#00ff00'
+      position:
+        x: -12
+        'y': 2
+        z: 0
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: cubo_3
+      primitive: box
+      color: '#00ff00'
+      position:
+        x: -12
+        'y': 2
+        z: 0
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: cubo_4
+      primitive: box
+      color: '#00ff00'
+      position:
+        x: -12
+        'y': 2
+        z: 0
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: silla_1
+      model: chair_basic
+      position:
+        x: 12
+        'y': 0
+        z: 12
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 1
+        'y': 1
+        z: 1
