@@ -9,9 +9,9 @@ room:
     south: wall
     west: wall
   textures:
-    floor: ../assets/floor-texture.jpg
-    wall: ../assets/jeroglifico.jpg
-    ceiling: ../assets/jeroglifico.jpg
+    floor: ./assets/floor-texture.jpg
+    wall: ./assets/jeroglifico.jpg
+    ceiling: ./assets/jeroglifico.jpg
   entryPoint:
     x: -10
     'y': 2
