@@ -1,7 +1,7 @@
 room:
   width: 50
-  depth: 50
-  height: 50
+  depth: 40
+  height: 30
   ceiling: true
   walls:
     north: barrier
@@ -31,9 +31,24 @@ room:
       primitive: sphere
       color: '#ff69b4'
       position:
-        x: -10
+        x: -5
         'y': 2
-        z: -5
+        z: -3
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: cubo_1
+      primitive: box
+      color: '#0000ff'
+      position:
+        x: 5
+        'y': 2
+        z: 3
       rotation:
         x: 0
         'y': 0
