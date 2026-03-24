@@ -1,7 +1,7 @@
 room:
-  width: 50
-  depth: 50
-  height: 50
+  width: 30
+  depth: 30
+  height: 20
   ceiling: true
   walls:
     north: barrier
@@ -29,31 +29,31 @@ room:
   objects:
     - name: esfera_1
       primitive: sphere
-      color: '#ff69b4'
+      color: '#ff0000'
       position:
-        x: -5
+        x: -3
         'y': 2
-        z: -5
+        z: 0
       rotation:
         x: 0
         'y': 0
         z: 0
       scale:
-        x: 3
-        'y': 3
-        z: 3
+        x: 1.5
+        'y': 1.5
+        z: 1.5
     - name: cubo_1
       primitive: box
-      color: '#0000ff'
+      color: '#00ff00'
       position:
-        x: 5
+        x: 3
         'y': 2
-        z: 5
+        z: 0
       rotation:
         x: 0
         'y': 0
         z: 0
       scale:
-        x: 3
-        'y': 3
-        z: 3
+        x: 1.5
+        'y': 1.5
+        z: 1.5
