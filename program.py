@@ -8,30 +8,41 @@ OUTPUT_HTML = BASE_DIR / "index.html"
 MODEL_CATALOG = {
     "chair_basic": {
         "src": "./assets/models/furniture/chair_basic.glb",
-        "scale": {"x": 1, "y": 1, "z": 1},
-        "floorOffset": 0
+        "floorOffset": 8,
+        "scale": {"x": 1, "y": 1, "z": 1}
     },
     "table_red": {
         "src": "./assets/models/furniture/table_red.glb",
-        "scale": {"x": 1, "y": 1, "z": 1},
-        "floorOffset": 0
+        "floorOffset": -6,
+        "scale": {"x": 1, "y": 1, "z": 1}
     },
     "lamp_floor": {
         "src": "./assets/models/furniture/lamp_floor.glb",
-        "scale": {"x": 1, "y": 1, "z": 1},
-        "floorOffset": 0
+        "floorOffset": 7,
+        "scale": {"x": 6, "y": 6, "z": 6}
     },
     "statue_liberty": {
         "src": "./assets/models/statues/statue_liberty.glb",
-        "scale": {"x": 1, "y": 1, "z": 1},
-        "floorOffset": 0
+        "floorOffset": 0,
+        "scale": {"x": 6, "y": 6, "z": 6}
     },
     "statue_venus": {
         "src": "./assets/models/statues/statue_venus.glb",
-        "scale": {"x": 1, "y": 1, "z": 1},
-        "floorOffset": 0
-    },
+        "floorOffset": 0,
+        "scale": {"x": 15, "y": 15, "z": 15}
+    }
 }
+
+PRIMITIVE_GEOMETRY_MAP = {
+    "box": "primitive: box",
+    "sphere": "primitive: sphere",
+    "cylinder": "primitive: cylinder",
+    "cone": "primitive: cone",
+    "plane": "primitive: plane",
+    "circle": "primitive: circle",
+    "torus": "primitive: torus",
+}
+
 
 def vec3_dict(v, default=(0, 0, 0)):
     if not isinstance(v, dict):
@@ -42,40 +53,54 @@ def vec3_dict(v, default=(0, 0, 0)):
         "z": v.get("z", default[2]),
     }
 
+
 def vec3_str(x, y, z):
     return f"{x} {y} {z}"
+
+
+def scale_str(scale_dict):
+    return f'{scale_dict["x"]} {scale_dict["y"]} {scale_dict["z"]}'
 
 
 with ROOM_YAML.open(encoding="utf-8") as f:
     data = yaml.safe_load(f)
 
-h = data["room"]
-floor_y = -h["height"] / 2
+room = data["room"]
+floor_y = -room["height"] / 2
 
-
+# =========================
+# LIGHTS
+# =========================
 lights_html = ""
-for light in h.get("lights", []):
+for light in room.get("lights", []):
+    light_type = light.get("type", "ambient")
+    color = light.get("color", "#ffffff")
+    intensity = light.get("intensity", 1)
     lights_html += f"""
-      <a-entity light="type: {light["type"]};
-                       color: {light["color"]};
-                       intensity: {light["intensity"]}">
+      <a-entity light="type: {light_type};
+                       color: {color};
+                       intensity: {intensity}">
       </a-entity>
 """
 
-
-env_html = ""
-env = h.get("environment", {})
+# =========================
+# ENVIRONMENT
+# =========================
+environment_html = ""
+env = room.get("environment", {})
 
 if env.get("skyColor"):
-    env_html += f'      <a-sky color="{env["skyColor"]}"></a-sky>\n'
+    environment_html += f'      <a-sky color="{env["skyColor"]}"></a-sky>\n'
 
 if env.get("stars"):
-    env_html += '      <a-entity star-sky></a-entity>\n'
+    environment_html += '      <a-entity star-sky></a-entity>\n'
 
-
+# =========================
+# OBJECTS
+# =========================
 objects_html = ""
 
-for obj in h.get("objects", []):
+for obj in room.get("objects", []):
     name = obj.get("name", "object")
     pos = vec3_dict(obj.get("position"), (0, 0, 0))
     rot = vec3_dict(obj.get("rotation"), (0, 0, 0))
@@ -84,22 +109,12 @@ for obj in h.get("objects", []):
     # PRIMITIVES
     if "primitive" in obj:
         primitive = obj["primitive"]
+        geometry = PRIMITIVE_GEOMETRY_MAP.get(primitive)
         color = obj.get("color", "#ffffff")
-
-        geometry_map = {
-            "box": "primitive: box",
-            "sphere": "primitive: sphere",
-            "cylinder": "primitive: cylinder",
-            "cone": "primitive: cone",
-            "plane": "primitive: plane",
-            "circle": "primitive: circle",
-            "torus": "primitive: torus",
-        }
-
-        geometry = geometry_map.get(primitive)
 
         if geometry:
             final_y = floor_y + pos["y"]
+
             objects_html += f"""
       <a-entity id="{name}"
                 geometry="{geometry}"
@@ -111,7 +126,7 @@ for obj in h.get("objects", []):
 """
         continue
 
-    # MODELS
+    # 3D MODELS
     if "model" in obj:
         model_name = obj["model"]
         model_entry = MODEL_CATALOG.get(model_name)
@@ -121,22 +136,36 @@ for obj in h.get("objects", []):
             floor_offset = model_entry.get("floorOffset", 0)
 
             final_y = floor_y + floor_offset + pos["y"]
-            final_scale = vec3_str(
-                base_scale["x"] * scl["x"],
-                base_scale["y"] * scl["y"],
-                base_scale["z"] * scl["z"]
-            )
+
+            final_scale = {
+                "x": base_scale["x"] * scl["x"],
+                "y": base_scale["y"] * scl["y"],
+                "z": base_scale["z"] * scl["z"],
+            }
 
             objects_html += f"""
       <a-entity id="{name}"
                 gltf-model="{model_entry["src"]}"
                 position="{vec3_str(pos["x"], final_y, pos["z"])}"
                 rotation="{vec3_str(rot["x"], rot["y"], rot["z"])}"
-                scale="{final_scale}">
+                scale="{scale_str(final_scale)}">
       </a-entity>
 """
 
+# =========================
+# CAMERA
+# =========================
+entry = room.get("entryPoint", {"x": 0, "y": 2, "z": 0})
 
+# Igual que en room-renderer:
+# y = -room.height / 2 + 5
+camera_x = entry.get("x", 0)
+camera_y = -room["height"] / 2 + 5
+camera_z = entry.get("z", 0)
+
+# =========================
+# HTML
+# =========================
 html = f"""<!DOCTYPE html>
 <html>
   <head>
@@ -153,37 +182,35 @@ html = f"""<!DOCTYPE html>
   <body>
     <a-scene antialias="true">
 
-      {lights_html}
-
+{lights_html}
       <a-entity id="lounge"
         lounge="
-          width: {h['width']};
-          depth: {h['depth']};
-          height: {h['height']};
-          ceiling: {str(h['ceiling']).lower()};
-          north: {h['walls']['north']};
-          east: {h['walls']['east']};
-          south: {h['walls']['south']};
-          west: {h['walls']['west']};
-          floorTexture: {h['textures']['floor']};
-          wallTexture: {h['textures']['wall']};
-          ceilingTexture: {h['textures']['ceiling']};
+          width: {room['width']};
+          depth: {room['depth']};
+          height: {room['height']};
+          ceiling: {str(room['ceiling']).lower()};
+          north: {room['walls']['north']};
+          east: {room['walls']['east']};
+          south: {room['walls']['south']};
+          west: {room['walls']['west']};
+          floorTexture: {room['textures']['floor']};
+          wallTexture: {room['textures']['wall']};
+          ceilingTexture: {room['textures']['ceiling']};
         ">
       </a-entity>
 
       <a-entity lounge-entry-point>
         <a-entity
+          id="camera1"
           camera
-          position="{h['entryPoint']['x']} {h['entryPoint']['y']} {h['entryPoint']['z']}"
+          position="{camera_x} {camera_y} {camera_z}"
           look-controls
           wasd-controls>
         </a-entity>
       </a-entity>
 
 {objects_html}
-
-      {env_html}
-
+{environment_html}
     </a-scene>
   </body>
 </html>
