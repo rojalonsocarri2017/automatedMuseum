@@ -16,10 +16,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Print room dimensions
-        run: |
-          cat TFG/room.yaml
-
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
