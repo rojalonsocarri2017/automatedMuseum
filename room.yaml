@@ -1,6 +1,6 @@
 room:
-  width: 50
-  depth: 40
+  width: 30
+  depth: 30
   height: 30
   ceiling: true
   walls:
@@ -27,13 +27,13 @@ room:
       color: '#ebd9e9'
       intensity: 0.3
   objects:
-    - name: esfera_1
+    - name: esfera_amarilla
       primitive: sphere
-      color: '#ff69b4'
+      color: '#ffff00'
       position:
-        x: -5
+        x: -4
         'y': 2
-        z: -3
+        z: -4
       rotation:
         x: 0
         'y': 0
@@ -42,13 +42,13 @@ room:
         x: 3
         'y': 3
         z: 3
-    - name: cubo_1
+    - name: cubo_azul
       primitive: box
       color: '#0000ff'
       position:
-        x: 5
+        x: 4
         'y': 2
-        z: 3
+        z: 4
       rotation:
         x: 0
         'y': 0
