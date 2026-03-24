@@ -57,3 +57,18 @@ room:
         x: 3
         'y': 3
         z: 3
+    - name: torus_rosa
+      primitive: torus
+      color: '#ff69b4'
+      position:
+        x: 0
+        'y': 2
+        z: 0
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
