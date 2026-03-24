@@ -5,53 +5,83 @@ BASE_DIR = Path(__file__).resolve().parent
 ROOM_YAML = BASE_DIR / "room.yaml"
 OUTPUT_HTML = BASE_DIR / "index.html"
 
-# Catálogo mínimo de modelos 3D
 MODEL_CATALOG = {
-    "chair_basic": "./assets/models/furniture/chair_basic.glb",
-    "table_red": "./assets/models/furniture/table_red.glb",
-    "lamp_floor": "./assets/models/furniture/lamp_floor.glb",
-    "statue_liberty": "./assets/models/statues/statue_liberty.glb",
-    "statue_venus": "./assets/models/statues/statue_venus.glb",
+    "chair_basic": {
+        "src": "./assets/models/furniture/chair_basic.glb",
+        "scale": {"x": 1, "y": 1, "z": 1},
+        "floorOffset": 0
+    },
+    "table_red": {
+        "src": "./assets/models/furniture/table_red.glb",
+        "scale": {"x": 1, "y": 1, "z": 1},
+        "floorOffset": 0
+    },
+    "lamp_floor": {
+        "src": "./assets/models/furniture/lamp_floor.glb",
+        "scale": {"x": 1, "y": 1, "z": 1},
+        "floorOffset": 0
+    },
+    "statue_liberty": {
+        "src": "./assets/models/statues/statue_liberty.glb",
+        "scale": {"x": 1, "y": 1, "z": 1},
+        "floorOffset": 0
+    },
+    "statue_venus": {
+        "src": "./assets/models/statues/statue_venus.glb",
+        "scale": {"x": 1, "y": 1, "z": 1},
+        "floorOffset": 0
+    },
 }
 
-def vec3_to_str(v, default=(0, 0, 0)):
+def vec3_dict(v, default=(0, 0, 0)):
     if not isinstance(v, dict):
-        return f"{default[0]} {default[1]} {default[2]}"
-    return f"{v.get('x', default[0])} {v.get('y', default[1])} {v.get('z', default[2])}"
+        return {"x": default[0], "y": default[1], "z": default[2]}
+    return {
+        "x": v.get("x", default[0]),
+        "y": v.get("y", default[1]),
+        "z": v.get("z", default[2]),
+    }
 
-# Cargar YAML
+def vec3_str(x, y, z):
+    return f"{x} {y} {z}"
+
+
 with ROOM_YAML.open(encoding="utf-8") as f:
-    datos = yaml.safe_load(f)
+    data = yaml.safe_load(f)
 
-h = datos["room"]
+h = data["room"]
+floor_y = -h["height"] / 2
 
-# Luces
-luces_html = ""
+
+lights_html = ""
 for light in h.get("lights", []):
-    luces_html += f"""
+    lights_html += f"""
       <a-entity light="type: {light["type"]};
                        color: {light["color"]};
                        intensity: {light["intensity"]}">
       </a-entity>
 """
 
-# Entorno
-entorno_html = ""
+
+env_html = ""
 env = h.get("environment", {})
+
 if env.get("skyColor"):
-    entorno_html += f'      <a-sky color="{env["skyColor"]}"></a-sky>\n'
+    env_html += f'      <a-sky color="{env["skyColor"]}"></a-sky>\n'
+
 if env.get("stars"):
-    entorno_html += '      <a-entity star-sky></a-entity>\n'
+    env_html += '      <a-entity star-sky></a-entity>\n'
 
-# Objetos
-objetos_html = ""
+
+objects_html = ""
+
 for obj in h.get("objects", []):
-    name = obj.get("name", "objeto")
-    position = vec3_to_str(obj.get("position"), (0, 0, 0))
-    rotation = vec3_to_str(obj.get("rotation"), (0, 0, 0))
-    scale = vec3_to_str(obj.get("scale"), (1, 1, 1))
+    name = obj.get("name", "object")
+    pos = vec3_dict(obj.get("position"), (0, 0, 0))
+    rot = vec3_dict(obj.get("rotation"), (0, 0, 0))
+    scl = vec3_dict(obj.get("scale"), (1, 1, 1))
 
-    # Primitivas A-Frame
+    # PRIMITIVES
     if "primitive" in obj:
         primitive = obj["primitive"]
         color = obj.get("color", "#ffffff")
@@ -67,34 +97,46 @@ for obj in h.get("objects", []):
         }
 
         geometry = geometry_map.get(primitive)
+
         if geometry:
-            objetos_html += f"""
+            final_y = floor_y + pos["y"]
+            objects_html += f"""
       <a-entity id="{name}"
                 geometry="{geometry}"
                 material="color: {color}"
-                position="{position}"
-                rotation="{rotation}"
-                scale="{scale}">
+                position="{vec3_str(pos["x"], final_y, pos["z"])}"
+                rotation="{vec3_str(rot["x"], rot["y"], rot["z"])}"
+                scale="{vec3_str(scl["x"], scl["y"], scl["z"])}">
       </a-entity>
 """
         continue
 
-    # Modelos 3D
+    # MODELS
     if "model" in obj:
         model_name = obj["model"]
-        model_path = MODEL_CATALOG.get(model_name)
+        model_entry = MODEL_CATALOG.get(model_name)
 
-        if model_path:
-            objetos_html += f"""
+        if model_entry:
+            base_scale = model_entry.get("scale", {"x": 1, "y": 1, "z": 1})
+            floor_offset = model_entry.get("floorOffset", 0)
+
+            final_y = floor_y + floor_offset + pos["y"]
+            final_scale = vec3_str(
+                base_scale["x"] * scl["x"],
+                base_scale["y"] * scl["y"],
+                base_scale["z"] * scl["z"]
+            )
+
+            objects_html += f"""
       <a-entity id="{name}"
-                gltf-model="{model_path}"
-                position="{position}"
-                rotation="{rotation}"
-                scale="{scale}">
+                gltf-model="{model_entry["src"]}"
+                position="{vec3_str(pos["x"], final_y, pos["z"])}"
+                rotation="{vec3_str(rot["x"], rot["y"], rot["z"])}"
+                scale="{final_scale}">
       </a-entity>
 """
 
-# HTML final
+
 html = f"""<!DOCTYPE html>
 <html>
   <head>
@@ -111,7 +153,7 @@ html = f"""<!DOCTYPE html>
   <body>
     <a-scene antialias="true">
 
-      {luces_html}
+      {lights_html}
 
       <a-entity id="lounge"
         lounge="
@@ -131,7 +173,6 @@ html = f"""<!DOCTYPE html>
 
       <a-entity lounge-entry-point>
         <a-entity
-          id="camera1"
           camera
           position="{h['entryPoint']['x']} {h['entryPoint']['y']} {h['entryPoint']['z']}"
           look-controls
@@ -139,9 +180,9 @@ html = f"""<!DOCTYPE html>
         </a-entity>
       </a-entity>
 
-{objetos_html}
+{objects_html}
 
-      {entorno_html}
+      {env_html}
 
     </a-scene>
   </body>
@@ -151,4 +192,4 @@ html = f"""<!DOCTYPE html>
 with OUTPUT_HTML.open("w", encoding="utf-8") as f:
     f.write(html)
 
-print(f"index.html generado correctamente en {OUTPUT_HTML}")
+print("index.html generado correctamente")
