@@ -1,0 +1,59 @@
+room:
+  width: 50
+  depth: 40
+  height: 30
+  ceiling: true
+  walls:
+    north: barrier
+    east: glass
+    south: wall
+    west: wall
+  textures:
+    floor: ../assets/floor-texture.jpg
+    wall: ../assets/jeroglifico.jpg
+    ceiling: ../assets/jeroglifico.jpg
+  entryPoint:
+    x: -10
+    'y': 2
+    z: 20
+  environment:
+    skyColor: '#000000'
+    stars: true
+  lights:
+    - type: ambient
+      color: '#ffffff'
+      intensity: 0.85
+    - type: ambient
+      color: '#ebd9e9'
+      intensity: 0.3
+  objects:
+    - name: esfera_1
+      primitive: sphere
+      color: '#ff69b4'
+      position:
+        x: -5
+        'y': 2
+        z: -3
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: cubo_1
+      primitive: box
+      color: '#0000ff'
+      position:
+        x: 5
+        'y': 2
+        z: 3
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
