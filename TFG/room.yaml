@@ -1,7 +1,7 @@
 room:
-  width: 50
-  depth: 50
-  height: 60
+  width: 20
+  depth: 20
+  height: 20
   ceiling: true
   walls:
     north: barrier
