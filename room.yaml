@@ -1,7 +1,7 @@
 room:
-  width: 30
-  depth: 30
-  height: 30
+  width: 50
+  depth: 50
+  height: 50
   ceiling: true
   walls:
     north: barrier
@@ -9,9 +9,9 @@ room:
     south: wall
     west: wall
   textures:
-    floor: ../assets/floor-texture.jpg
-    wall: ../assets/jeroglifico.jpg
-    ceiling: ../assets/jeroglifico.jpg
+    floor: ./assets/floor-texture.jpg
+    wall: ./assets/jeroglifico.jpg
+    ceiling: ./assets/jeroglifico.jpg
   entryPoint:
     x: -10
     'y': 2
@@ -27,13 +27,13 @@ room:
       color: '#ebd9e9'
       intensity: 0.3
   objects:
-    - name: esfera_amarilla
+    - name: esfera_1
       primitive: sphere
-      color: '#ffff00'
+      color: '#ff69b4'
       position:
-        x: -4
+        x: -5
         'y': 2
-        z: -4
+        z: -5
       rotation:
         x: 0
         'y': 0
@@ -42,28 +42,13 @@ room:
         x: 3
         'y': 3
         z: 3
-    - name: cubo_azul
+    - name: cubo_1
       primitive: box
       color: '#0000ff'
       position:
-        x: 4
+        x: 5
         'y': 2
-        z: 4
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 3
-        'y': 3
-        z: 3
-    - name: torus_rosa
-      primitive: torus
-      color: '#ff69b4'
-      position:
-        x: 0
-        'y': 2
-        z: 0
+        z: 5
       rotation:
         x: 0
         'y': 0
