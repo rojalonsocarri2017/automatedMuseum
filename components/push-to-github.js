@@ -50,6 +50,34 @@ AFRAME.registerComponent("push-to-github", {
     }
   },
 
+  normalizePathsForGithub(roomData) {
+    if (!roomData?.room) return;
+
+    const fixPath = (value) => {
+      if (typeof value !== "string") return value;
+
+      if (value.startsWith("../assets/")) {
+        return value.replace("../assets/", "./assets/");
+      }
+
+      return value;
+    };
+
+    if (roomData.room.textures) {
+      roomData.room.textures.floor = fixPath(roomData.room.textures.floor);
+      roomData.room.textures.wall = fixPath(roomData.room.textures.wall);
+      roomData.room.textures.ceiling = fixPath(roomData.room.textures.ceiling);
+    }
+
+    if (Array.isArray(roomData.room.objects)) {
+      roomData.room.objects.forEach((obj) => {
+        if (obj.src) obj.src = fixPath(obj.src);
+        if (obj.texture) obj.texture = fixPath(obj.texture);
+        if (obj.modelPath) obj.modelPath = fixPath(obj.modelPath);
+      });
+    }
+  },
+
   getCurrentRoomYaml() {
     const orchestratorEl = document.querySelector(this.data.stateSelector);
     const orchestrator = orchestratorEl?.components["scene-orchestrator"];
@@ -61,6 +89,7 @@ AFRAME.registerComponent("push-to-github", {
     }
 
     const roomForGithub = structuredClone(currentRoom);
+    this.normalizePathsForGithub(roomForGithub);
 
     return jsyaml.dump(roomForGithub, { indent: 2 });
   },
