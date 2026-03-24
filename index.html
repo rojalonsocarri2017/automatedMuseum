@@ -1,62 +1,155 @@
-
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Museo VR</title>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Voice → YAML → A-Frame</title>
 
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+    }
 
-    <script src="./components/aframe-lounge.js"></script>
-    <script src="./components/star-sky.js"></script>
-  </head>
+    #ui-overlay {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 10;
+      background: rgba(255,255,255,0.9);
+      padding: 15px;
+      border-radius: 8px;
+      max-width: 400px;
+    }
 
-  <body>
-    <a-scene antialias="true">
+    button {
+      padding: 10px 15px;
+      margin-right: 10px;
+      font-size: 16px;
+    }
 
-      
-    <a-entity light="type: ambient;
-                     color: #ffffff;
-                     intensity: 0.85">
+    #status {
+      margin-top: 10px;
+      font-weight: bold;
+      color: darkblue;
+    }
+
+    pre {
+      background: #eee;
+      padding: 10px;
+      border-radius: 5px;
+      max-height: 200px;
+      overflow: auto;
+      margin-top: 10px;
+    }
+
+    a-scene {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  </style>
+
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
+  <script type="application/javascript" src="https://cdn.jsdelivr.net/npm/vosk-browser@0.0.5/dist/vosk.js"></script>
+  <script src="../components/aframe-lounge.js"></script>
+  <script src="../components/star-sky.js"></script>
+  <script src="../components/scene-orchestrator.js"></script>
+  <script src="../components/text-input.js"></script>
+  <script src="../components/error-panel.js"></script>
+  <script src="../components/voice-input-vosk.js"></script>
+  <script src="../components/voice-input-speechapi.js"></script>
+  <script src="../components/voice-input-groq.js"></script>
+  <script src="../components/voice-input.js"></script>
+  <script src="../components/push-to-github.js"></script>
+  <script src="../components/success-push-panel.js"></script>
+  <script src="../components/error-push-panel.js"></script> 
+  <script src="../components/command-router.js"></script>
+  <script type="module" src="../components/objects-catalog.js"></script>
+  <script type="module" src="../components/help-panel.js"></script>
+  <script type="module" src="../components/llm-client.js"></script>
+  <script type="module" src="../components/room-renderer.js"></script>
+  <script type="module" src="../components/primitives-manager.js"></script>
+  
+
+  
+</head>
+
+<body>
+
+  <div id="ui-overlay">
+    <h2>Control de habitación</h2>
+    <button id="start">Hablar</button>
+    <button id="stop">Parar</button>
+    <div id="status">Estado: Inactivo</div>
+ 
+    <input type="text" id="text-input" placeholder="Escribe comando directamente...">
+      <button id="text-send">📤 Enviar</button>
+  
+    <h3>YAML generado</h3>
+    <pre id="yamlOutput"></pre>
+  </div>
+
+  <a-scene
+    embedded
+    vr-mode-ui="enabled: true"
+    id="vr-scene"
+    scene-orchestrator="rendererSelector: #roomScene; inputEvent: yaml-generated">
+
+    <a-assets>
+      <a-asset-item id="venusModel" src="../assets/models/statues/statue_venus.glb"></a-asset-item>
+      <a-asset-item id="libertyModel" src="../assets/models/statues/statue_liberty.glb"></a-asset-item>
+      <a-asset-item id="chairTableModel" src="../assets/models/furniture/chair_basic.glb"></a-asset-item>
+      <a-asset-item id="lampFloorModel" src="../assets/models/furniture/lamp_floor.glb"></a-asset-item>
+      <a-asset-item id="tableRedModel" src="../assets/models/furniture/table_red.glb"></a-asset-item>
+    </a-assets>
+
+    <a-entity voice-input="engine: vosk"></a-entity>
+    <a-entity text-input></a-entity>
+
+    <a-entity
+      command-router="inputEvent: user-command; 
+                      editEvent: scene-edit-command; 
+                      saveEvent: save-scene-command; 
+                      helpEvent: show-help-panel; 
+                      statusSelector: #status">
     </a-entity>
-    
-    <a-entity light="type: ambient;
-                     color: #ebd9e9;
-                     intensity: 0.3">
+
+    <a-entity
+      llm-client="model: openrouter/auto; 
+                  url: https://openrouter.ai/api/v1/chat/completions; 
+                  openrouterApikey: API_KEY_OPENROUTER;
+                  inputEvent: scene-edit-command;
+                  outputEvent: yaml-generated;
+                  stateSelector: [scene-orchestrator];
+                  statusSelector: #status;
+                  outputSelector: #yamlOutput;
+                  autoDetectCapabilities: true">
     </a-entity>
-    
 
-      <a-entity id="lounge"
-        lounge="
-          width: 50;
-          depth: 50;
-          height: 70;
-          ceiling: true;
-          north: barrier;
-          east: glass;
-          south: wall;
-          west: wall;
-          floorTexture: ./assets/floor-texture.jpg;
-          wallTexture: ./assets/jeroglifico.jpg;
-          ceilingTexture: ./assets/jeroglifico.jpg;
-        ">
-      </a-entity>
+    <a-entity
+      push-to-github="owner: rojalonsocarri2017; 
+                      repo: automatedMuseum; 
+                      filePath: TFG/room.yaml; 
+                      branch: main; 
+                      token: TOKEN_GITHUB; 
+                      inputEvent: save-scene-command; 
+                      stateSelector: [scene-orchestrator]; 
+                      statusSelector: #status; 
+                      outputSelector: #yamlOutput">
+    </a-entity>
 
-      <a-entity lounge-entry-point>
-        <a-entity
-          id="camera1"
-          camera
-          position="-10 2 20"
-          look-controls
-          wasd-controls>
-        </a-entity>
-      </a-entity>
-
-      <a-sky color="#000000"></a-sky>
-<a-entity star-sky></a-entity>
-
-
-    </a-scene>
-  </body>
+    <a-entity primitives-manager></a-entity>
+    <a-entity error-panel></a-entity>
+    <a-entity room-renderer id="roomScene"></a-entity>
+    <a-entity help-panel></a-entity>
+    <a-entity success-push-panel></a-entity>
+    <a-entity error-push-panel></a-entity>
+  </a-scene>
+</body>
 </html>
