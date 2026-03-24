@@ -1,7 +1,7 @@
 room:
-  width: 20
-  depth: 20
-  height: 20
+  width: 50
+  depth: 50
+  height: 50
   ceiling: true
   walls:
     north: barrier
@@ -26,4 +26,19 @@ room:
     - type: ambient
       color: '#ebd9e9'
       intensity: 0.3
-  objects: []
+  objects:
+    - name: esfera_1
+      primitive: sphere
+      color: '#ff69b4'
+      position:
+        x: -10
+        'y': 2
+        z: -5
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
