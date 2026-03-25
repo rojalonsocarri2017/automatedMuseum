@@ -29,3 +29,9 @@ En el archivo `voice-input-groq.js` tienes que añadir la API KEY de Groq.
   apiKey: { default: "<YOUR_GROQ_API_KEY>" }
 ```
 Puedes obtenerla en: https://console.groq.com/home
+
+### Elige el reconocimiento de voz
+En el archivo `index.html` puedes elegir 3 distintos tipos de reconocimiento de voz `speechapi`, `groq`, `vosk` dentro del componente `voice-input`.
+```html
+  <a-entity voice-input="engine: vosk"></a-entity>
+```
