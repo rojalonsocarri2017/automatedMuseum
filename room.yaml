@@ -27,13 +27,13 @@ room:
       color: '#ebd9e9'
       intensity: 0.3
   objects:
-    - name: sphere_1
+    - name: esfera_1
       primitive: sphere
-      color: '#ff0000'
+      color: '#0000ff'
       position:
-        x: -10
+        x: -15
         'y': 2
-        z: -10
+        z: 5
       rotation:
         x: 0
         'y': 0
@@ -42,27 +42,12 @@ room:
         x: 3
         'y': 3
         z: 3
-    - name: cube_1
-      primitive: box
-      color: '#ffc0cb'
-      position:
-        x: 10
-        'y': 2
-        z: 10
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 3
-        'y': 3
-        z: 3
-    - name: chair_1
+    - name: silla_1
       model: chair_basic
       position:
-        x: 0
-        'y': 0
-        z: 0
+        x: -7
+        'y': 2
+        z: 5
       rotation:
         x: 0
         'y': 0
@@ -71,3 +56,62 @@ room:
         x: 1
         'y': 1
         z: 1
+    - name: lampara_1
+      model: lamp_floor
+      position:
+        x: 1
+        'y': 2
+        z: 5
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 1
+        'y': 1
+        z: 1
+    - name: cubo_1
+      primitive: box
+      color: '#00ff00'
+      position:
+        x: -7
+        'y': 1
+        z: 13
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: cubo_2
+      primitive: box
+      color: '#00ff00'
+      position:
+        x: -7
+        'y': 3
+        z: 13
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: cubo_3
+      primitive: box
+      color: '#00ff00'
+      position:
+        x: -7
+        'y': 5
+        z: 13
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
