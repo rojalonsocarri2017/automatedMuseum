@@ -4,7 +4,7 @@
 Antes de ejecutar el proyecto, es necesario configurar varias API KEYS.
 
 ### Openrouter API (LLM)
-En el archivo `index.html` tienes que añadir la API KEY de Openrouter.
+En el archivo `index.html` dentro del componente `llm-client` tienes que añadir la API KEY de Openrouter.
 ```html
 openrouterApikey: API_KEY_OPENROUTER
 ```
@@ -12,7 +12,7 @@ Puedes obtenerla en: https://openrouter.ai/
 
 ### Token GitHub
 
-En el archivo `index.html` tienes que añadir el token de GitHub y la configuración del repositorio a la que quieres enviar el YAML generado de la escena.
+En el archivo `index.html` dentro del componente `push-to-github` tienes que añadir el token de GitHub y la configuración del repositorio a la que quieres enviar el YAML generado de la escena.
 ```html
   owner: OWNER_GITHUB; 
   repo: REPO_GITHUB; 
