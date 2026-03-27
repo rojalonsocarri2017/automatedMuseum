@@ -27,13 +27,13 @@ room:
       color: '#ebd9e9'
       intensity: 0.3
   objects:
-    - name: cubo_rojo
+    - name: cubo_1
       primitive: box
-      color: '#ff0000'
+      color: '#0000ff'
       position:
-        x: 0
+        x: 10
         'y': 2
-        z: 0
+        z: 10
       rotation:
         x: 0
         'y': 0
