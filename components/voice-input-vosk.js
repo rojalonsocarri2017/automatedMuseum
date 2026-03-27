@@ -59,7 +59,7 @@ AFRAME.registerComponent("voice-input-vosk", {
    *************************************************/
   async loadVosk(){
     this.statusDiv.textContent = "🔄 Cargando modelo Vosk...";
-    const modelUrl =  "./ejcConComponentes/model/vosk-model-small-es-0.42.tar.gz"
+    const modelUrl =  "./TFG/model/vosk-model-small-es-0.42.tar.gz"
     model = await Vosk.createModel(modelUrl);
     this.statusDiv.textContent = "✅ Modelo listo";
     console.log("✅ Vosk listo");
