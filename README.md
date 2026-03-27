@@ -36,5 +36,12 @@ En el archivo `index.html` puedes elegir 3 distintos tipos de reconocimiento de 
   <a-entity voice-input="engine: vosk"></a-entity>
 ```
 
+## Uso en VR
+1. Pulsa el botón **"VR"** para activar el modo realidad virtual.
+2. 
+   - Mantén pulsado el botón trasero del mando derecho para hablar
+   - Suéltalo para generar la escena
+3. Interactúa con la escena moviéndote con el joystick y creando escenarios con la voz
+
 ## DEMO
 https://rojalonsocarri2017.github.io/automatedMuseum/TFG/
