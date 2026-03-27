@@ -50,8 +50,11 @@ AFRAME.registerComponent("llm-client", {
   },
 
   setStatus(message) {
-    if (this.statusDiv) {
-      this.statusDiv.textContent = message;
+    if (this.statusDiv) this.statusDiv.textContent = message;
+
+    const vrStatus = document.getElementById("vrStatus");
+    if (vrStatus && this.scene?.is("vr-mode")) {
+      vrStatus.setAttribute("value", message);
     }
   },
 
@@ -304,6 +307,7 @@ ${models.join("\n")}
 --------------------------------------------------
 REGLA 6 — REGLAS DE OBJETOS
 --------------------------------------------------
+Por defecto, todos los objetos deben colocarse dentro de la habitacion. 
 
 Si el usuario dice:
 
@@ -340,7 +344,7 @@ model: lamp_floor
 --------------------------------------------------
 REGLA 7 — PRIMITIVAS A-FRAME
 --------------------------------------------------
-
+Por defecto, todos las primitivas A-Frame deben colocarse dentro de la habitacion. 
 Primitivas A-Frame:
 
 ${ALLOWED_PRIMITIVES.join("\n")}
@@ -699,7 +703,7 @@ Indentación: 2 espacios.
     const prompt = this.buildPrompt(currentRoom, descripcion);
 
     try {
-      this.setStatus("🤖 Generando YAML con LLM...");
+      this.setStatus("🤖 Generando escena con LLM...");
 
       const response = await fetch(this.OPENROUTER_URL, {
         method: "POST",

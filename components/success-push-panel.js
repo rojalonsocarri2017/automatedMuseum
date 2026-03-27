@@ -2,6 +2,7 @@ AFRAME.registerComponent("success-push-panel", {
   init() {
     this.currentPanel = null;
     this.hideTimeout = null;
+    this.hud = document.getElementById("hud");
 
     this.onShowSuccess = (e) => {
       const message =
@@ -35,7 +36,15 @@ AFRAME.registerComponent("success-push-panel", {
       this.currentPanel.parentNode.removeChild(this.currentPanel);
     }
 
+    const vrPartial = document.getElementById("vrPartial");
+    if (vrPartial) {
+      vrPartial.setAttribute("value", "");
+    }
+
     this.currentPanel = null;
+    if (this.hud && this.el.sceneEl && this.el.sceneEl.is("vr-mode")) {
+      this.hud.setAttribute("visible", true);
+    }
   },
 
   renderSuccessPanel(message) {
@@ -47,6 +56,9 @@ AFRAME.registerComponent("success-push-panel", {
     }
 
     this.clearPanel();
+    if (this.hud) {
+      this.hud.setAttribute("visible", false);
+    }
 
     const panel = document.createElement("a-plane");
     panel.setAttribute("width", "2.8");

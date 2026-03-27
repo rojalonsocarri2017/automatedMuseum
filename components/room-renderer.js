@@ -9,6 +9,10 @@ AFRAME.registerComponent("room-renderer", {
   init() {
     this.root = this.el;
 
+    this.vrStatus = document.getElementById("vrStatus");
+    this.vrPartial = document.getElementById("vrPartial");
+    this.scene = document.getElementById("vr-scene");
+
     this.el.sceneEl.addEventListener("yaml-generated", (e) => {
       const roomData = e.detail?.room;
       if (!roomData) return;
@@ -20,6 +24,10 @@ AFRAME.registerComponent("room-renderer", {
     if (!roomData) {
       console.warn("⚠️ room inválido", roomData);
       return;
+    }
+
+    if (this.scene && this.scene.is("vr-mode") && this.vrPartial) {
+      this.vrPartial.setAttribute("value", "");
     }
 
     const room = roomData.room || roomData;
@@ -34,7 +42,7 @@ AFRAME.registerComponent("room-renderer", {
     this.renderEntorno(this.root, room);
     this.renderLuces(this.root, room);
     this.renderCajaRoom(this.root, room);
-    this.renderCamera(this.root, room);
+    this.syncPlayerRig(room);
   },
 
   renderEntorno(root, room) {
@@ -90,17 +98,21 @@ AFRAME.registerComponent("room-renderer", {
 
     root.appendChild(lounge);
   },
+  syncPlayerRig(room) {
+    const rig = document.getElementById("playerRig");
+    const camera = document.getElementById("mainCamera");
+    if (!rig || !camera) return;
 
-  renderCamera(root, room) {
-    const cam = document.createElement("a-entity");
-    cam.setAttribute("camera", "");
-    cam.setAttribute("look-controls", "");
-    cam.setAttribute("wasd-controls", "");
-    cam.setAttribute(
-      "position",
-      `${room.entryPoint.x} ${-room.height / 2 + 5} ${room.entryPoint.z}`
-    );
-    root.appendChild(cam);
+    const floorY = -room.height / 2;
+    const entry = room.entryPoint || { x: 0, y: 0, z: 0 };
+
+    rig.setAttribute("position", {
+      x: entry.x,
+      y: floorY + (entry.y || 0),
+      z: entry.z
+    });
+
+    camera.setAttribute("position", { x: 0, y: 1.6, z: 0 });
   },
 
   renderObjectsInsideLounge(loungeEl, room, floorY) {
