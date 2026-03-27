@@ -27,13 +27,13 @@ room:
       color: '#ebd9e9'
       intensity: 0.3
   objects:
-    - name: esfera_1
-      primitive: sphere
-      color: '#00ff00'
+    - name: cubo_rojo
+      primitive: box
+      color: '#ff0000'
       position:
-        x: 10
+        x: 0
         'y': 2
-        z: 10
+        z: 0
       rotation:
         x: 0
         'y': 0
