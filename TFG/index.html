@@ -139,18 +139,15 @@
         return;
       }
 
-      // Estado inicial: navegador normal
       if (hud) hud.setAttribute("visible", false);
       if (status) status.textContent = "Estado: Inactivo";
 
-      // Eventos propios de tu app
       scene.addEventListener("yaml-generated", resetIdle);
       scene.addEventListener("show-error-panel", resetIdle);
       scene.addEventListener("show-help-panel", resetIdle);
       scene.addEventListener("show-error-push-panel", resetIdle);
       scene.addEventListener("show-success-push-panel", resetIdle);
 
-      // Entrar en VR
       scene.addEventListener("enter-vr", () => {
         isInVR = true;
         isPressing = false;
@@ -158,7 +155,6 @@
         setVrText("Manten pulsado el boton derecho del mando para hablar");
       });
 
-      // Salir de VR
       scene.addEventListener("exit-vr", () => {
         isInVR = false;
         isPressing = false;

@@ -29,16 +29,40 @@ AFRAME.registerComponent("llm-client", {
     this.yamlOutput = document.querySelector(this.data.outputSelector);
     this.statusDiv = document.querySelector(this.data.statusSelector);
 
+    this.isGenerating = false;
+    this.debounceTimer = null;
+    this.lastCommand = "";
+    this.lastCommandAt = 0;
+
     this.onSceneEdit = (e) => {
       const text = e.detail?.text?.trim();
       if (!text) return;
-      this.generarYamlHabitacion(text);
+
+      clearTimeout(this.debounceTimer);
+
+      this.debounceTimer = setTimeout(() => {
+        const now = Date.now();
+
+        if (text === this.lastCommand && now - this.lastCommandAt < 3000) {
+          console.warn("Comando duplicado ignorado:", text);
+          return;
+        }
+
+        this.lastCommand = text;
+        this.lastCommandAt = now;
+
+        this.generarYamlHabitacion(text);
+      }, 800);
     };
 
     this.scene.addEventListener(this.data.inputEvent, this.onSceneEdit);
   },
 
   remove() {
+    if (this.debounceTimer) {
+      clearTimeout(this.debounceTimer);
+    }
+
     if (this.scene && this.onSceneEdit) {
       this.scene.removeEventListener(this.data.inputEvent, this.onSceneEdit);
     }
@@ -82,16 +106,16 @@ AFRAME.registerComponent("llm-client", {
           ...(next.room.walls || {})
         },
         textures: {
-          ...(base.room.textures || {}),
-          ...(next.room.textures || {})
+      ...(base.room.textures || {}),
+      ...(next.room.textures || {})
         },
         entryPoint: {
-          ...(base.room.entryPoint || {}),
-          ...(next.room.entryPoint || {})
+      ...(base.room.entryPoint || {}),
+      ...(next.room.entryPoint || {})
         },
         environment: {
-          ...(base.room.environment || {}),
-          ...(next.room.environment || {})
+      ...(base.room.environment || {}),
+      ...(next.room.environment || {})
         },
         lights: Array.isArray(next.room.lights)
           ? next.room.lights
@@ -691,7 +715,32 @@ Indentación: 2 espacios.
     return parts.filter(Boolean).join("\n\n");
   },
 
+  async fetchWithRetry(url, options, retries = 2, delayMs = 1500) {
+    const response = await fetch(url, options);
+
+    if (response.status !== 429) {
+      return response;
+    }
+
+    if (retries <= 0) {
+      return response;
+    }
+
+    console.warn(`HTTP 429. Reintentando en ${delayMs} ms...`);
+    this.setStatus("⏳ Demasiadas peticiones. Reintentando...");
+
+    await new Promise((resolve) => setTimeout(resolve, delayMs));
+
+    return this.fetchWithRetry(url, options, retries - 1, delayMs * 2);
+  },
+
   async generarYamlHabitacion(descripcion) {
+    if (this.isGenerating) {
+      console.warn("LLM ocupado, ignorando nueva petición");
+      this.setStatus("⏳ Espera, sigo generando la escena anterior...");
+      return;
+    }
+
     const currentRoom = this.getCurrentRoom();
 
     if (!currentRoom) {
@@ -702,20 +751,32 @@ Indentación: 2 espacios.
 
     const prompt = this.buildPrompt(currentRoom, descripcion);
 
+    this.isGenerating = true;
+
     try {
       this.setStatus("🤖 Generando escena con LLM...");
 
-      const response = await fetch(this.OPENROUTER_URL, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${this.OPENROUTER_API_KEY}`,
-          "Content-Type": "application/json"
+      const response = await this.fetchWithRetry(
+        this.OPENROUTER_URL,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${this.OPENROUTER_API_KEY}`,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            model: this.MODEL,
+            messages: [{ role: "user", content: prompt }]
+          })
         },
-        body: JSON.stringify({
-          model: this.MODEL,
-          messages: [{ role: "user", content: prompt }]
-        })
-      });
+        2,
+        1500
+      );
+
+      if (response.status === 429) {
+        this.setStatus("❌ Demasiadas peticiones al LLM. Inténtalo en unos segundos.");
+        return;
+      }
 
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}`);
@@ -747,6 +808,8 @@ Indentación: 2 espacios.
     } catch (err) {
       console.error("❌ Error LLM:", err);
       this.setStatus("❌ Error al generar YAML");
+    } finally {
+      this.isGenerating = false;
     }
   }
 });
