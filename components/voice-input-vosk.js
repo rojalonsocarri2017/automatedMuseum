@@ -133,8 +133,6 @@ AFRAME.registerComponent("voice-input-vosk", {
     isStopping = true;
     isListening = false;
 
-    // this.setStatusText("⏹️ Parando...");
-
     let finalText = accumulatedText.trim();
     const partial = currentPartialText.trim();
 
@@ -169,7 +167,6 @@ AFRAME.registerComponent("voice-input-vosk", {
     console.log("📝 Texto final enviado:", finalText);
 
     if (finalText) {
-      // this.setStatusText("🤖 Generando YAML...");
 
       this.el.sceneEl.emit("user-command", {
         text: finalText,
