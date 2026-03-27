@@ -1,7 +1,7 @@
 room:
-  width: 200
-  depth: 300
-  height: 100
+  width: 34
+  depth: 94
+  height: 84
   ceiling: true
   walls:
     north: barrier
@@ -26,19 +26,4 @@ room:
     - type: ambient
       color: '#ebd9e9'
       intensity: 0.3
-  objects:
-    - name: cubo_1
-      primitive: box
-      color: '#0000ff'
-      position:
-        x: 10
-        'y': 2
-        z: 10
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 3
-        'y': 3
-        z: 3
+  objects: []
