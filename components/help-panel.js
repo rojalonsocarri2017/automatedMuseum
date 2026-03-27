@@ -4,7 +4,7 @@ AFRAME.registerComponent("help-panel", {
   init() {
     this.currentPanel = null;
     this.hideTimeout = null;
-
+    this.hud = document.getElementById("hud");
     this.onShowHelp = () => {
       this.renderHelpPanel();
     };
@@ -29,30 +29,36 @@ AFRAME.registerComponent("help-panel", {
       this.currentPanel.parentNode.removeChild(this.currentPanel);
     }
 
+    const vrPartial = document.getElementById("vrPartial");
+    if (vrPartial) {
+      vrPartial.setAttribute("value", "");
+    }
+
     this.currentPanel = null;
+    if (this.hud && this.el.sceneEl && this.el.sceneEl.is("vr-mode")) {
+      this.hud.setAttribute("visible", true);
+    }
   },
 
   getHelpText() {
     return `
-Puedes hacer lo siguiente:
-HABITACION:
-- Cambiar las dimensiones de la habitacion
-- Cambiar un tipo de pared que elijas en la habitacion
-- Cambiar el color del cielo
-- Activar o desactivar las estrellas
+CREA ESCENAS CON TU VOZ
 
-Modelos 3D disponibles:
-${Object.keys(OBJECT_CATALOG).join(", ")}
+Manten pulsado el boton de detras del mando derecho para hablar y sueltalo para generar la escena.
 
-Objetos A-Frame:
-box, sphere, cylinder, cone, plane, circle, torus.
+Ejemplos:
+  - "Pon un cubo rojo"
+  - "Quiero una habitacion de dimensiones 50x50x50"
+  - "Pon una silla"
+  - "Cambia el color del cielo a azul"
 
-Para los objetos 3D y objetos A-Frame puedes definir:
-- color
-- posicion (x, y, z)
-- rotacion (x, y, z)
-- scale (x, y, z)
-`.trim();
+Puedes:
+  - Crear objetos en la escena
+  - Generar una habitacion
+  - Modificar sus propiedades (color, tamanyo, posicion...)
+  - Guardar el escenario en GitHub con el comando "Guarda el escenario"
+
+La escena se genera automaticamente`
   },
 
   renderHelpPanel() {
@@ -64,30 +70,31 @@ Para los objetos 3D y objetos A-Frame puedes definir:
     }
 
     this.clearPanel();
-
-    const textValue = this.getHelpText();
+    if (this.hud) {
+      this.hud.setAttribute("visible", false);
+    }
 
     const panel = document.createElement("a-plane");
-    panel.setAttribute("width", "3.6");
-    panel.setAttribute("height", "2.4");
+    panel.setAttribute("width", "1.6");
+    panel.setAttribute("height", "1.8");
     panel.setAttribute("color", "#111111");
     panel.setAttribute("opacity", "0.85");
     panel.setAttribute(
       "material",
       "shader: flat; side: double; transparent: true"
     );
-    panel.setAttribute("position", "0 0 -3");
+    panel.setAttribute("position", "0 0 -2.2");
     panel.setAttribute("rotation", "0 0 0");
 
     const textEl = document.createElement("a-text");
     textEl.setAttribute("value", this.getHelpText());
     textEl.setAttribute("color", "#FFFFFF");
-    textEl.setAttribute("align", "center");
-    textEl.setAttribute("anchor", "center");
-    textEl.setAttribute("wrap-count", "34");
-    textEl.setAttribute("baseline", "center");
-    textEl.setAttribute("position", "0 0 0.01");
-    textEl.setAttribute("scale", "0.25 0.25 0.25");
+    textEl.setAttribute("align", "left");
+    textEl.setAttribute("anchor", "left");
+    textEl.setAttribute("wrap-count", "35");
+    textEl.setAttribute("baseline", "top");
+    textEl.setAttribute("position", "-0.6 0.7 0.01");
+    textEl.setAttribute("scale", "0.23 0.23 0.23");
 
     panel.appendChild(textEl);
     cameraEl.appendChild(panel);

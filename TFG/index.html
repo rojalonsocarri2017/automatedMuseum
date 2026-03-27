@@ -2,7 +2,8 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Voice → YAML → A-Frame</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TFG Rodrigo Alonso</title>
 
   <style>
     body, html {
@@ -12,6 +13,7 @@
       height: 100%;
       font-family: Arial, sans-serif;
       background: #f5f5f5;
+      overflow: hidden;
     }
 
     #ui-overlay {
@@ -23,18 +25,45 @@
       padding: 15px;
       border-radius: 8px;
       max-width: 400px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+    }
+
+    .vr-mode #ui-overlay {
+      display: none;
     }
 
     button {
       padding: 10px 15px;
       margin-right: 10px;
+      margin-bottom: 10px;
       font-size: 16px;
+      cursor: pointer;
     }
 
     #status {
       margin-top: 10px;
       font-weight: bold;
       color: darkblue;
+    }
+
+    #text-input {
+      width: calc(100% - 120px);
+      padding: 8px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    #text-send {
+      padding: 8px 12px;
+      font-size: 14px;
+      margin-left: 6px;
+      margin-right: 0;
+    }
+
+    .text-row {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
     }
 
     pre {
@@ -44,6 +73,8 @@
       max-height: 200px;
       overflow: auto;
       margin-top: 10px;
+      white-space: pre-wrap;
+      word-break: break-word;
     }
 
     a-scene {
@@ -68,16 +99,100 @@
   <script src="../components/voice-input.js"></script>
   <script src="../components/push-to-github.js"></script>
   <script src="../components/success-push-panel.js"></script>
-  <script src="../components/error-push-panel.js"></script> 
+  <script src="../components/error-push-panel.js"></script>
   <script src="../components/command-router.js"></script>
   <script type="module" src="../components/objects-catalog.js"></script>
   <script type="module" src="../components/help-panel.js"></script>
   <script type="module" src="../components/llm-client.js"></script>
   <script type="module" src="../components/room-renderer.js"></script>
   <script type="module" src="../components/primitives-manager.js"></script>
-  
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const startBtn = document.getElementById("start");
+      const stopBtn = document.getElementById("stop");
+      const rightHand = document.getElementById("rightHand");
+      const vrStatus = document.getElementById("vrStatus");
+      const status = document.getElementById("status");
+      const scene = document.getElementById("vr-scene");
+      const hud = document.getElementById("hud");
 
-  
+      let isPressing = false;
+      let isInVR = false;
+
+      const setVrText = (text) => {
+        if (status) status.textContent = text;
+        if (vrStatus) vrStatus.setAttribute("value", text);
+      };
+
+      const resetIdle = () => {
+        if (isInVR) {
+          if (hud) hud.setAttribute("visible", true);
+          setVrText("Manten pulsado el boton derecho del mando para hablar");
+        } else {
+          if (hud) hud.setAttribute("visible", false);
+          if (status) status.textContent = "Estado: Inactivo";
+        }
+      };
+
+      if (!rightHand || !startBtn || !stopBtn || !scene) {
+        console.warn("Falta rightHand, start, stop o scene");
+        return;
+      }
+
+      // Estado inicial: navegador normal
+      if (hud) hud.setAttribute("visible", false);
+      if (status) status.textContent = "Estado: Inactivo";
+
+      // Eventos propios de tu app
+      scene.addEventListener("yaml-generated", resetIdle);
+      scene.addEventListener("show-error-panel", resetIdle);
+      scene.addEventListener("show-help-panel", resetIdle);
+      scene.addEventListener("show-error-push-panel", resetIdle);
+      scene.addEventListener("show-success-push-panel", resetIdle);
+
+      // Entrar en VR
+      scene.addEventListener("enter-vr", () => {
+        isInVR = true;
+        isPressing = false;
+        if (hud) hud.setAttribute("visible", true);
+        setVrText("Manten pulsado el boton derecho del mando para hablar");
+      });
+
+      // Salir de VR
+      scene.addEventListener("exit-vr", () => {
+        isInVR = false;
+        isPressing = false;
+        if (hud) hud.setAttribute("visible", false);
+        if (status) status.textContent = "Estado: Inactivo";
+      });
+
+      rightHand.addEventListener("triggerdown", () => {
+        if (!isInVR) return;
+        if (isPressing) return;
+
+        isPressing = true;
+        console.log("VR triggerdown → START");
+
+        if (status) status.textContent = "🎤 Escuchando...";
+        if (vrStatus) vrStatus.setAttribute("value", "Escuchando...");
+
+        startBtn.click();
+      });
+
+      rightHand.addEventListener("triggerup", () => {
+        if (!isInVR) return;
+        if (!isPressing) return;
+
+        isPressing = false;
+        console.log("VR triggerup → STOP");
+
+        if (status) status.textContent = "Parando...";
+        if (vrStatus) vrStatus.setAttribute("value", "Procesando...");
+
+        stopBtn.click();
+      });
+    });
+  </script>
 </head>
 
 <body>
@@ -87,16 +202,15 @@
     <button id="start">Hablar</button>
     <button id="stop">Parar</button>
     <div id="status">Estado: Inactivo</div>
- 
-    <input type="text" id="text-input" placeholder="Escribe comando directamente...">
-      <button id="text-send">📤 Enviar</button>
-  
+
+    <input type="text" id="text-input" placeholder="Escribe comando">
+    <button id="text-send">📤 Enviar</button>
+
     <h3>YAML generado</h3>
     <pre id="yamlOutput"></pre>
   </div>
 
   <a-scene
-    embedded
     vr-mode-ui="enabled: true"
     id="vr-scene"
     scene-orchestrator="rendererSelector: #roomScene; inputEvent: yaml-generated">
@@ -109,20 +223,73 @@
       <a-asset-item id="tableRedModel" src="../assets/models/furniture/table_red.glb"></a-asset-item>
     </a-assets>
 
-    <a-entity voice-input="engine: vosk"></a-entity>
+    <a-entity id="playerRig" position="0 0 0" movement-controls="speed: 0.80; fly: false">
+      <a-entity
+        id="mainCamera"
+        camera
+        look-controls
+        position="0 1.6 0">
+        
+        <a-entity id="hud" position="0 -0.1 -0.8" visible="false">
+          <a-plane
+            color="#111"
+            opacity="0.85"
+            width="0.9"
+            height="0.3"
+            material="shader: flat; side: double">
+          </a-plane>
+
+          <a-text
+            id="vrStatus"
+            value="Manten pulsado el boton derecho del mando para hablar"
+            align="center"
+            color="#FFFFFF"
+            width="0.85"
+            position="0 0 0.01"
+            material="shader: flat">
+          </a-text>
+          <a-text
+            id="vrPartial"
+            value=""
+            align="center"
+            color="#FFFFFF"
+            width="0.80"
+            position="0 -0.08 0.01"
+            material="shader: flat">
+          </a-text>
+        </a-entity>
+      </a-entity>
+
+      <a-entity
+        id="leftHand"
+        laser-controls="hand: left"
+        line="color: #00FFFF">
+      </a-entity>
+
+      <a-entity
+        id="rightHand"
+        laser-controls="hand: right"
+        oculus-touch-controls="hand: right"
+        line="color: #00FFFF">
+      </a-entity>
+    </a-entity>
+
+
+    <a-entity voice-input="engine: groq"></a-entity>
     <a-entity text-input></a-entity>
 
     <a-entity
-      command-router="inputEvent: user-command; 
-                      editEvent: scene-edit-command; 
-                      saveEvent: save-scene-command; 
-                      helpEvent: show-help-panel; 
+      command-router="inputEvent: user-command;
+                      editEvent: scene-edit-command;
+                      saveEvent: save-scene-command;
+                      helpEvent: show-help-panel;
                       statusSelector: #status">
     </a-entity>
-
+<!-- model: openrouter/auto -->
+ <!-- stepfun/step-3.5-flash:free -->
     <a-entity
-      llm-client="model: openrouter/auto; 
-                  url: https://openrouter.ai/api/v1/chat/completions; 
+      llm-client="model: stepfun/step-3.5-flash:free;
+                  url: https://openrouter.ai/api/v1/chat/completions;
                   openrouterApikey: API_KEY_OPENROUTER;
                   inputEvent: scene-edit-command;
                   outputEvent: yaml-generated;
@@ -135,12 +302,12 @@
     <a-entity
       push-to-github="owner: rojalonsocarri2017; 
                       repo: automatedMuseum; 
-                      filePath: ./room.yaml; 
-                      branch: main; 
+                      filePath: ./room.yaml;
+                      branch: main;
                       token: TOKEN_GITHUB; 
-                      inputEvent: save-scene-command; 
-                      stateSelector: [scene-orchestrator]; 
-                      statusSelector: #status; 
+                      inputEvent: save-scene-command;
+                      stateSelector: [scene-orchestrator];
+                      statusSelector: #status;
                       outputSelector: #yamlOutput">
     </a-entity>
 

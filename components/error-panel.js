@@ -2,13 +2,14 @@ AFRAME.registerComponent("error-panel", {
   init() {
     this.currentPanel = null;
     this.hideTimeout = null;
-
+    this.hud = document.getElementById("hud");
     this.onShowError = (e) => {
       const message = e.detail?.message || "ERROR: Instrucción no válida.";
       this.renderErrorPanel(message);
     };
 
     this.el.sceneEl.addEventListener("show-error-panel", this.onShowError);
+    
   },
 
   remove() {
@@ -28,7 +29,15 @@ AFRAME.registerComponent("error-panel", {
       this.currentPanel.parentNode.removeChild(this.currentPanel);
     }
 
+    const vrPartial = document.getElementById("vrPartial");
+    if (vrPartial) {
+      vrPartial.setAttribute("value", "");
+    }
+
     this.currentPanel = null;
+    if (this.hud && this.el.sceneEl && this.el.sceneEl.is("vr-mode")) {
+      this.hud.setAttribute("visible", true);
+    }
   },
 
   renderErrorPanel(message) {
@@ -40,6 +49,9 @@ AFRAME.registerComponent("error-panel", {
     }
 
     this.clearPanel();
+    if (this.hud) {
+      this.hud.setAttribute("visible", false);
+    }
 
     const panel = document.createElement("a-plane");
     panel.setAttribute("width", "2.8");

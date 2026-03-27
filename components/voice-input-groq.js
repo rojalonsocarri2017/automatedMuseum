@@ -10,9 +10,15 @@ AFRAME.registerComponent("voice-input-groq", {
     this.startBtn = document.getElementById("start");
     this.stopBtn = document.getElementById("stop");
 
+    this.vrStatus = document.getElementById("vrStatus");
+    this.vrPartial = document.getElementById("vrPartial");
+    this.scene = document.getElementById("vr-scene");
+
     this.mediaRecorder = null;
     this.audioChunks = [];
     this.stream = null;
+    this.isRecording = false;
+    this.isStopping = false;
 
     this.startHandler = () => this.startRecording();
     this.stopHandler = () => this.stopRecording();
@@ -21,57 +27,103 @@ AFRAME.registerComponent("voice-input-groq", {
     if (this.stopBtn) this.stopBtn.addEventListener("click", this.stopHandler);
   },
 
+  isInVRMode() {
+    return this.scene && this.scene.is("vr-mode");
+  },
+
+  setStatusText(text) {
+    if (this.statusDiv) this.statusDiv.textContent = text;
+    if (this.isInVRMode() && this.vrStatus) {
+      this.vrStatus.setAttribute("value", text);
+    }
+  },
+
+  setPartialText(text) {
+    if (this.isInVRMode() && this.vrPartial) {
+      this.vrPartial.setAttribute("value", text || "");
+    }
+  },
+
   async startRecording() {
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-      this.statusDiv.textContent = "❌ Micrófono no soportado";
+      this.setStatusText("❌ Micrófono no soportado");
       return;
     }
 
+    if (this.isRecording) return;
+
     try {
-      this.stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      this.mediaRecorder = new MediaRecorder(this.stream);
+      this.isRecording = true;
+      this.isStopping = false;
       this.audioChunks = [];
+      this.setStatusText("🎤 Escuchando...");
+      this.setPartialText("");
+
+      this.stream = await navigator.mediaDevices.getUserMedia({
+        audio: {
+          echoCancellation: true,
+          noiseSuppression: true,
+          channelCount: 1
+        }
+      });
+
+      this.mediaRecorder = new MediaRecorder(this.stream);
 
       this.mediaRecorder.ondataavailable = (e) => {
-        this.audioChunks.push(e.data);
+        if (e.data && e.data.size > 0) {
+          this.audioChunks.push(e.data);
+        }
       };
 
       this.mediaRecorder.onstart = () => {
-        this.statusDiv.textContent = "🎤 Grabando... pulsa detener para enviar";
+        this.setStatusText("🎤 Escuchando...");
       };
 
       this.mediaRecorder.start();
     } catch (err) {
       console.error("❌ Error al abrir micrófono:", err);
-      this.statusDiv.textContent = "❌ Error de micrófono";
+      this.isRecording = false;
+      this.isStopping = false;
+      this.setStatusText("❌ Error de micrófono");
+      this.setPartialText("");
     }
   },
 
   async stopRecording() {
-    if (!this.mediaRecorder) return;
+    if (!this.mediaRecorder || this.isStopping) return;
+
+    this.isStopping = true;
+    this.isRecording = false;
 
     this.mediaRecorder.onstop = async () => {
       try {
-        this.statusDiv.textContent = "⏳ Procesando audio...";
+        this.setStatusText("⏳ Transcribiendo audio...");
 
         const audioBlob = new Blob(this.audioChunks, { type: "audio/webm" });
         const transcription = await this.enviarAGroq(audioBlob);
 
         if (transcription) {
           console.log("📝 Texto transcrito:", transcription);
+          this.setStatusText("🤖 Generando YAML...");
+          this.setPartialText(transcription);
 
           this.el.sceneEl.emit("user-command", {
             text: transcription,
             source: "groq-whisper"
           });
+        } else {
+          this.setStatusText("⚠️ No se ha detectado voz");
+          this.setPartialText("");
         }
       } finally {
         if (this.stream) {
           this.stream.getTracks().forEach((t) => t.stop());
           this.stream = null;
         }
+
         this.mediaRecorder = null;
         this.audioChunks = [];
+        this.isStopping = false;
       }
     };
 
@@ -81,7 +133,7 @@ AFRAME.registerComponent("voice-input-groq", {
   async enviarAGroq(audioBlob) {
     try {
       if (!this.data.apiKey) {
-        this.statusDiv.textContent = "❌ Falta API key de Groq";
+        this.setStatusText("❌ Falta API key de Groq");
         return null;
       }
 
@@ -100,7 +152,7 @@ AFRAME.registerComponent("voice-input-groq", {
       if (!response.ok) {
         const errText = await response.text();
         console.error("❌ Error Groq Whisper:", errText);
-        this.statusDiv.textContent = "❌ Error transcripción";
+        this.setStatusText("❌ Error transcripción");
         return null;
       }
 
@@ -108,7 +160,7 @@ AFRAME.registerComponent("voice-input-groq", {
       return data.text || null;
     } catch (err) {
       console.error("❌ Fallo en envío a Groq:", err);
-      this.statusDiv.textContent = "❌ Error Groq";
+      this.setStatusText("❌ Error Groq");
       return null;
     }
   },

@@ -3,9 +3,14 @@ let recognizer;
 let audioCtx;
 let micSource;
 let processor;
+let stream;
 
 let accumulatedText = "";
 let lastResultText = "";
+let currentPartialText = "";
+
+let isListening = false;
+let isStopping = false;
 
 AFRAME.registerComponent("voice-input-vosk", {
   init() {
@@ -18,6 +23,10 @@ AFRAME.registerComponent("voice-input-vosk", {
     this.startBtn = document.getElementById("start");
     this.stopBtn = document.getElementById("stop");
 
+    this.vrStatus = document.getElementById("vrStatus");
+    this.vrPartial = document.getElementById("vrPartial");
+    this.scene = document.getElementById("vr-scene");
+
     if (this.startBtn)
       this.startBtn.addEventListener("click", () => this.startListening());
 
@@ -26,6 +35,23 @@ AFRAME.registerComponent("voice-input-vosk", {
 
     this.loadVosk();
 
+  },
+
+  isInVRMode() {
+    return this.scene && this.scene.is("vr-mode");
+  },
+
+  setStatusText(text) {
+    if (this.statusDiv) this.statusDiv.textContent = text;
+    if (this.isInVRMode() && this.vrStatus) {
+      this.vrStatus.setAttribute("value", text);
+    }
+  },
+
+  setPartialText(text) {
+    if (this.isInVRMode() && this.vrPartial) {
+      this.vrPartial.setAttribute("value", text || "");
+    }
   },
 
   /*************************************************
@@ -47,17 +73,30 @@ AFRAME.registerComponent("voice-input-vosk", {
 		if (!model) { this.statusDiv.textContent = "⚠️ Modelo aún cargando..."; return; }
 
 		try {
-			const stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true, channelCount: 1 } });
-			audioCtx = new AudioContext();
-			micSource = audioCtx.createMediaStreamSource(stream);
-			recognizer = new model.KaldiRecognizer(audioCtx.sampleRate);
+      isListening = true;
+      isStopping = false;
+      accumulatedText = "";
+      lastResultText = "";
+      currentPartialText = "";
+      this.setStatusText("🎤 Escuchando...");
+      this.setPartialText("");
+      stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true, channelCount: 1 } });
+      audioCtx = new AudioContext();
+      micSource = audioCtx.createMediaStreamSource(stream);
+      recognizer = new model.KaldiRecognizer(audioCtx.sampleRate);
 
-			recognizer.on("partialresult", (msg) => {
-				const partial = msg.result?.partial;
-				if (partial) this.statusDiv.textContent = "🎤 " + partial;
-			});
+      recognizer.on("partialresult", (msg) => {
+        if (!isListening || isStopping) return;
+        const partial = msg.result?.partial?.trim() || "";
+        currentPartialText = partial;
+
+        if (partial) {
+          this.setStatusText("🎤 " + partial);
+        }
+      });
 
 			recognizer.on("result", (msg) => {
+        if (!isListening || isStopping) return;
 				const text = msg.result?.text?.trim();
 				if (!text) return;
 				if (text !== lastResultText) {
@@ -65,19 +104,19 @@ AFRAME.registerComponent("voice-input-vosk", {
 					lastResultText = text;
 					console.log("📝 Texto acumulado:", accumulatedText);
 				}
+        currentPartialText = "";
+        this.setStatusText("🎤 " + accumulatedText);
 			});
 
-			processor = audioCtx.createScriptProcessor(4096, 1, 1);
+			processor = audioCtx.createScriptProcessor(2048, 1, 1);
 			processor.onaudioprocess = (e) => { try { recognizer.acceptWaveform(e.inputBuffer); } catch (err) { console.warn("acceptWaveform error", err); } };
 			micSource.connect(processor);
 			processor.connect(audioCtx.destination);
 
-			accumulatedText = "";
-			lastResultText = "";
-			this.statusDiv.textContent = "🎤 Escuchando...";
-
 		} catch (err) {
 			console.error(err);
+      isListening = false;
+      isStopping = false;
 			this.statusDiv.textContent = "❌ Error micrófono";
 		}
 	},
@@ -85,34 +124,57 @@ AFRAME.registerComponent("voice-input-vosk", {
   /*************************************************
    * STOP LISTENING
    *************************************************/
-	async stopListening() {
-		if (!processor) return;
-		processor.disconnect();
-		micSource.disconnect();
-		await audioCtx.close();
+  async stopListening() {
+    if (!processor) return;
+    isStopping = true;
+    isListening = false;
 
-		this.statusDiv.textContent = "⏹️ Parado. Procesando texto...";
-		console.log("📝 Texto final acumulado:", accumulatedText);
+    // this.setStatusText("⏹️ Parando...");
 
-		recognizer = null;
-		processor = null;
-		audioCtx = null;
+    let finalText = accumulatedText.trim();
+    const partial = currentPartialText.trim();
 
-		lastResultText = "";
-		let finalText = accumulatedText.trim();
-		accumulatedText = "";
+    if (partial) {
+      if (!finalText) {
+        finalText = partial;
+      } else if (!finalText.endsWith(partial)) {
+        finalText = `${finalText} ${partial}`.trim();
+      }
+    }
+    this.setPartialText(finalText);
 
-		if (finalText) {
+    processor.disconnect();
+    micSource.disconnect();
 
-			console.log("📤 Enviando comando al LLM:", finalText);
+    if (stream) {
+      stream.getTracks().forEach(track => track.stop());
+      stream = null;
+    }
 
-			this.el.sceneEl.emit("user-command", {
+    await audioCtx.close();
+
+    recognizer = null;
+    processor = null;
+    micSource = null;
+    audioCtx = null;
+
+    lastResultText = "";
+    accumulatedText = "";
+    currentPartialText = "";
+
+    console.log("📝 Texto final enviado:", finalText);
+
+    if (finalText) {
+      // this.setStatusText("🤖 Generando YAML...");
+
+      this.el.sceneEl.emit("user-command", {
         text: finalText,
         source: "voice"
-			});
-		}
-		else {
-			this.statusDiv.textContent = "⚠️ No se detectó voz";
-		}
-	}
+      });
+    } else {
+      this.setStatusText("⚠️ No se ha detectado voz");
+      this.setPartialText("");
+    }
+    isStopping = false;
+  }
 });
