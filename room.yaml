@@ -1,7 +1,7 @@
 room:
-  width: 200
-  depth: 300
-  height: 100
+  width: 30
+  depth: 30
+  height: 30
   ceiling: true
   walls:
     north: barrier
@@ -29,11 +29,11 @@ room:
   objects:
     - name: esfera_1
       primitive: sphere
-      color: '#ff0000'
+      color: '#00ff00'
       position:
-        x: 0
+        x: 1
         'y': 2
-        z: 0
+        z: 1
       rotation:
         x: 0
         'y': 0
