@@ -29,11 +29,11 @@ room:
   objects:
     - name: esfera_1
       primitive: sphere
-      color: '#0000ff'
+      color: '#ff0000'
       position:
-        x: -80
+        x: 0
         'y': 2
-        z: -130
+        z: 0
       rotation:
         x: 0
         'y': 0
@@ -45,9 +45,9 @@ room:
     - name: silla_1
       model: chair_basic
       position:
-        x: -72
+        x: 30
         'y': 0
-        z: -130
+        z: 30
       rotation:
         x: 0
         'y': 0
@@ -56,3 +56,18 @@ room:
         x: 1
         'y': 1
         z: 1
+    - name: cubo_1
+      primitive: box
+      color: '#00ff00'
+      position:
+        x: 50
+        'y': 2
+        z: 50
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
