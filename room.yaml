@@ -1,13 +1,13 @@
 room:
-  width: 200
-  depth: 300
-  height: 100
+  width: 5
+  depth: 5
+  height: 5
   ceiling: true
   walls:
     north: barrier
-    east: glass
-    south: wall
-    west: wall
+    east: barrier
+    south: barrier
+    west: barrier
   textures:
     floor: ./assets/floor-texture.jpg
     wall: ./assets/jeroglifico.jpg
@@ -17,7 +17,7 @@ room:
     'y': 2
     z: 20
   environment:
-    skyColor: '#000000'
+    skyColor: '#87CEEB'
     stars: true
   lights:
     - type: ambient
@@ -27,25 +27,10 @@ room:
       color: '#ebd9e9'
       intensity: 0.3
   objects:
-    - name: cubo_1
-      primitive: box
-      color: '#0000ff'
-      position:
-        x: -50
-        'y': 2
-        z: 0
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 3
-        'y': 3
-        z: 3
-    - name: silla_1
+    - name: chair_1
       model: chair_basic
       position:
-        x: -42
+        x: 0
         'y': 0
         z: 0
       rotation:
@@ -56,3 +41,663 @@ room:
         x: 1
         'y': 1
         z: 1
+    - name: cube_1
+      primitive: box
+      color: '#ff69b4'
+      position:
+        x: 2.5
+        'y': 2
+        z: 3.33
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: cube_2
+      primitive: box
+      color: '#ff69b4'
+      position:
+        x: -2.5
+        'y': 2
+        z: -3.33
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: cube_3
+      primitive: box
+      color: '#00FF00'
+      position:
+        x: 0
+        'y': 2
+        z: 4
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: cube_4
+      primitive: box
+      color: '#800080'
+      position:
+        x: 0
+        'y': 2
+        z: -4
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: cube_5
+      primitive: box
+      color: '#ff69b4'
+      position:
+        x: 2.5
+        'y': 6
+        z: 3.33
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: cube_6
+      primitive: box
+      color: '#ff69b4'
+      position:
+        x: 2.5
+        'y': 10
+        z: 3.33
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: cube_7
+      primitive: box
+      color: '#ff69b4'
+      position:
+        x: 2.5
+        'y': 14
+        z: 3.33
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: cube_8
+      primitive: box
+      color: '#ff69b4'
+      position:
+        x: 2.5
+        'y': 18
+        z: 3.33
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: cube_9
+      primitive: box
+      color: '#ff69b4'
+      position:
+        x: 2.5
+        'y': 22
+        z: 3.33
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: cube_10
+      primitive: box
+      color: '#ff69b4'
+      position:
+        x: -2.5
+        'y': 6
+        z: -3.33
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: cube_11
+      primitive: box
+      color: '#ff69b4'
+      position:
+        x: -2.5
+        'y': 10
+        z: -3.33
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: cube_12
+      primitive: box
+      color: '#ff69b4'
+      position:
+        x: -2.5
+        'y': 14
+        z: -3.33
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: cube_13
+      primitive: box
+      color: '#ff69b4'
+      position:
+        x: -2.5
+        'y': 18
+        z: -3.33
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: cube_14
+      primitive: box
+      color: '#ff69b4'
+      position:
+        x: -2.5
+        'y': 22
+        z: -3.33
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: cube_15
+      primitive: box
+      color: '#00FF00'
+      position:
+        x: 0
+        'y': 6
+        z: 4
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: cube_16
+      primitive: box
+      color: '#00FF00'
+      position:
+        x: 0
+        'y': 10
+        z: 4
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: cube_17
+      primitive: box
+      color: '#00FF00'
+      position:
+        x: 0
+        'y': 14
+        z: 4
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: cube_18
+      primitive: box
+      color: '#00FF00'
+      position:
+        x: 0
+        'y': 18
+        z: 4
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: cube_19
+      primitive: box
+      color: '#00FF00'
+      position:
+        x: 0
+        'y': 22
+        z: 4
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: cube_20
+      primitive: box
+      color: '#800080'
+      position:
+        x: 0
+        'y': 6
+        z: -4
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: cube_21
+      primitive: box
+      color: '#800080'
+      position:
+        x: 0
+        'y': 10
+        z: -4
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: cube_22
+      primitive: box
+      color: '#800080'
+      position:
+        x: 0
+        'y': 14
+        z: -4
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: cube_23
+      primitive: box
+      color: '#800080'
+      position:
+        x: 0
+        'y': 18
+        z: -4
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: cube_24
+      primitive: box
+      color: '#800080'
+      position:
+        x: 0
+        'y': 22
+        z: -4
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: sphere_1
+      primitive: sphere
+      color: '#0000FF'
+      position:
+        x: -8
+        'y': 2
+        z: -15
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: sphere_2
+      primitive: sphere
+      color: '#0000FF'
+      position:
+        x: -8
+        'y': 2
+        z: -5
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: sphere_3
+      primitive: sphere
+      color: '#0000FF'
+      position:
+        x: -8
+        'y': 2
+        z: 5
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: sphere_4
+      primitive: sphere
+      color: '#0000FF'
+      position:
+        x: -8
+        'y': 2
+        z: 15
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: sphere_5
+      primitive: sphere
+      color: '#0000FF'
+      position:
+        x: -4
+        'y': 2
+        z: -15
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: sphere_6
+      primitive: sphere
+      color: '#0000FF'
+      position:
+        x: -4
+        'y': 2
+        z: -5
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: sphere_7
+      primitive: sphere
+      color: '#0000FF'
+      position:
+        x: -4
+        'y': 2
+        z: 5
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: sphere_8
+      primitive: sphere
+      color: '#0000FF'
+      position:
+        x: -4
+        'y': 2
+        z: 15
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: sphere_9
+      primitive: sphere
+      color: '#0000FF'
+      position:
+        x: 0
+        'y': 2
+        z: -15
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: sphere_10
+      primitive: sphere
+      color: '#0000FF'
+      position:
+        x: 0
+        'y': 2
+        z: -5
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: sphere_11
+      primitive: sphere
+      color: '#0000FF'
+      position:
+        x: 0
+        'y': 2
+        z: 5
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: sphere_12
+      primitive: sphere
+      color: '#0000FF'
+      position:
+        x: 0
+        'y': 2
+        z: 15
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: sphere_13
+      primitive: sphere
+      color: '#0000FF'
+      position:
+        x: 4
+        'y': 2
+        z: -15
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: sphere_14
+      primitive: sphere
+      color: '#0000FF'
+      position:
+        x: 4
+        'y': 2
+        z: -5
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: sphere_15
+      primitive: sphere
+      color: '#0000FF'
+      position:
+        x: 4
+        'y': 2
+        z: 5
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: sphere_16
+      primitive: sphere
+      color: '#0000FF'
+      position:
+        x: 4
+        'y': 2
+        z: 15
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: sphere_17
+      primitive: sphere
+      color: '#0000FF'
+      position:
+        x: 8
+        'y': 2
+        z: -15
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: sphere_18
+      primitive: sphere
+      color: '#0000FF'
+      position:
+        x: 8
+        'y': 2
+        z: -5
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: sphere_19
+      primitive: sphere
+      color: '#0000FF'
+      position:
+        x: 8
+        'y': 2
+        z: 5
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: sphere_20
+      primitive: sphere
+      color: '#0000FF'
+      position:
+        x: 8
+        'y': 2
+        z: 15
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
