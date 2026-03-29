@@ -1,7 +1,7 @@
 room:
-  width: 34
-  depth: 94
-  height: 84
+  width: 200
+  depth: 300
+  height: 100
   ceiling: true
   walls:
     north: barrier
@@ -26,4 +26,33 @@ room:
     - type: ambient
       color: '#ebd9e9'
       intensity: 0.3
-  objects: []
+  objects:
+    - name: cubo_1
+      primitive: box
+      color: '#0000ff'
+      position:
+        x: -50
+        'y': 2
+        z: 0
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 3
+        z: 3
+    - name: silla_1
+      model: chair_basic
+      position:
+        x: -42
+        'y': 0
+        z: 0
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 1
+        'y': 1
+        z: 1
