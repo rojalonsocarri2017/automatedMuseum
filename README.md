@@ -45,3 +45,6 @@ En el archivo `index.html` puedes elegir 3 distintos tipos de reconocimiento de 
 
 ## DEMO
 https://rojalonsocarri2017.github.io/automatedMuseum/TFG/
+
+## Licencia
+Este proyecto es software gratuito y se distribuye bajo la licencia [MIT](LICENSE).
