@@ -1,26 +1,17 @@
 AFRAME.registerComponent("scene-orchestrator", {
   schema: {
     initialRoom: { default: null },
-    rendererSelector: { type: "string", default: "[room-renderer]" },
-    inputEvent: { type: "string", default: "yaml-generated" },
-    autoRender: { type: "boolean", default: true }
+    inputEvent: { type: "string", default: "yaml-generated" }
   },
 
   init() {
-    this.rendererEl = document.querySelector(this.data.rendererSelector);
-
     this.currentRoom = this.data.initialRoom || {
       room: {
         width: 200,
         depth: 300,
         height: 100,
         ceiling: true,
-        walls: {
-          north: "barrier",
-          east: "glass",
-          south: "wall",
-          west: "wall"
-        },
+        walls: { north: "barrier", east: "glass", south: "wall", west: "wall" },
         textures: {
           floor: "../assets/floor-texture.jpg",
           wall: "../assets/jeroglifico.jpg",
@@ -41,32 +32,19 @@ AFRAME.registerComponent("scene-orchestrator", {
       if (!room) return;
 
       this.currentRoom = structuredClone(room);
-      console.log("🧠 Estado sincronizado en scene-orchestrator", this.currentRoom);
-
-      if (this.data.autoRender) {
-        this.renderCurrentRoom();
-      }
+      console.log("Estado sincronizado en scene-orchestrator", this.currentRoom);
     };
 
     this.el.sceneEl.addEventListener(this.data.inputEvent, this.onYamlGenerated);
-
-    if (this.data.autoRender) {
-      this.renderCurrentRoom();
-    }
+    setTimeout(() => {
+      this.el.sceneEl.emit(this.data.inputEvent, {
+        room: structuredClone(this.currentRoom),
+        source: "scene-orchestrator-initial"
+      });
+    }, 0);
   },
 
   remove() {
     this.el.sceneEl.removeEventListener(this.data.inputEvent, this.onYamlGenerated);
-  },
-
-  renderCurrentRoom() {
-    const renderer = this.rendererEl?.components["room-renderer"];
-    if (!renderer) {
-      console.warn("scene-orchestrator: room-renderer no encontrado");
-      return;
-    }
-
-    renderer.renderRoom(this.currentRoom);
-    console.log("🏠 Habitación renderizada", this.currentRoom);
   }
 });
