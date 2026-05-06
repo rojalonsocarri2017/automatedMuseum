@@ -247,6 +247,17 @@ OBJETOS
 
   getPromptSpatialRules(currentRoom) {
     return `
+
+MUY IMPORTANTE:
+En YAML siempre debe haber un espacio después de los dos puntos.
+
+Correcto:
+width: 200
+depth: 300
+
+Incorrecto:
+width:200
+depth:300
 --------------------------------------------------
 REGLA 4 — COORDENADAS DEL LOUNGE
 --------------------------------------------------
@@ -425,6 +436,8 @@ Todos con primitive: box.
 
   getPromptStackingRules() {
     return `
+
+
 --------------------------------------------------
 REGLA 9 — APILAR OBJETOS
 --------------------------------------------------
@@ -662,6 +675,45 @@ REGLA 13 — LUCES
 El campo lights debe estar SIEMPRE al mismo nivel que environment.
 
 Nunca anides lights dentro de environment.
+
+--------------------------------------------------
+REGLA 13 — ESCENAS COMPLEJAS
+--------------------------------------------------
+Si el usuario indica: 
+"Crea un bosque con varios árboles distribuidos por la escena, añade rocas y un rio".
+Debes generar exactamente dentro de la habtacion:
+
+15 árboles:
+- tronco: cylinder color marrón
+- copa: sphere color verde
+
+10 rocas:
+- primitive: box color gris
+
+1 rio:
+- primitive: plane alargado color azul
+
+IMPORTANTE:
+- Usa SIEMPRE formato YAML válido
+- SIEMPRE espacio después de :
+- Devuelve SOLO YAML
+- pon los objetos en escala 5 5 5
+- los cilindros en escala 5 8 5
+- el plano tiene que ocupar desde la pared de la habitacion norte a la sur (rotation x=260,  scale y=10. position x=0)
+- coloca los objetos a los lados del plane para que no queden encima del rio
+- las esferas que estén a y=7
+- Para figuras geométricas de A-Frame usa SIEMPRE la propiedad primitive.
+
+NO uses model para box, sphere, cylinder, cone, plane, circle o torus.
+
+Correcto:
+- name: tronco_1
+  primitive: cylinder
+  color: "#8B4513"
+
+Incorrecto:
+- name: tronco_1
+  model: cylinder
 
 --------------------------------------------------
 REGLA FINAL

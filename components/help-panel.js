@@ -103,6 +103,6 @@ La escena se genera automaticamente`
 
     this.hideTimeout = setTimeout(() => {
       this.clearPanel();
-    }, 10000);
+    }, 15000);
   }
 });
