@@ -77,6 +77,44 @@
       word-break: break-word;
     }
 
+    #token-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0, 0, 0, 0.65);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #token-modal.hidden {
+      display: none;
+    }
+
+    #token-modal-content {
+      background: white;
+      padding: 24px;
+      border-radius: 12px;
+      width: 360px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    #token-modal-content h2 {
+      margin-top: 0;
+    }
+
+    #openrouter-token {
+      width: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+      margin-top: 8px;
+      margin-bottom: 12px;
+    }
+
+    #save-openrouter-token {
+      width: 100%;
+    }
+
     a-scene {
       width: 100%;
       height: 100%;
@@ -115,9 +153,40 @@
       const status = document.getElementById("status");
       const scene = document.getElementById("vr-scene");
       const hud = document.getElementById("hud");
+      const tokenModal = document.getElementById("token-modal");
+      const tokenInput = document.getElementById("openrouter-token");
+      const saveTokenBtn = document.getElementById("save-openrouter-token");
+
+      const savedToken = localStorage.getItem("openrouter_api_key");
 
       let isPressing = false;
       let isInVR = false;
+
+      if (savedToken) {
+        tokenModal.classList.add("hidden");
+        tokenInput.value = savedToken;
+      }
+
+      saveTokenBtn.addEventListener("click", () => {
+        const token = tokenInput.value.trim();
+
+        if (!token) {
+          alert("Introduce un token válido");
+          return;
+        }
+
+        localStorage.setItem("openrouter_api_key", token);
+
+        const llmEl = document.querySelector("[llm-client]");
+        const llm = llmEl?.components["llm-client"];
+
+        if (llm) {
+          llm.OPENROUTER_API_KEY = token;
+          llmEl.setAttribute("llm-client", "openrouterApikey", token);
+        }
+
+        tokenModal.classList.add("hidden");
+      });
 
       const setVrText = (text) => {
         if (status) status.textContent = text;
@@ -126,10 +195,8 @@
 
       const resetIdle = () => {
         if (isInVR) {
-          if (hud) hud.setAttribute("visible", true);
-          setVrText("Manten pulsado el boton derecho del mando para hablar");
-        } else {
           if (hud) hud.setAttribute("visible", false);
+        } else {
           if (status) status.textContent = "Estado: Inactivo";
         }
       };
@@ -151,8 +218,7 @@
       scene.addEventListener("enter-vr", () => {
         isInVR = true;
         isPressing = false;
-        if (hud) hud.setAttribute("visible", true);
-        setVrText("Manten pulsado el boton derecho del mando para hablar");
+        if (hud) hud.setAttribute("visible", false);
       });
 
       scene.addEventListener("exit-vr", () => {
@@ -168,7 +234,7 @@
 
         isPressing = true;
         console.log("VR triggerdown → START");
-
+        if (hud) hud.setAttribute("visible", true);
         if (status) status.textContent = "🎤 Escuchando...";
         if (vrStatus) vrStatus.setAttribute("value", "Escuchando...");
 
@@ -192,7 +258,23 @@
 </head>
 
 <body>
+  <div id="token-modal">
+    <div id="token-modal-content">
+      <h2>Configurar OpenRouter</h2>
 
+      <p>Introduce tu token de OpenRouter para poder generar escenas.</p>
+
+      <input
+        id="openrouter-token"
+        type="password"
+        placeholder="Token de OpenRouter"
+      />
+
+      <button id="save-openrouter-token">
+        Guardar token
+      </button>
+    </div>
+  </div>
   <div id="ui-overlay">
     <h2>Control de habitación</h2>
     <button id="start">Hablar</button>
@@ -225,6 +307,12 @@
         camera
         look-controls
         position="0 1.6 0">
+
+        <a-entity
+          id="desktopCursor"
+          cursor="rayOrigin: mouse"
+          raycaster="objects: .clickable">
+        </a-entity>
         
         <a-entity id="hud" position="0 -0.1 -0.8" visible="false">
           <a-plane
@@ -259,14 +347,18 @@
       <a-entity
         id="leftHand"
         laser-controls="hand: left"
-        line="color: #00FFFF">
+        line="color: #00FFFF"
+        raycaster="objects: .clickable"
+        cursor="rayOrigin: entity">
       </a-entity>
 
       <a-entity
         id="rightHand"
         laser-controls="hand: right"
         oculus-touch-controls="hand: right"
-        line="color: #00FFFF">
+        line="color: #00FFFF"
+        raycaster="objects: .clickable"
+        cursor="rayOrigin: entity">
       </a-entity>
     </a-entity>
 

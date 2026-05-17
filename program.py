@@ -170,7 +170,7 @@ html = f"""<!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Museo VR</title>
+    <title>TFG Rodrigo Alonso</title>
 
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>

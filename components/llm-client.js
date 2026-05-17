@@ -21,7 +21,7 @@ AFRAME.registerComponent("llm-client", {
   },
 
   init() {
-    this.OPENROUTER_API_KEY = this.data.openrouterApikey;
+    this.OPENROUTER_API_KEY = localStorage.getItem("openrouter_api_key") || this.data.openrouterApikey;
     this.MODEL = this.data.model;
     this.OPENROUTER_URL = this.data.url;
 
@@ -167,21 +167,8 @@ Tu tarea es actualizar el estado actual de la habitación en función de la inst
 REGLA 1 — CLASIFICACIÓN
 --------------------------------------------------
 
-Si la instrucción NO tiene relación con:
+Si la instrucción NO tiene relación con escenas 3D, YAML o A-Frame, responde EXACTAMENTE:
 
-- dimensiones de la habitación
-- paredes
-- entorno
-- cielo
-- estrellas
-- objetos 3D
-- primitivas A-Frame
-- posición
-- rotación
-- tamaño
-- color
-
-Responde EXACTAMENTE:
 
 #ERROR: Instruccion no valida. No se puede generar YAML.
 
@@ -279,7 +266,7 @@ z: entre -depth/2 + 10 y +depth/2 - 10
 
 Altura:
 
-y: entre 0 y 5
+y: debe ser coherente con la altura de la pieza. No puede atravesar techo.
 
 Suelo:
 
@@ -320,9 +307,81 @@ z >= -${currentRoom.room.depth}/2 + 10
 z <= +${currentRoom.room.depth}/2 - 10
 
 y = 0 en objetos 3D
-y = 2 en figuras aframe
+y = 2 solo como altura base por defecto. En objetos compuestos, ajusta y según la parte del objeto.
 
 Si un objeto existente está fuera de los límites, debes moverlo automáticamente a una posición válida dentro del lounge.
+
+--------------------------------------------------
+REGLA — GENERACIÓN CREATIVA CON PRIMITIVAS
+--------------------------------------------------
+
+El usuario puede pedir cualquier escena, objeto, ambiente o composición visual.
+
+Si no existe un modelo 3D exacto en el catálogo, representa la idea usando primitivas A-Frame.
+
+Reglas generales:
+- Descompón objetos complejos en piezas simples.
+- Usa varias primitivas para representar un mismo elemento si es necesario.
+- Usa nombres únicos y descriptivos.
+- No coloques todas las piezas en la misma altura.
+- No superpongas superficies grandes con el mismo tamaño y posición.
+- Si hay varias zonas visuales, repártelas en distintas partes de la habitación.
+- Si un objeto tiene una parte vertical, usa cylinder, box o cone.
+- Si un objeto tiene una parte redondeada, usa sphere.
+- Si un objeto tiene una superficie, usa plane.
+- Si una pieza debe sobresalir, sepárala ligeramente del cuerpo principal.
+- Si se piden varios elementos, distribúyelos dentro de la habitación.
+- Mantén todos los objetos dentro de los límites de la habitación.
+- Genera una versión simplificada pero reconocible de la escena.
+- Un plane representa una superficie 2D.
+- En A-Frame, el ancho visible del plane depende de scale.x.
+- El alto/largo visible del plane depende de scale.y.
+- Para superficies grandes como campos, suelos, pistas, carreteras, alfombras o paredes decorativas, NO uses scale 3 3 3. Adapta las dimensiones de los planos segun sea necesario.
+- Usa escalas grandes y proporcionales al objeto representado.
+REGLA ESPECÍFICA PARA PLANES:
+En A-Frame, un plane es una superficie 2D.
+Para cambiar su tamaño visible:
+- scale.x controla el ancho.
+- scale.y controla el largo/alto visible.
+- scale.z debe ser siempre 1 y NO se usa como largo.
+
+Para planos horizontales de suelo, agua, arena, césped, carreteras o pistas:
+- Usa rotation.x = -90.
+- Usa scale.x para el ancho de la zona.
+- Usa scale.y para el largo de la zona.
+- Usa scale.z = 1.
+- No uses scale.y = 1 salvo que quieras una franja muy fina.
+
+Ejemplo correcto:
+primitive: plane
+position:
+  x: 0
+  y: 0.05
+  z: 0
+rotation:
+  x: -90
+  y: 0
+  z: 0
+scale:
+  x: 160
+  y: 80
+  z: 1
+--------------------------------------------------
+REGLA — COMPOSICIÓN ESPACIAL
+--------------------------------------------------
+
+Antes de generar los objetos, decide mentalmente:
+1. Qué zonas tendrá la escena.
+2. Qué elementos principales debe contener.
+3. Qué primitivas forman cada elemento.
+4. Cómo se distribuyen dentro de la habitación.
+
+No pongas todos los elementos en el centro.
+No pongas todas las piezas en la misma altura.
+No generes objetos complejos como una sola primitiva si necesitan varias piezas.
+No superpongas objetos grandes en la misma posición.
+
+La escena debe ser visualmente reconocible usando únicamente primitivas simples.
 `.trim();
   },
 
@@ -338,6 +397,9 @@ REGLA 5 — OBJETOS DISPONIBLES
 Modelos 3D:
 
 ${models.join("\n")}
+
+Usa modelos del catálogo solo si encajan exactamente con lo pedido.
+Si no encajan, usa primitivas A-Frame.
 
 --------------------------------------------------
 REGLA 6 — REGLAS DE OBJETOS
@@ -388,27 +450,26 @@ Para primitivas usa:
 
 primitive: ${ALLOWED_PRIMITIVES.join(" | ")}
 
-Estructura:
+Ejemplo de estructura:
 
 - name: string
   primitive: box
   color: "#rrggbb"
   position:
     x: number
-    y: 2
+    y: number
     z: number
   rotation:
     x: 0
     y: number
     z: 0
   scale:
-    x: 3
-    y: 3
-    z: 3
+    x: number
+    y: number
+    z: number
 
 Regla:
-
-Las primitivas deben tener scale 3 3 3 por defecto salvo que el usuario indique otro tamaño.
+position.y representa la altura de la pieza dentro de la habitación. En objetos compuestos, cada pieza debe tener una altura distinta según su función.
 `.trim();
   },
 
@@ -636,6 +697,21 @@ room:
         x: number
         y: number
         z: number
+  - name: string
+    primitive: box|sphere|cylinder|cone|plane|circle|torus
+    color: "#rrggbb"
+    position:
+      x: number
+      y: number
+      z: number
+    rotation:
+      x: number
+      y: number
+      z: number
+    scale:
+      x: number
+      y: number
+      z: number
 `.trim();
   },
 
@@ -676,44 +752,7 @@ El campo lights debe estar SIEMPRE al mismo nivel que environment.
 
 Nunca anides lights dentro de environment.
 
---------------------------------------------------
-REGLA 13 — ESCENAS COMPLEJAS
---------------------------------------------------
-Si el usuario indica: 
-"Crea un bosque con varios árboles distribuidos por la escena, añade rocas y un rio".
-Debes generar exactamente dentro de la habtacion:
 
-15 árboles:
-- tronco: cylinder color marrón
-- copa: sphere color verde
-
-10 rocas:
-- primitive: box color gris
-
-1 rio:
-- primitive: plane alargado color azul
-
-IMPORTANTE:
-- Usa SIEMPRE formato YAML válido
-- SIEMPRE espacio después de :
-- Devuelve SOLO YAML
-- pon los objetos en escala 5 5 5
-- los cilindros en escala 5 8 5
-- el plano tiene que ocupar desde la pared de la habitacion norte a la sur (rotation x=260,  scale y=10. position x=0)
-- coloca los objetos a los lados del plane para que no queden encima del rio
-- las esferas que estén a y=7
-- Para figuras geométricas de A-Frame usa SIEMPRE la propiedad primitive.
-
-NO uses model para box, sphere, cylinder, cone, plane, circle o torus.
-
-Correcto:
-- name: tronco_1
-  primitive: cylinder
-  color: "#8B4513"
-
-Incorrecto:
-- name: tronco_1
-  model: cylinder
 
 --------------------------------------------------
 REGLA FINAL
