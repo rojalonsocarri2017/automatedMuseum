@@ -38,17 +38,18 @@ AFRAME.registerComponent("help-panel", {
     if (this.currentPanel && this.currentPanel.parentNode) {
       this.currentPanel.parentNode.removeChild(this.currentPanel);
     }
-
-    const vrPartial = document.getElementById("vrPartial");
-    if (vrPartial) {
-      vrPartial.setAttribute("value", "");
-    }
-
     this.currentPanel = null;
+    const vrStatus = document.getElementById("vrStatus");
+    const vrPartial = document.getElementById("vrPartial");
 
-    if (this.hud && this.el.sceneEl && this.el.sceneEl.is("vr-mode")) {
-      this.hud.setAttribute("visible", true);
+    if (vrStatus) vrStatus.setAttribute("value", "");
+    if (vrPartial) vrPartial.setAttribute("value", "");
+
+    if (this.hud) {
+      this.hud.setAttribute("visible", false);
     }
+
+    this.el.sceneEl.emit("help-panel-closed");
   },
 
   getHelpText() {
@@ -85,7 +86,6 @@ Di "muestra un panel de ayuda" para volver a abrir este panel.
       console.warn("help-panel: cámara no encontrada");
       return;
     }
-
     this.clearPanel();
 
     if (this.hud) {
@@ -147,5 +147,6 @@ Di "muestra un panel de ayuda" para volver a abrir este panel.
     cameraEl.appendChild(container);
 
     this.currentPanel = container;
+    this.el.sceneEl.emit("help-panel-opened");
   }
 });
