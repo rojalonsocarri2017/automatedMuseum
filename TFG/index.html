@@ -150,6 +150,7 @@
       const stopBtn = document.getElementById("stop");
       const rightHand = document.getElementById("rightHand");
       const vrStatus = document.getElementById("vrStatus");
+      const vrPartial = document.getElementById("vrPartial");
       const status = document.getElementById("status");
       const scene = document.getElementById("vr-scene");
       const hud = document.getElementById("hud");
@@ -194,10 +195,10 @@
       };
 
       const resetIdle = () => {
-        if (isInVR) {
-          if (hud) hud.setAttribute("visible", false);
-        } else {
-          if (status) status.textContent = "Estado: Inactivo";
+        if (hud) hud.setAttribute("visible", false);
+
+        if (!isInVR && status) {
+          status.textContent = "Estado: Inactivo";
         }
       };
 
@@ -231,12 +232,14 @@
       rightHand.addEventListener("triggerdown", () => {
         if (!isInVR) return;
         if (isPressing) return;
+        if (isHelpPanelOpen) return;
 
         isPressing = true;
         console.log("VR triggerdown → START");
         if (hud) hud.setAttribute("visible", true);
         if (status) status.textContent = "🎤 Escuchando...";
         if (vrStatus) vrStatus.setAttribute("value", "Escuchando...");
+        if (vrPartial) vrPartial.setAttribute("value", "");
 
         startBtn.click();
       });
@@ -248,10 +251,18 @@
         isPressing = false;
         console.log("VR triggerup → STOP");
 
-        if (status) status.textContent = "Parando...";
+        if (hud) hud.setAttribute("visible", true);
+        if (status) status.textContent = "Procesando...";
         if (vrStatus) vrStatus.setAttribute("value", "Procesando...");
 
         stopBtn.click();
+      });
+      scene.addEventListener("help-panel-opened", () => {
+        isHelpPanelOpen = true;
+      });
+
+      scene.addEventListener("help-panel-closed", () => {
+        isHelpPanelOpen = false;
       });
     });
   </script>
