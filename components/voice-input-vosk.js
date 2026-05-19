@@ -175,6 +175,21 @@ AFRAME.registerComponent("voice-input-vosk", {
     } else {
       this.setStatusText("⚠️ No se ha detectado voz");
       this.setPartialText("");
+      setTimeout(() => {
+        const hud = document.getElementById("hud");
+
+        if (hud) {
+          hud.setAttribute("visible", false);
+        }
+
+        if (this.vrStatus) {
+          this.vrStatus.setAttribute("value", "");
+        }
+
+        if (this.vrPartial) {
+          this.vrPartial.setAttribute("value", "");
+        }
+      }, 2000);
     }
     isStopping = false;
   }
