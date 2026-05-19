@@ -1,7 +1,7 @@
 room:
-  width: 200
-  depth: 300
-  height: 100
+  width: 50
+  depth: 50
+  height: 50
   ceiling: true
   walls:
     north: barrier
@@ -27,9 +27,9 @@ room:
       color: '#ebd9e9'
       intensity: 0.3
   objects:
-    - name: river_plane
+    - name: river
       primitive: plane
-      color: '#4da6ff'
+      color: '#4a90e2'
       position:
         x: 0
         'y': 0.05
@@ -39,276 +39,96 @@ room:
         'y': 0
         z: 0
       scale:
-        x: 180
-        'y': 30
+        x: 30
+        'y': 20
         z: 1
-    - name: tree_1_trunk
-      primitive: cylinder
-      color: '#8b5a2b'
+    - name: tree_1
+      primitive: cone
+      color: '#228B22'
       position:
-        x: -80
-        'y': 1
-        z: -100
+        x: -12
+        'y': 0
+        z: -10
       rotation:
         x: 0
         'y': 0
         z: 0
       scale:
         x: 2
-        'y': 8
+        'y': 4
         z: 2
-    - name: tree_1_foliage
+    - name: tree_2
       primitive: cone
-      color: '#2e8b57'
+      color: '#228B22'
       position:
-        x: -80
-        'y': 6
-        z: -100
+        x: -6
+        'y': 0
+        z: -10
       rotation:
         x: 0
         'y': 0
         z: 0
       scale:
+        x: 2
+        'y': 4
+        z: 2
+    - name: tree_3
+      primitive: cone
+      color: '#228B22'
+      position:
+        x: 0
+        'y': 0
+        z: -10
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 2
+        'y': 4
+        z: 2
+    - name: tree_4
+      primitive: cone
+      color: '#228B22'
+      position:
         x: 6
-        'y': 8
-        z: 6
-    - name: tree_2_trunk
-      primitive: cylinder
-      color: '#8b5a2b'
-      position:
-        x: 60
-        'y': 1
-        z: -120
+        'y': 0
+        z: -10
       rotation:
         x: 0
         'y': 0
         z: 0
       scale:
         x: 2
-        'y': 10
+        'y': 4
         z: 2
-    - name: tree_2_foliage
+    - name: tree_5
       primitive: cone
-      color: '#2e8b57'
+      color: '#228B22'
       position:
-        x: 60
-        'y': 7
-        z: -120
-      rotation:
-        x: 0
+        x: 12
         'y': 0
-        z: 0
-      scale:
-        x: 7
-        'y': 10
-        z: 7
-    - name: tree_3_trunk
-      primitive: cylinder
-      color: '#8b5a2b'
-      position:
-        x: -30
-        'y': 1
-        z: 100
+        z: -10
       rotation:
         x: 0
         'y': 0
         z: 0
       scale:
         x: 2
-        'y': 9
+        'y': 4
         z: 2
-    - name: tree_3_foliage
-      primitive: cone
-      color: '#2e8b57'
-      position:
-        x: -30
-        'y': 6
-        z: 100
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 6
-        'y': 9
-        z: 6
-    - name: tree_4_trunk
-      primitive: cylinder
-      color: '#8b5a2b'
-      position:
-        x: 90
-        'y': 1
-        z: 80
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 2
-        'y': 7
-        z: 2
-    - name: tree_4_foliage
-      primitive: cone
-      color: '#2e8b57'
-      position:
-        x: 90
-        'y': 5
-        z: 80
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 5
-        'y': 7
-        z: 5
-    - name: tree_5_trunk
-      primitive: cylinder
-      color: '#8b5a2b'
-      position:
-        x: -70
-        'y': 1
-        z: 50
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 2
-        'y': 8
-        z: 2
-    - name: tree_5_foliage
-      primitive: cone
-      color: '#2e8b57'
-      position:
-        x: -70
-        'y': 6
-        z: 50
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 6
-        'y': 8
-        z: 6
     - name: stone_1
       primitive: box
-      color: '#7f7f7f'
+      color: '#8B4513'
       position:
-        x: -40
-        'y': 0.5
-        z: -5
+        x: -12
+        'y': 0
+        z: 12
       rotation:
         x: 0
         'y': 0
         z: 0
       scale:
-        x: 2
+        x: 1
         'y': 1
-        z: 2
-    - name: stone_2
-      primitive: box
-      color: '#7f7f7f'
-      position:
-        x: 0
-        'y': 0.5
-        z: -5
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 2
-        'y': 1
-        z: 2
-    - name: stone_3
-      primitive: box
-      color: '#7f7f7f'
-      position:
-        x: 40
-        'y': 0.5
-        z: -5
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 2
-        'y': 1
-        z: 2
-    - name: stone_4
-      primitive: box
-      color: '#7f7f7f'
-      position:
-        x: -20
-        'y': 0.5
-        z: 5
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 2
-        'y': 1
-        z: 2
-    - name: stone_5
-      primitive: box
-      color: '#7f7f7f'
-      position:
-        x: 20
-        'y': 0.5
-        z: 5
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 2
-        'y': 1
-        z: 2
-    - name: sailboat_hull
-      primitive: box
-      color: '#663300'
-      position:
-        x: 30
-        'y': 0.05
-        z: 0
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 12
-        'y': 2
-        z: 4
-    - name: sailboat_mast
-      primitive: cylinder
-      color: '#996633'
-      position:
-        x: 30
-        'y': 2
-        z: 0
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 0.5
-        'y': 8
-        z: 0.5
-    - name: sailboat_sail
-      primitive: plane
-      color: '#ffffff'
-      position:
-        x: 30
-        'y': 5
-        z: 0
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 6
-        'y': 10
         z: 1
