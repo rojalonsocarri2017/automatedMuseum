@@ -14,6 +14,8 @@ AFRAME.registerComponent("success-push-panel", {
       "show-success-push-panel",
       this.onShowSuccess
     );
+
+    
   },
 
   remove() {
@@ -35,15 +37,18 @@ AFRAME.registerComponent("success-push-panel", {
     if (this.currentPanel && this.currentPanel.parentNode) {
       this.currentPanel.parentNode.removeChild(this.currentPanel);
     }
-
+    const vrStatus = document.getElementById("vrStatus");
     const vrPartial = document.getElementById("vrPartial");
+    if (vrStatus){
+      vrStatus.setAttribute("value", "");
+    } 
     if (vrPartial) {
       vrPartial.setAttribute("value", "");
     }
 
     this.currentPanel = null;
-    if (this.hud && this.el.sceneEl && this.el.sceneEl.is("vr-mode")) {
-      this.hud.setAttribute("visible", true);
+    if (this.hud) {
+      this.hud.setAttribute("visible", false);
     }
   },
 
