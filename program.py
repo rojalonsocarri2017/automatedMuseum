@@ -30,6 +30,26 @@ MODEL_CATALOG = {
         "src": "./assets/models/statues/statue_venus.glb",
         "floorOffset": 0,
         "scale": {"x": 15, "y": 15, "z": 15}
+    },
+    "car_1": {
+        "src": "./assets/models/vehicles/car_1.glb",
+        "floorOffset": 0,
+        "scale": {"x": 2, "y": 2, "z": 2}
+    },
+    "car_2": {
+        "src": "./assets/models/vehicles/car_2.glb",
+        "floorOffset": 0,
+        "scale": {"x": 2, "y": 2, "z": 2}
+    },
+    "car_3": {
+        "src": "./assets/models/vehicles/car_3.glb",
+        "floorOffset": 0,
+        "scale": {"x": 2, "y": 2, "z": 2}
+    },
+    "motorbike": {
+        "src": "./assets/models/vehicles/motorbike.glb",
+        "floorOffset": 0,
+        "scale": {"x": 2, "y": 2, "z": 2}
     }
 }
 
