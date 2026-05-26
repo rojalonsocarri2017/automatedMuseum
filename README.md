@@ -4,47 +4,38 @@ Sistema modular basado en A-Frame para la generación y edición de escenas XR m
 
 El proyecto está compuesto por un conjunto de componentes reutilizables que permiten construir experiencias inmersivas en realidad virtual y realidad aumentada usando voz o texto. El sistema integra reconocimiento de voz, procesamiento mediante modelos de lenguaje (LLM), renderizado dinámico de escenas 3D y persistencia de escenarios.
 
----
-
 ## Estructura del repositorio
 
 ### `/assets`
 
 Contiene las imágenes y modelos 3D utilizados por el sistema.
 
----
 
 ### `/components`
 
 Contiene los componentes principales del sistema desarrollados sobre A-Frame.
 
----
 
 
 ### `/Sprints`
 
 Contiene los ejercicios previos realizados por cada Sprint.
 
----
 
 ### `/TFG`
 
 Punto de entrada principal de la aplicación XR.
 
----
 
 ### `program.py`
 
 Script encargado de generar automáticamente un fichero `index.html` a partir de una descripción de escena definida en YAML. Procesa la configuración de la habitación, luces, entorno, objetos y modelos 3D, generando dinámicamente una escena A-Frame completa. Es el script que se ejecuta automáticamente dentro del workflow de integración continua para generar y representar la escena XR que el usuario ha decidido persistir desde el sistema.
 
 
----
-
 ### `room.yaml`
 
 Archivo de configuración de la escena. Define el estado completo de la habitación, incluyendo dimensiones, paredes, entorno, luces y objetos presentes en la escena mediante una estructura YAML.
 
----
 
 ## Requisitos de Configuración
 Antes de ejecutar el proyecto, es necesario configurar varias API KEYS.
