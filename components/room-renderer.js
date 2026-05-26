@@ -359,7 +359,9 @@ AFRAME.registerComponent("room-renderer", {
       chair: "chair_basic",
       lampara: "lamp_floor",
       lámpara: "lamp_floor",
-      lamp: "lamp_floor"
+      lamp: "lamp_floor",
+      coche: "car_1",
+      moto: "motorbike"
     };
 
     return aliases[model] || model;
