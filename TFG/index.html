@@ -227,7 +227,6 @@
         isInVR = false;
         isPressing = false;
         if (hud) hud.setAttribute("visible", false);
-        if (status) status.textContent = "Estado: Inactivo";
       });
 
       rightHand.addEventListener("triggerdown", () => {
@@ -311,6 +310,10 @@
       <a-asset-item id="chairTableModel" src="../assets/models/furniture/chair_basic.glb"></a-asset-item>
       <a-asset-item id="lampFloorModel" src="../assets/models/furniture/lamp_floor.glb"></a-asset-item>
       <a-asset-item id="tableRedModel" src="../assets/models/furniture/table_red.glb"></a-asset-item>
+      <a-asset-item id="car1Model" src="../assets/models/vehicles/car_1.glb"></a-asset-item>
+      <a-asset-item id="car2Model" src="../assets/models/vehicles/car_2.glb"></a-asset-item>
+      <a-asset-item id="car3Model" src="../assets/models/vehicles/car_3.glb"></a-asset-item>
+      <a-asset-item id="motorbikeModel" src="../assets/models/vehicles/motorbike.glb"></a-asset-item>
     </a-assets>
 
     <a-entity id="playerRig" position="0 0 0" movement-controls="speed: 0.80; fly: false">
@@ -386,7 +389,9 @@
                       statusSelector: #status">
     </a-entity>
 <!-- model: openrouter/auto -->
- <!-- stepfun/step-3.5-flash:free -->
+<!-- stepfun/step-3.5-flash:free DEPRECADO-->
+<!-- openai/gpt-oss-120b:free -->
+<!-- poolside/laguna-xs.2:free -->
     <a-entity
       llm-client="model:openai/gpt-oss-120b:free;
                   url: https://openrouter.ai/api/v1/chat/completions;
