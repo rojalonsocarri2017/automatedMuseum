@@ -453,6 +453,7 @@ OBJETOS
   - lámpara -> lamp_floor
   - coche -> car_1
   - moto -> motorbike
+  Manten la escala de los objetos que estan defnidos en el catálogo, ya que están ajustados para ser visualmente coherentes en la escena. Si el usuario pide un objeto específico del catálogo, úsalo con su escala definida para asegurar que se vea correctamente en la habitación.
   `.trim();
   },
 
