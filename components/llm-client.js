@@ -83,11 +83,38 @@ AFRAME.registerComponent("llm-client", {
   },
 
   normalizarYAML(yaml) {
-    return String(yaml || "")
+    let clean = String(yaml || "")
       .replace(/```yaml/g, "")
       .replace(/```/g, "")
       .replace(/\t/g, "  ")
       .trim();
+
+    const startIndex = clean.indexOf("room:");
+    if (startIndex !== -1) {
+      clean = clean.slice(startIndex);
+    }
+
+    const stopTokens = [
+      "</assistant>",
+      "<assistant>",
+      "</user>",
+      "<user>",
+      "</system>",
+      "<system>",
+      "</tool_call>",
+      "<tool_call>",
+      "</arg_value>",
+      "<arg_value>"
+    ];
+
+    for (const token of stopTokens) {
+      const index = clean.indexOf(token);
+      if (index !== -1) {
+        clean = clean.slice(0, index);
+      }
+    }
+
+    return clean.trim();
   },
 
   completarRoomDefaults(newRoom, currentRoom) {
@@ -234,155 +261,174 @@ OBJETOS
 
   getPromptSpatialRules(currentRoom) {
     return `
+  --------------------------------------------------
+  REGLA 4 — GENERACIÓN VISUAL Y ESPACIAL
+  --------------------------------------------------
 
-MUY IMPORTANTE:
-En YAML siempre debe haber un espacio después de los dos puntos.
+  La habitación usa estos ejes:
+  - x = izquierda / derecha
+  - z = delante / detrás
+  - y = altura
 
-Correcto:
-width: 200
-depth: 300
+  El centro de la habitación es:
+  x = 0
+  z = 0
 
-Incorrecto:
-width:200
-depth:300
---------------------------------------------------
-REGLA 4 — COORDENADAS DEL LOUNGE
---------------------------------------------------
+  Límites válidos:
 
-El centro de la habitación es:
+  x: -width/2 a +width/2
+  z: -depth/2 a +depth/2
 
-x = 0
-z = 0
+  Para evitar paredes:
 
-Límites:
+  x: entre -width/2 + 10 y +width/2 - 10
+  z: entre -depth/2 + 10 y +depth/2 - 10
 
-x: -width/2 a +width/2
-z: -depth/2 a +depth/2
+  Usa estos límites dinámicamente:
 
-Para evitar paredes, usa siempre:
+  x_min = -${currentRoom.room.width}/2 + 10
+  x_max = +${currentRoom.room.width}/2 - 10
 
-x: entre -width/2 + 10 y +width/2 - 10
-z: entre -depth/2 + 10 y +depth/2 - 10
+  z_min = -${currentRoom.room.depth}/2 + 10
+  z_max = +${currentRoom.room.depth}/2 - 10
 
-Altura:
+  --------------------------------------------------
+  REGLAS DE DISTRIBUCIÓN
+  --------------------------------------------------
 
-y: debe ser coherente con la altura de la pieza. No puede atravesar techo.
+  - NUNCA coloques objetos fuera de la habitación.
+  - NUNCA coloques todos los objetos en x:0 z:0.
+  - Distribuye los elementos por distintas zonas.
+  - Evita escenas excesivamente simétricas.
+  - No superpongas objetos grandes en la misma posición.
+  - Si un objeto existente queda fuera tras cambiar el tamaño de la habitación, recolócalo automáticamente dentro.
+  - Si el objeto tiene que estar en el suelo, su posicion debe empezar en el suelo para ser mas visual
 
-Suelo:
+  --------------------------------------------------
+  REGLAS DE COMPOSICIÓN VISUAL
+  --------------------------------------------------
 
-y = 0
+  El usuario puede pedir cualquier escena, ambiente u objeto.
 
---------------------------------------------------
-REGLA 4.1 — COLOCACIÓN AUTOMÁTICA DE OBJETOS
---------------------------------------------------
+  Si no existe un modelo exacto en el catálogo:
+  - representa la escena usando primitivas A-Frame.
+  - construye objetos complejos usando varias primitivas.
+  - genera escenas visualmente reconocibles.
+  - usa distintas alturas, tamaños y rotaciones.
+  - usa nombres descriptivos y únicos.
+  - Los detalles decorativos pequeños deben sobresalir ligeramente
+    hacia fuera para ser visibles y no quedar ocultos dentro de otra geometría.
 
-Si el usuario crea objetos y NO especifica posición:
+  Piensa primero:
+  1. Qué zonas tendrá la escena.
+  2. Qué elementos principales contiene.
+  3. Cómo distribuirlos.
+  4. Qué primitivas representan cada parte.
 
-NUNCA coloques todos en x:0 z:0.
+  --------------------------------------------------
+  REGLAS DE ORIENTACIÓN Y TAMAÑO
+  --------------------------------------------------
 
-Distribuye los objetos dentro del lounge usando posiciones distintas.
+  - Usa el eje y únicamente para altura real.
+  - Usa x y z para distribución horizontal.
+  - Los objetos anchos deben crecer principalmente en x.
+  - Los objetos largos deben crecer principalmente en z.
+  - Los objetos altos deben crecer principalmente en y.
 
-Usa estos límites calculados dinámicamente:
+  La escala debe ser coherente con el elemento representado:
+  - un río debe ser ancho y visible
+  - una playa debe ocupar una zona amplia
+  - un bosque debe contener múltiples árboles repartidos
+  - una carretera debe tener anchura suficiente
+  - un edificio debe ser claramente más grande que una persona
+  - Para superficies grandes como campos, suelos, pistas, carreteras, alfombras o paredes decorativas, NO uses scale 3 3 3. Adapta las dimensiones de los planos segun sea necesario.
 
-x_min = -${currentRoom.room.width}/2 + 10
-x_max = +${currentRoom.room.width}/2 - 10
+  Los elementos principales deben ser claramente visibles, pero manteniendo proporciones coherentes con el resto de la escena.
 
-z_min = -${currentRoom.room.depth}/2 + 10
-z_max = +${currentRoom.room.depth}/2 - 10
+  --------------------------------------------------
+  REGLAS PARA PLANES
+  --------------------------------------------------
 
-Los objetos deben generarse SIEMPRE dentro de estos límites.
+  Un plane representa una superficie 2D.
 
---------------------------------------------------
-REGLA 4.2 — OBJETOS DENTRO DEL LOUNGE
---------------------------------------------------
+  En planes:
+  - scale.x controla el ancho
+  - scale.y controla el largo/alto visible
+  - scale.z debe ser 1
 
-NUNCA coloques objetos fuera de la habitación.
+  Para superficies horizontales:
+  - usa rotation.x = -90
 
-Reglas obligatorias:
+  Para superficies grandes:
+  - NO uses scale 3 3 3
+  - usa dimensiones amplias y proporcionales
+  - evita superficies finas o difíciles de percibir visualmente
 
-x >= -${currentRoom.room.width}/2 + 10
-x <= +${currentRoom.room.width}/2 - 10
+  Ejemplo:
 
-z >= -${currentRoom.room.depth}/2 + 10
-z <= +${currentRoom.room.depth}/2 - 10
+  primitive: plane
+  position:
+    x: 0
+    y: 0.05
+    z: 0
+  rotation:
+    x: -90
+    y: 0
+    z: 0
+  scale:
+    x: 160
+    y: 80
+    z: 1
 
-y = 0 en objetos 3D
-y = 2 solo como altura base por defecto. En objetos compuestos, ajusta y según la parte del objeto.
+  --------------------------------------------------
+  REGLA — TEXTURAS DISPONIBLES
+  --------------------------------------------------
 
-Si un objeto existente está fuera de los límites, debes moverlo automáticamente a una posición válida dentro del lounge.
+  Texturas disponibles:
 
---------------------------------------------------
-REGLA — GENERACIÓN CREATIVA CON PRIMITIVAS
---------------------------------------------------
+  - ladrillo -> ../assets/brick.jpg
+  - piedra -> ../assets/stone.jpg
+  - jeroglifico -> ../assets/jeroglifico.jpg
 
-El usuario puede pedir cualquier escena, objeto, ambiente o composición visual.
+  Si el usuario cambia el estilo visual de la habitación:
+  - puedes modificar automáticamente wall, floor o ceiling
+  - usa texturas coherentes con la escena
 
-Si no existe un modelo 3D exacto en el catálogo, representa la idea usando primitivas A-Frame.
+  --------------------------------------------------
+  REGLA — DETALLES VISIBLES EN OBJETOS COMPUESTOS
+  --------------------------------------------------
 
-Reglas generales:
-- Descompón objetos complejos en piezas simples.
-- Usa varias primitivas para representar un mismo elemento si es necesario.
-- Usa nombres únicos y descriptivos.
-- No coloques todas las piezas en la misma altura.
-- No superpongas superficies grandes con el mismo tamaño y posición.
-- Si hay varias zonas visuales, repártelas en distintas partes de la habitación.
-- Si un objeto tiene una parte vertical, usa cylinder, box o cone.
-- Si un objeto tiene una parte redondeada, usa sphere.
-- Si un objeto tiene una superficie, usa plane.
-- Si una pieza debe sobresalir, sepárala ligeramente del cuerpo principal.
-- Si se piden varios elementos, distribúyelos dentro de la habitación.
-- Mantén todos los objetos dentro de los límites de la habitación.
-- Genera una versión simplificada pero reconocible de la escena.
-- Un plane representa una superficie 2D.
-- En A-Frame, el ancho visible del plane depende de scale.x.
-- El alto/largo visible del plane depende de scale.y.
-- Para superficies grandes como campos, suelos, pistas, carreteras, alfombras o paredes decorativas, NO uses scale 3 3 3. Adapta las dimensiones de los planos segun sea necesario.
-- Usa escalas grandes y proporcionales al objeto representado.
-REGLA ESPECÍFICA PARA PLANES:
-En A-Frame, un plane es una superficie 2D.
-Para cambiar su tamaño visible:
-- scale.x controla el ancho.
-- scale.y controla el largo/alto visible.
-- scale.z debe ser siempre 1 y NO se usa como largo.
+  Los detalles pequeños visibles como ojos, nariz, boca, botones,
+  ventanas, puertas, ruedas o decoración deben ir SIEMPRE por fuera
+  de la pieza principal.
 
-Para planos horizontales de suelo, agua, arena, césped, carreteras o pistas:
-- Usa rotation.x = -90.
-- Usa scale.x para el ancho de la zona.
-- Usa scale.y para el largo de la zona.
-- Usa scale.z = 1.
-- No uses scale.y = 1 salvo que quieras una franja muy fina.
+  Para detalles frontales sobre una pieza principal:
 
-Ejemplo correcto:
-primitive: plane
-position:
-  x: 0
-  y: 0.05
-  z: 0
-rotation:
-  x: -90
-  y: 0
-  z: 0
-scale:
-  x: 160
-  y: 80
-  z: 1
---------------------------------------------------
-REGLA — COMPOSICIÓN ESPACIAL
---------------------------------------------------
+  detalle.position.z =
+  pieza_principal.position.z + pieza_principal.scale.z + 0.5
 
-Antes de generar los objetos, decide mentalmente:
-1. Qué zonas tendrá la escena.
-2. Qué elementos principales debe contener.
-3. Qué primitivas forman cada elemento.
-4. Cómo se distribuyen dentro de la habitación.
+  Nunca pongas detalles frontales con el mismo z que la pieza principal.
 
-No pongas todos los elementos en el centro.
-No pongas todas las piezas en la misma altura.
-No generes objetos complejos como una sola primitiva si necesitan varias piezas.
-No superpongas objetos grandes en la misma posición.
+  Ejemplo:
+  Si una cabeza tiene:
+  position:
+    x: 0
+    y: 40
+    z: 100
+  scale:
+    x: 5
+    y: 5
+    z: 5
 
-La escena debe ser visualmente reconocible usando únicamente primitivas simples.
-`.trim();
+  Entonces ojos, nariz y boca deben ir aproximadamente en:
+  z: 105.5
+
+  Los ojos deben mantener una y cercana a la cabeza:
+  y: 40 o 41
+
+  Nunca coloques ojos, nariz o boca dentro del cuerpo ni dentro de la cabeza.
+  Si dudas entre colocar un detalle dentro o fuera, colócalo más hacia fuera para que sea visible.
+  `.trim();
   },
 
   getPromptObjectsCatalog() {
@@ -390,46 +436,24 @@ La escena debe ser visualmente reconocible usando únicamente primitivas simples
     if (!models.length) return "";
 
     return `
---------------------------------------------------
-REGLA 5 — OBJETOS DISPONIBLES
---------------------------------------------------
+  --------------------------------------------------
+  REGLA 5 — MODELOS 3D DISPONIBLES
+  --------------------------------------------------
 
-Modelos 3D:
+  Modelos disponibles:
 
-${models.join("\n")}
+  ${models.join("\n")}
 
-Usa modelos del catálogo solo si encajan exactamente con lo pedido.
-Si no encajan, usa primitivas A-Frame.
+  Usa modelos del catálogo solo si encajan claramente con lo pedido.
+  Si no encajan, usa primitivas A-Frame.
 
---------------------------------------------------
-REGLA 6 — REGLAS DE OBJETOS
---------------------------------------------------
-Por defecto, todos los objetos deben colocarse dentro de la habitacion. 
-
-Si el usuario dice:
-
-"pon una silla"
-
-Crear:
-
-model: chair_basic
-
-Si dice:
-
-"mesa roja"
-
-Crear:
-
-model: table_red
-
-Si dice:
-
-"lámpara"
-
-Crear:
-
-model: lamp_floor
-`.trim();
+  Ejemplos:
+  - silla -> chair_basic
+  - mesa -> table_red
+  - lámpara -> lamp_floor
+  - coche -> car_1
+  - moto -> motorbike
+  `.trim();
   },
 
   getPromptPrimitives() {
@@ -438,267 +462,22 @@ model: lamp_floor
     }
 
     return `
---------------------------------------------------
-REGLA 7 — PRIMITIVAS A-FRAME
---------------------------------------------------
-Por defecto, todos las primitivas A-Frame deben colocarse dentro de la habitacion. 
-Primitivas A-Frame:
+  --------------------------------------------------
+  REGLA 6 — PRIMITIVAS A-FRAME
+  --------------------------------------------------
 
-${ALLOWED_PRIMITIVES.join("\n")}
+  Primitivas disponibles:
 
-Para primitivas usa:
+  ${ALLOWED_PRIMITIVES.join("\n")}
 
-primitive: ${ALLOWED_PRIMITIVES.join(" | ")}
+  Para primitivas usa:
 
-Ejemplo de estructura:
+  primitive: ${ALLOWED_PRIMITIVES.join(" | ")}
 
-- name: string
-  primitive: box
-  color: "#rrggbb"
-  position:
-    x: number
-    y: number
-    z: number
-  rotation:
-    x: 0
-    y: number
-    z: 0
-  scale:
-    x: number
-    y: number
-    z: number
+  Ejemplo:
 
-Regla:
-position.y representa la altura de la pieza dentro de la habitación. En objetos compuestos, cada pieza debe tener una altura distinta según su función.
-`.trim();
-  },
-
-  getPromptMultipleObjects() {
-    return `
---------------------------------------------------
-REGLA 8 — MULTIPLES OBJETOS
---------------------------------------------------
-
-Si el usuario indica cantidad:
-
-"5 cubos rojos"
-
-Debes crear:
-
-cubo_1
-cubo_2
-cubo_3
-cubo_4
-cubo_5
-
-Todos con primitive: box.
-`.trim();
-  },
-
-  getPromptStackingRules() {
-    return `
-
-
---------------------------------------------------
-REGLA 9 — APILAR OBJETOS
---------------------------------------------------
-
-Si el usuario dice:
-
-"pon un cubo encima de otro"
-"apila los cubos"
-
-No crees nuevos.
-
-Busca todos:
-
-primitive: box
-
-Ordena por nombre.
-
-Coloca cada cubo encima del anterior:
-
-y = índice + 2
-
-Ejemplo:
-
-cubo_1 -> y: 1
-cubo_2 -> y: 3
-cubo_3 -> y: 5
-
-Todos en la misma posicion x, posicion z.
-`.trim();
-  },
-
-  getPromptModifyObjects() {
-    return `
---------------------------------------------------
-REGLA 10 — MODIFICAR OBJETOS EXISTENTES
---------------------------------------------------
-
-Ejemplos:
-
-"Cambia el color de la esfera a rosa"
-
-Buscar:
-
-primitive: sphere
-
-Cambiar:
-
-color: "#ff69b4"
-
----
-
-"haz la mesa el doble de grande"
-
-Buscar:
-
-model: table_red
-
-Cambiar:
-
-scale: {x:2, y:2, z:2}
-
----
-
-"mueve la silla a la izquierda"
-
-Buscar:
-
-model: chair_basic
-
-Cambiar position.x.
-`.trim();
-  },
-
-  getPromptRelativeRules() {
-    return `
---------------------------------------------------
-REGLA 10.1 — RELACIONES ESPACIALES RELATIVAS
---------------------------------------------------
-
-Si el usuario dice:
-
-- "a la derecha de X"
-- "a la izquierda de X"
-- "delante de X"
-- "detrás de X"
-- "encima de X"
-
-Debes buscar el objeto X existente por:
-- name
-- primitive
-- model
-
-Usa estas separaciones por defecto:
-
-SEPARACION_HORIZONTAL = 8
-SEPARACION_VERTICAL = 4
-
-Interpretación:
-
-- derecha de X => nuevo.position.x = X.position.x + 8
-- izquierda de X => nuevo.position.x = X.position.x - 8
-- delante de X => nuevo.position.z = X.position.z - 8
-- detrás de X => nuevo.position.z = X.position.z + 8
-- encima de X => nuevo.position.y = X.position.y + 4
-
-Si no se indica lo contrario:
-- conserva el mismo z que X en izquierda/derecha
-- conserva el mismo x que X en delante/detrás
-- conserva x y z en encima de X
-
-Ejemplo:
-Si esfera_1 está en:
-x: -8
-y: 2
-z: 0
-
-y el usuario dice:
-"pon un cubo azul a la derecha de la esfera"
-
-entonces el nuevo cubo debe ir en:
-x: 0
-y: 2
-z: 0
-
---------------------------------------------------
-REGLA 10.2 — DESPLAZAMIENTOS POR DEFECTO
---------------------------------------------------
-
-Si el usuario dice:
-- "mueve X a la izquierda"
-- "mueve X a la derecha"
-- "mueve X hacia delante"
-- "mueve X hacia atrás"
-
-Y no indica distancia, usa DESPLAZAMIENTO = 8
-
-Interpretación:
-- izquierda => x = x - 8
-- derecha => x = x + 8
-- delante => z = z - 8
-- detrás => z = z + 8
-`.trim();
-  },
-
-  getPromptYamlFormat() {
-    return `
---------------------------------------------------
-REGLA 11 — FORMATO YAML OBLIGATORIO
---------------------------------------------------
-
-Devuelve SIEMPRE esta estructura EXACTA:
-
-room:
-  width: number
-  depth: number
-  height: number
-  ceiling: boolean
-
-  walls:
-    north: barrier|wall|glass
-    east: barrier|wall|glass
-    south: barrier|wall|glass
-    west: barrier|wall|glass
-
-  textures:
-    floor: string
-    wall: string
-    ceiling: string
-
-  entryPoint:
-    x: number
-    y: number
-    z: number
-
-  environment:
-    skyColor: string
-    stars: boolean
-
-  lights:
-    - type: ambient
-      color: string
-      intensity: number
-
-  objects:
-    - name: string
-      model: chair_basic|table_red|lamp_floor|statue_liberty|statue_venus
-      position:
-        x: number
-        y: number
-        z: number
-      rotation:
-        x: 0
-        y: number
-        z: 0
-      scale:
-        x: number
-        y: number
-        z: number
   - name: string
-    primitive: box|sphere|cylinder|cone|plane|circle|torus
+    primitive: box
     color: "#rrggbb"
     position:
       x: number
@@ -712,14 +491,189 @@ room:
       x: number
       y: number
       z: number
-`.trim();
+  `.trim();
+  },
+
+  getPromptMultipleObjects() {
+    return `
+  --------------------------------------------------
+  REGLA 7 — MÚLTIPLES OBJETOS
+  --------------------------------------------------
+
+  Si el usuario indica cantidad:
+
+  "5 cubos rojos"
+
+  Debes crear:
+
+  cubo_1
+  cubo_2
+  cubo_3
+  cubo_4
+  cubo_5
+
+  Todos con primitive: box.
+  `.trim();
+  },
+
+
+  getPromptStackingRules() {
+    return `
+  --------------------------------------------------
+  REGLA 8 — APILAR OBJETOS
+  --------------------------------------------------
+
+  Si el usuario dice:
+  - "pon un cubo encima de otro"
+  - "apila los cubos"
+
+  No crees nuevos.
+
+  Busca todos:
+  primitive: box
+
+  Ordena por nombre.
+
+  Coloca cada cubo encima del anterior.
+
+  Ejemplo:
+  cubo_1 -> y: 1
+  cubo_2 -> y: 3
+  cubo_3 -> y: 5
+  `.trim();
+  },
+
+  getPromptModifyObjects() {
+    return `
+  --------------------------------------------------
+  REGLA 9 — MODIFICAR OBJETOS
+  --------------------------------------------------
+
+  Ejemplos:
+
+  "Cambia el color de la esfera a rosa"
+   modifica color
+
+  "Haz la mesa el doble de grande"
+   modifica scale
+
+  "Mueve la silla a la izquierda"
+   modifica position.x
+  `.trim();
+  },
+
+  getPromptRelativeRules() {
+    return `
+  --------------------------------------------------
+  REGLA 10 — RELACIONES ESPACIALES
+  --------------------------------------------------
+
+  Relaciones soportadas:
+  - derecha de
+  - izquierda de
+  - delante de
+  - detrás de
+  - encima de
+
+  Busca el objeto por:
+  - name
+  - primitive
+  - model
+
+  Separaciones por defecto:
+
+  SEPARACION_HORIZONTAL = 8
+  SEPARACION_VERTICAL = 4
+
+  Ejemplos:
+  - derecha => x + 8
+  - izquierda => x - 8
+  - delante => z - 8
+  - detrás => z + 8
+  - encima => y + 4
+
+  Si el usuario no indica distancia:
+  usa desplazamiento 8.
+  `.trim();
+  },
+
+  getPromptYamlFormat() {
+    return `
+  --------------------------------------------------
+  REGLA 11 — FORMATO YAML OBLIGATORIO
+  --------------------------------------------------
+
+  Devuelve SIEMPRE esta estructura EXACTA:
+
+  room:
+    width: number
+    depth: number
+    height: number
+    ceiling: boolean
+
+    walls:
+      north: barrier|wall|glass
+      east: barrier|wall|glass
+      south: barrier|wall|glass
+      west: barrier|wall|glass
+
+    textures:
+      floor: string
+      wall: string
+      ceiling: string
+
+    entryPoint:
+      x: number
+      y: number
+      z: number
+
+    environment:
+      skyColor: string
+      stars: boolean
+
+    lights:
+      - type: ambient
+        color: string
+        intensity: number
+
+    objects:
+      - name: string
+        model: chair_basic|table_red|lamp_floor|statue_liberty|statue_venus|car_1|car_2|car_3|motorbike
+        position:
+          x: number
+          y: number
+          z: number
+        rotation:
+          x: 0
+          y: number
+          z: 0
+        scale:
+          x: number
+          y: number
+          z: number
+      - name: string
+        primitive: box|sphere|cylinder|cone|plane|circle|torus
+            color: "#rrggbb"
+            position:
+              x: number
+              y: number
+              z: number
+            rotation:
+              x: number
+              y: number
+              z: number
+            scale:
+              x: number
+              y: number
+              z: number
+  `.trim();
   },
 
   getPromptRestrictions() {
     return `
---------------------------------------------------
+  --------------------------------------------------
 REGLA 12 — RESTRICCIONES IMPORTANTES
---------------------------------------------------
+  --------------------------------------------------
 
 MUY IMPORTANTE:
 
@@ -763,7 +717,7 @@ Devuelve SOLO YAML válido.
 Sin explicaciones.
 Sin texto adicional.
 Indentación: 2 espacios.
-`.trim();
+  `.trim();
   },
 
   buildPrompt(currentRoom, descripcion) {
