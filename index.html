@@ -31,12 +31,12 @@
           depth: 300;
           height: 100;
           ceiling: true;
-          north: barrier;
+          north: wall;
           east: glass;
           south: wall;
           west: wall;
           floorTexture: ./assets/floor-texture.jpg;
-          wallTexture: ./assets/jeroglifico.jpg;
+          wallTexture: ./assets/brick.jpg;
           ceilingTexture: ./assets/jeroglifico.jpg;
         ">
       </a-entity>
@@ -51,6 +51,27 @@
         </a-entity>
       </a-entity>
 
+
+      <a-entity id="car_display_1"
+                gltf-model="./assets/models/vehicles/car_1.glb"
+                position="-60 -50.0 -80"
+                rotation="0 45 0"
+                scale="2 2 2">
+      </a-entity>
+
+      <a-entity id="car_display_2"
+                gltf-model="./assets/models/vehicles/car_2.glb"
+                position="0 -50.0 60"
+                rotation="0 90 0"
+                scale="2 2 2">
+      </a-entity>
+
+      <a-entity id="car_display_3"
+                gltf-model="./assets/models/vehicles/car_3.glb"
+                position="60 -50.0 -40"
+                rotation="0 0 0"
+                scale="2 2 2">
+      </a-entity>
 
       <a-sky color="#000000"></a-sky>
       <a-entity star-sky></a-entity>
