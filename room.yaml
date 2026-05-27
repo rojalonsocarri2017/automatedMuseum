@@ -4,13 +4,13 @@ room:
   height: 100
   ceiling: true
   walls:
-    north: barrier
+    north: wall
     east: glass
     south: wall
     west: wall
   textures:
     floor: ./assets/floor-texture.jpg
-    wall: ./assets/jeroglifico.jpg
+    wall: ./assets/brick.jpg
     ceiling: ./assets/jeroglifico.jpg
   entryPoint:
     x: -10
@@ -26,4 +26,46 @@ room:
     - type: ambient
       color: '#ebd9e9'
       intensity: 0.3
-  objects: []
+  objects:
+    - name: car_display_1
+      model: car_1
+      position:
+        x: -60
+        'y': 0
+        z: -80
+      rotation:
+        x: 0
+        'y': 45
+        z: 0
+      scale:
+        x: 1
+        'y': 1
+        z: 1
+    - name: car_display_2
+      model: car_2
+      position:
+        x: 0
+        'y': 0
+        z: 60
+      rotation:
+        x: 0
+        'y': 90
+        z: 0
+      scale:
+        x: 1
+        'y': 1
+        z: 1
+    - name: car_display_3
+      model: car_3
+      position:
+        x: 60
+        'y': 0
+        z: -40
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 1
+        'y': 1
+        z: 1
