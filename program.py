@@ -33,23 +33,23 @@ MODEL_CATALOG = {
     },
     "car_1": {
         "src": "./assets/models/vehicles/car_1.glb",
-        "floorOffset": 0,
-        "scale": {"x": 2, "y": 2, "z": 2}
+        "floorOffset": -1,
+        "scale": {"x": 60, "y": 60, "z": 60}
     },
     "car_2": {
         "src": "./assets/models/vehicles/car_2.glb",
-        "floorOffset": 0,
-        "scale": {"x": 2, "y": 2, "z": 2}
+        "floorOffset": 1.2,
+        "scale": {"x": 250, "y": 250, "z": 250}
     },
     "car_3": {
         "src": "./assets/models/vehicles/car_3.glb",
-        "floorOffset": 0,
-        "scale": {"x": 2, "y": 2, "z": 2}
+        "floorOffset": -0.8,
+        "scale": {"x": 0.05, "y": 0.05, "z": 0.05}
     },
     "motorbike": {
         "src": "./assets/models/vehicles/motorbike.glb",
-        "floorOffset": 0,
-        "scale": {"x": 2, "y": 2, "z": 2}
+        "floorOffset": 6.5,
+        "scale": {"x": 6, "y": 6, "z": 6}
     }
 }
 
