@@ -5,13 +5,13 @@ room:
   ceiling: true
   walls:
     north: barrier
-    east: glass
+    east: wall
     south: wall
     west: wall
   textures:
-    floor: ./assets/floor-texture.jpg
-    wall: ./assets/jeroglifico.jpg
-    ceiling: ./assets/jeroglifico.jpg
+    floor: ./assets/wood.jpg
+    wall: ./assets/dark-wood.jpg
+    ceiling: ./assets/dark-wood.jpg
   entryPoint:
     x: -10
     'y': 2
@@ -22,8 +22,148 @@ room:
   lights:
     - type: ambient
       color: '#ffffff'
-      intensity: 0.85
+      intensity: 0.3
     - type: ambient
       color: '#ebd9e9'
-      intensity: 0.3
-  objects: []
+      intensity: 0.2
+  objects:
+    - name: screen
+      primitive: plane
+      position:
+        x: 0
+        'y': 40
+        z: -140
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 120
+        'y': 90
+        z: 1
+    - name: chair_row_1_a
+      model: chair_basic
+      position:
+        x: -50
+        'y': 0
+        z: -50
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 1
+        'y': 1
+        z: 1
+    - name: chair_row_1_b
+      model: chair_basic
+      position:
+        x: 0
+        'y': 0
+        z: -50
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 1
+        'y': 1
+        z: 1
+    - name: chair_row_1_c
+      model: chair_basic
+      position:
+        x: 50
+        'y': 0
+        z: -50
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 1
+        'y': 1
+        z: 1
+    - name: chair_row_2_a
+      model: chair_basic
+      position:
+        x: -50
+        'y': 0
+        z: -100
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 1
+        'y': 1
+        z: 1
+    - name: chair_row_2_b
+      model: chair_basic
+      position:
+        x: 0
+        'y': 0
+        z: -100
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 1
+        'y': 1
+        z: 1
+    - name: chair_row_2_c
+      model: chair_basic
+      position:
+        x: 50
+        'y': 0
+        z: -100
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 1
+        'y': 1
+        z: 1
+    - name: chair_row_3_a
+      model: chair_basic
+      position:
+        x: -50
+        'y': 0
+        z: -150
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 1
+        'y': 1
+        z: 1
+    - name: chair_row_3_b
+      model: chair_basic
+      position:
+        x: 0
+        'y': 0
+        z: -150
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 1
+        'y': 1
+        z: 1
+    - name: chair_row_3_c
+      model: chair_basic
+      position:
+        x: 50
+        'y': 0
+        z: -150
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 1
+        'y': 1
+        z: 1
