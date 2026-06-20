@@ -17,12 +17,12 @@
 
       <a-entity light="type: ambient;
                        color: #ffffff;
-                       intensity: 0.85">
+                       intensity: 0.3">
       </a-entity>
 
       <a-entity light="type: ambient;
                        color: #ebd9e9;
-                       intensity: 0.3">
+                       intensity: 0.2">
       </a-entity>
 
       <a-entity id="lounge"
@@ -32,12 +32,12 @@
           height: 100;
           ceiling: true;
           north: barrier;
-          east: glass;
+          east: wall;
           south: wall;
           west: wall;
-          floorTexture: ./assets/floor-texture.jpg;
-          wallTexture: ./assets/jeroglifico.jpg;
-          ceilingTexture: ./assets/jeroglifico.jpg;
+          floorTexture: ./assets/wood.jpg;
+          wallTexture: ./assets/dark-wood.jpg;
+          ceilingTexture: ./assets/dark-wood.jpg;
         ">
       </a-entity>
 
@@ -51,6 +51,77 @@
         </a-entity>
       </a-entity>
 
+
+      <a-entity id="screen"
+                geometry="primitive: plane"
+                material="color: #ffffff"
+                position="0 -10.0 -140"
+                rotation="0 0 0"
+                scale="120 90 1">
+      </a-entity>
+
+      <a-entity id="chair_row_1_a"
+                gltf-model="./assets/models/furniture/chair_basic.glb"
+                position="-50 -42.0 -50"
+                rotation="0 0 0"
+                scale="1 1 1">
+      </a-entity>
+
+      <a-entity id="chair_row_1_b"
+                gltf-model="./assets/models/furniture/chair_basic.glb"
+                position="0 -42.0 -50"
+                rotation="0 0 0"
+                scale="1 1 1">
+      </a-entity>
+
+      <a-entity id="chair_row_1_c"
+                gltf-model="./assets/models/furniture/chair_basic.glb"
+                position="50 -42.0 -50"
+                rotation="0 0 0"
+                scale="1 1 1">
+      </a-entity>
+
+      <a-entity id="chair_row_2_a"
+                gltf-model="./assets/models/furniture/chair_basic.glb"
+                position="-50 -42.0 -100"
+                rotation="0 0 0"
+                scale="1 1 1">
+      </a-entity>
+
+      <a-entity id="chair_row_2_b"
+                gltf-model="./assets/models/furniture/chair_basic.glb"
+                position="0 -42.0 -100"
+                rotation="0 0 0"
+                scale="1 1 1">
+      </a-entity>
+
+      <a-entity id="chair_row_2_c"
+                gltf-model="./assets/models/furniture/chair_basic.glb"
+                position="50 -42.0 -100"
+                rotation="0 0 0"
+                scale="1 1 1">
+      </a-entity>
+
+      <a-entity id="chair_row_3_a"
+                gltf-model="./assets/models/furniture/chair_basic.glb"
+                position="-50 -42.0 -150"
+                rotation="0 0 0"
+                scale="1 1 1">
+      </a-entity>
+
+      <a-entity id="chair_row_3_b"
+                gltf-model="./assets/models/furniture/chair_basic.glb"
+                position="0 -42.0 -150"
+                rotation="0 0 0"
+                scale="1 1 1">
+      </a-entity>
+
+      <a-entity id="chair_row_3_c"
+                gltf-model="./assets/models/furniture/chair_basic.glb"
+                position="50 -42.0 -150"
+                rotation="0 0 0"
+                scale="1 1 1">
+      </a-entity>
 
       <a-sky color="#000000"></a-sky>
       <a-entity star-sky></a-entity>
