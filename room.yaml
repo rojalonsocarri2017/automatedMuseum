@@ -5,165 +5,940 @@ room:
   ceiling: true
   walls:
     north: barrier
-    east: wall
+    east: glass
     south: wall
     west: wall
   textures:
-    floor: ./assets/wood.jpg
-    wall: ./assets/dark-wood.jpg
-    ceiling: ./assets/dark-wood.jpg
+    floor: ./assets/floor-texture.jpg
+    wall: ''
+    ceiling: ''
   entryPoint:
     x: -10
     'y': 2
     z: 20
   environment:
-    skyColor: '#000000'
-    stars: true
+    skyColor: '#87CEEB'
+    stars: false
   lights:
     - type: ambient
       color: '#ffffff'
-      intensity: 0.3
+      intensity: 0.85
     - type: ambient
       color: '#ebd9e9'
-      intensity: 0.2
+      intensity: 0.3
   objects:
-    - name: screen
+    - name: pista_principal
       primitive: plane
+      color: '#4a4a4a'
       position:
         x: 0
+        'y': 0.05
+        z: 0
+      rotation:
+        x: -90
+        'y': 0
+        z: 0
+      scale:
+        x: 30
+        'y': 260
+        z: 1
+    - name: linea_central_1
+      primitive: plane
+      color: '#ffffff'
+      position:
+        x: 0
+        'y': 0.1
+        z: -80
+      rotation:
+        x: -90
+        'y': 0
+        z: 0
+      scale:
+        x: 1
+        'y': 15
+        z: 1
+    - name: linea_central_2
+      primitive: plane
+      color: '#ffffff'
+      position:
+        x: 0
+        'y': 0.1
+        z: -40
+      rotation:
+        x: -90
+        'y': 0
+        z: 0
+      scale:
+        x: 1
+        'y': 15
+        z: 1
+    - name: linea_central_3
+      primitive: plane
+      color: '#ffffff'
+      position:
+        x: 0
+        'y': 0.1
+        z: 0
+      rotation:
+        x: -90
+        'y': 0
+        z: 0
+      scale:
+        x: 1
+        'y': 15
+        z: 1
+    - name: linea_central_4
+      primitive: plane
+      color: '#ffffff'
+      position:
+        x: 0
+        'y': 0.1
+        z: 40
+      rotation:
+        x: -90
+        'y': 0
+        z: 0
+      scale:
+        x: 1
+        'y': 15
+        z: 1
+    - name: linea_central_5
+      primitive: plane
+      color: '#ffffff'
+      position:
+        x: 0
+        'y': 0.1
+        z: 80
+      rotation:
+        x: -90
+        'y': 0
+        z: 0
+      scale:
+        x: 1
+        'y': 15
+        z: 1
+    - name: cesped_izquierdo
+      primitive: plane
+      color: '#4caf50'
+      position:
+        x: -55
+        'y': 0.02
+        z: 0
+      rotation:
+        x: -90
+        'y': 0
+        z: 0
+      scale:
+        x: 70
+        'y': 260
+        z: 1
+    - name: cesped_derecho
+      primitive: plane
+      color: '#4caf50'
+      position:
+        x: 55
+        'y': 0.02
+        z: 0
+      rotation:
+        x: -90
+        'y': 0
+        z: 0
+      scale:
+        x: 70
+        'y': 260
+        z: 1
+    - name: terminal_cuerpo
+      primitive: box
+      color: '#d0d8e0'
+      position:
+        x: -55
+        'y': 12
+        z: -80
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 55
+        'y': 24
+        z: 40
+    - name: terminal_techo
+      primitive: box
+      color: '#b0bec5'
+      position:
+        x: -55
+        'y': 25
+        z: -80
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 58
+        'y': 3
+        z: 43
+    - name: terminal_ventana_1
+      primitive: plane
+      color: '#90caf9'
+      position:
+        x: -27.4
+        'y': 14
+        z: -80
+      rotation:
+        x: 0
+        'y': -90
+        z: 0
+      scale:
+        x: 8
+        'y': 6
+        z: 1
+    - name: terminal_ventana_2
+      primitive: plane
+      color: '#90caf9'
+      position:
+        x: -27.4
+        'y': 14
+        z: -70
+      rotation:
+        x: 0
+        'y': -90
+        z: 0
+      scale:
+        x: 8
+        'y': 6
+        z: 1
+    - name: terminal_ventana_3
+      primitive: plane
+      color: '#90caf9'
+      position:
+        x: -27.4
+        'y': 14
+        z: -90
+      rotation:
+        x: 0
+        'y': -90
+        z: 0
+      scale:
+        x: 8
+        'y': 6
+        z: 1
+    - name: terminal_puerta
+      primitive: box
+      color: '#78909c'
+      position:
+        x: -27.3
+        'y': 5
+        z: -80
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 0.5
+        'y': 10
+        z: 6
+    - name: torre_base
+      primitive: cylinder
+      color: '#cfd8dc'
+      position:
+        x: -60
+        'y': 20
+        z: -55
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 4
         'y': 40
-        z: -140
+        z: 4
+    - name: torre_cabina
+      primitive: cylinder
+      color: '#b0bec5'
+      position:
+        x: -60
+        'y': 44
+        z: -55
       rotation:
         x: 0
         'y': 0
         z: 0
       scale:
-        x: 120
-        'y': 90
-        z: 1
-    - name: chair_row_1_a
-      model: chair_basic
+        x: 6
+        'y': 6
+        z: 6
+    - name: torre_techo
+      primitive: cone
+      color: '#90a4ae'
       position:
-        x: -50
+        x: -60
+        'y': 50
+        z: -55
+      rotation:
+        x: 0
         'y': 0
+        z: 0
+      scale:
+        x: 7
+        'y': 5
+        z: 7
+    - name: torre_ventana_cabina
+      primitive: cylinder
+      color: '#80d8ff'
+      position:
+        x: -60
+        'y': 44
+        z: -55
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 5.8
+        'y': 4
+        z: 5.8
+    - name: avion1_fuselaje
+      primitive: cylinder
+      color: '#eceff1'
+      position:
+        x: 0
+        'y': 5
+        z: -60
+      rotation:
+        x: 0
+        'y': 0
+        z: 90
+      scale:
+        x: 5
+        'y': 28
+        z: 5
+    - name: avion1_nariz
+      primitive: cone
+      color: '#eceff1'
+      position:
+        x: 27
+        'y': 5
+        z: -60
+      rotation:
+        x: 0
+        'y': 0
+        z: -90
+      scale:
+        x: 5
+        'y': 8
+        z: 5
+    - name: avion1_cola_vertical
+      primitive: box
+      color: '#1565c0'
+      position:
+        x: -20
+        'y': 11
+        z: -60
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 5
+        'y': 10
+        z: 1.5
+    - name: avion1_ala_izquierda
+      primitive: box
+      color: '#cfd8dc'
+      position:
+        x: 2
+        'y': 5
         z: -50
       rotation:
         x: 0
-        'y': 0
+        'y': 5
         z: 0
       scale:
-        x: 1
+        x: 12
         'y': 1
-        z: 1
-    - name: chair_row_1_b
-      model: chair_basic
+        z: 22
+    - name: avion1_ala_derecha
+      primitive: box
+      color: '#cfd8dc'
       position:
+        x: 2
+        'y': 5
+        z: -70
+      rotation:
+        x: 0
+        'y': -5
+        z: 0
+      scale:
+        x: 12
+        'y': 1
+        z: 22
+    - name: avion1_motor_izq
+      primitive: cylinder
+      color: '#90a4ae'
+      position:
+        x: 5
+        'y': 3.5
+        z: -47
+      rotation:
         x: 0
         'y': 0
-        z: -50
+        z: 90
+      scale:
+        x: 2
+        'y': 5
+        z: 2
+    - name: avion1_motor_der
+      primitive: cylinder
+      color: '#90a4ae'
+      position:
+        x: 5
+        'y': 3.5
+        z: -73
+      rotation:
+        x: 0
+        'y': 0
+        z: 90
+      scale:
+        x: 2
+        'y': 5
+        z: 2
+    - name: avion1_franja
+      primitive: cylinder
+      color: '#1565c0'
+      position:
+        x: 10
+        'y': 7.5
+        z: -60
+      rotation:
+        x: 0
+        'y': 0
+        z: 90
+      scale:
+        x: 0.8
+        'y': 18
+        z: 5.1
+    - name: avion1_ventana_1
+      primitive: sphere
+      color: '#80d8ff'
+      position:
+        x: 18
+        'y': 7
+        z: -57
       rotation:
         x: 0
         'y': 0
         z: 0
       scale:
-        x: 1
+        x: 1.2
         'y': 1
-        z: 1
-    - name: chair_row_1_c
-      model: chair_basic
+        z: 0.3
+    - name: avion1_ventana_2
+      primitive: sphere
+      color: '#80d8ff'
+      position:
+        x: 12
+        'y': 7
+        z: -57
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 1.2
+        'y': 1
+        z: 0.3
+    - name: avion1_ventana_3
+      primitive: sphere
+      color: '#80d8ff'
+      position:
+        x: 6
+        'y': 7
+        z: -57
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 1.2
+        'y': 1
+        z: 0.3
+    - name: avion2_fuselaje
+      primitive: cylinder
+      color: '#fafafa'
+      position:
+        x: -35
+        'y': 4
+        z: 60
+      rotation:
+        x: 0
+        'y': 0
+        z: 90
+      scale:
+        x: 4
+        'y': 22
+        z: 4
+    - name: avion2_nariz
+      primitive: cone
+      color: '#fafafa'
+      position:
+        x: -13
+        'y': 4
+        z: 60
+      rotation:
+        x: 0
+        'y': 0
+        z: -90
+      scale:
+        x: 4
+        'y': 6
+        z: 4
+    - name: avion2_cola_vertical
+      primitive: box
+      color: '#e53935'
+      position:
+        x: -53
+        'y': 9
+        z: 60
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 4
+        'y': 8
+        z: 1.2
+    - name: avion2_ala_izquierda
+      primitive: box
+      color: '#e0e0e0'
+      position:
+        x: -35
+        'y': 4
+        z: 70
+      rotation:
+        x: 0
+        'y': -5
+        z: 0
+      scale:
+        x: 10
+        'y': 0.8
+        z: 18
+    - name: avion2_ala_derecha
+      primitive: box
+      color: '#e0e0e0'
+      position:
+        x: -35
+        'y': 4
+        z: 50
+      rotation:
+        x: 0
+        'y': 5
+        z: 0
+      scale:
+        x: 10
+        'y': 0.8
+        z: 18
+    - name: avion2_motor_izq
+      primitive: cylinder
+      color: '#78909c'
+      position:
+        x: -33
+        'y': 2.8
+        z: 73
+      rotation:
+        x: 0
+        'y': 0
+        z: 90
+      scale:
+        x: 1.6
+        'y': 4
+        z: 1.6
+    - name: avion2_motor_der
+      primitive: cylinder
+      color: '#78909c'
+      position:
+        x: -33
+        'y': 2.8
+        z: 47
+      rotation:
+        x: 0
+        'y': 0
+        z: 90
+      scale:
+        x: 1.6
+        'y': 4
+        z: 1.6
+    - name: avion2_franja
+      primitive: cylinder
+      color: '#e53935'
+      position:
+        x: -28
+        'y': 6
+        z: 60
+      rotation:
+        x: 0
+        'y': 0
+        z: 90
+      scale:
+        x: 0.6
+        'y': 14
+        z: 4.1
+    - name: avion3_fuselaje
+      primitive: cylinder
+      color: '#e3f2fd'
       position:
         x: 50
-        'y': 0
-        z: -50
+        'y': 55
+        z: 30
       rotation:
-        x: 0
-        'y': 0
-        z: 0
+        x: -15
+        'y': 30
+        z: 90
       scale:
-        x: 1
-        'y': 1
-        z: 1
-    - name: chair_row_2_a
-      model: chair_basic
+        x: 4
+        'y': 24
+        z: 4
+    - name: avion3_nariz
+      primitive: cone
+      color: '#e3f2fd'
       position:
-        x: -50
-        'y': 0
-        z: -100
+        x: 61
+        'y': 60
+        z: 18
       rotation:
-        x: 0
-        'y': 0
-        z: 0
+        x: -15
+        'y': 30
+        z: -90
       scale:
-        x: 1
-        'y': 1
-        z: 1
-    - name: chair_row_2_b
-      model: chair_basic
+        x: 4
+        'y': 7
+        z: 4
+    - name: avion3_cola_vertical
+      primitive: box
+      color: '#ff6f00'
       position:
-        x: 0
-        'y': 0
-        z: -100
+        x: 38
+        'y': 62
+        z: 41
       rotation:
-        x: 0
-        'y': 0
+        x: -15
+        'y': 30
         z: 0
       scale:
-        x: 1
-        'y': 1
-        z: 1
-    - name: chair_row_2_c
-      model: chair_basic
+        x: 4
+        'y': 8
+        z: 1.2
+    - name: avion3_ala_izquierda
+      primitive: box
+      color: '#bbdefb'
       position:
-        x: 50
-        'y': 0
-        z: -100
+        x: 42
+        'y': 55
+        z: 40
       rotation:
-        x: 0
-        'y': 0
+        x: -15
+        'y': 30
         z: 0
       scale:
-        x: 1
-        'y': 1
-        z: 1
-    - name: chair_row_3_a
-      model: chair_basic
+        x: 9
+        'y': 0.8
+        z: 16
+    - name: avion3_ala_derecha
+      primitive: box
+      color: '#bbdefb'
       position:
-        x: -50
-        'y': 0
-        z: -150
+        x: 58
+        'y': 55
+        z: 20
       rotation:
-        x: 0
-        'y': 0
+        x: -15
+        'y': 30
         z: 0
       scale:
-        x: 1
-        'y': 1
-        z: 1
-    - name: chair_row_3_b
-      model: chair_basic
+        x: 9
+        'y': 0.8
+        z: 16
+    - name: luz_pista_1
+      primitive: cylinder
+      color: '#ffff00'
       position:
-        x: 0
-        'y': 0
-        z: -150
+        x: 16
+        'y': 2
+        z: -120
       rotation:
         x: 0
         'y': 0
         z: 0
       scale:
-        x: 1
-        'y': 1
-        z: 1
-    - name: chair_row_3_c
-      model: chair_basic
+        x: 0.5
+        'y': 4
+        z: 0.5
+    - name: luz_pista_2
+      primitive: cylinder
+      color: '#ffff00'
       position:
-        x: 50
+        x: 16
+        'y': 2
+        z: -60
+      rotation:
+        x: 0
         'y': 0
-        z: -150
+        z: 0
+      scale:
+        x: 0.5
+        'y': 4
+        z: 0.5
+    - name: luz_pista_3
+      primitive: cylinder
+      color: '#ffff00'
+      position:
+        x: 16
+        'y': 2
+        z: 0
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 0.5
+        'y': 4
+        z: 0.5
+    - name: luz_pista_4
+      primitive: cylinder
+      color: '#ffff00'
+      position:
+        x: 16
+        'y': 2
+        z: 60
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 0.5
+        'y': 4
+        z: 0.5
+    - name: luz_pista_5
+      primitive: cylinder
+      color: '#ffff00'
+      position:
+        x: 16
+        'y': 2
+        z: 120
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 0.5
+        'y': 4
+        z: 0.5
+    - name: luz_pista_6
+      primitive: cylinder
+      color: '#ffff00'
+      position:
+        x: -16
+        'y': 2
+        z: -120
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 0.5
+        'y': 4
+        z: 0.5
+    - name: luz_pista_7
+      primitive: cylinder
+      color: '#ffff00'
+      position:
+        x: -16
+        'y': 2
+        z: -60
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 0.5
+        'y': 4
+        z: 0.5
+    - name: luz_pista_8
+      primitive: cylinder
+      color: '#ffff00'
+      position:
+        x: -16
+        'y': 2
+        z: 0
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 0.5
+        'y': 4
+        z: 0.5
+    - name: luz_pista_9
+      primitive: cylinder
+      color: '#ffff00'
+      position:
+        x: -16
+        'y': 2
+        z: 60
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 0.5
+        'y': 4
+        z: 0.5
+    - name: luz_pista_10
+      primitive: cylinder
+      color: '#ffff00'
+      position:
+        x: -16
+        'y': 2
+        z: 120
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 0.5
+        'y': 4
+        z: 0.5
+    - name: hangar_cuerpo
+      primitive: box
+      color: '#b0bec5'
+      position:
+        x: 60
+        'y': 14
+        z: -90
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 38
+        'y': 28
+        z: 35
+    - name: hangar_techo
+      primitive: cylinder
+      color: '#90a4ae'
+      position:
+        x: 60
+        'y': 30
+        z: -90
+      rotation:
+        x: 0
+        'y': 0
+        z: 90
+      scale:
+        x: 16
+        'y': 38
+        z: 16
+    - name: hangar_puerta
+      primitive: box
+      color: '#546e7a'
+      position:
+        x: 79.5
+        'y': 12
+        z: -90
       rotation:
         x: 0
         'y': 0
         z: 0
       scale:
         x: 1
+        'y': 22
+        z: 28
+    - name: vehiculo_base
+      primitive: box
+      color: '#f9a825'
+      position:
+        x: 28
+        'y': 2
+        z: 80
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 8
+        'y': 4
+        z: 14
+    - name: vehiculo_cabina
+      primitive: box
+      color: '#f9a825'
+      position:
+        x: 28
+        'y': 6
+        z: 75
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 7
+        'y': 4
+        z: 6
+    - name: vehiculo_rueda_1
+      primitive: torus
+      color: '#212121'
+      position:
+        x: 23
         'y': 1
-        z: 1
+        z: 85
+      rotation:
+        x: 90
+        'y': 0
+        z: 0
+      scale:
+        x: 1.5
+        'y': 1.5
+        z: 0.6
+    - name: vehiculo_rueda_2
+      primitive: torus
+      color: '#212121'
+      position:
+        x: 33
+        'y': 1
+        z: 85
+      rotation:
+        x: 90
+        'y': 0
+        z: 0
+      scale:
+        x: 1.5
+        'y': 1.5
+        z: 0.6
+    - name: vehiculo_rueda_3
+      primitive: torus
+      color: '#212121'
+      position:
+        x: 23
+        'y': 1
+        z: 75
+      rotation:
+        x: 90
+        'y': 0
+        z: 0
+      scale:
+        x: 1.5
+        'y': 1.5
+        z: 0.6
+    - name: vehiculo_rueda_4
+      primitive: torus
+      color: '#212121'
+      position:
+        x: 33
+        'y': 1
+        z: 75
+      rotation:
+        x: 90
+        'y': 0
+        z: 0
+      scale:
+        x: 1.5
+        'y': 1.5
+        z: 0.6

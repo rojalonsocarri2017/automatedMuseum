@@ -17,12 +17,12 @@
 
       <a-entity light="type: ambient;
                        color: #ffffff;
-                       intensity: 0.3">
+                       intensity: 0.85">
       </a-entity>
 
       <a-entity light="type: ambient;
                        color: #ebd9e9;
-                       intensity: 0.2">
+                       intensity: 0.3">
       </a-entity>
 
       <a-entity id="lounge"
@@ -32,12 +32,12 @@
           height: 100;
           ceiling: true;
           north: barrier;
-          east: wall;
+          east: glass;
           south: wall;
           west: wall;
-          floorTexture: ./assets/wood.jpg;
-          wallTexture: ./assets/dark-wood.jpg;
-          ceilingTexture: ./assets/dark-wood.jpg;
+          floorTexture: ./assets/floor-texture.jpg;
+          wallTexture: ;
+          ceilingTexture: ;
         ">
       </a-entity>
 
@@ -52,79 +52,495 @@
       </a-entity>
 
 
-      <a-entity id="screen"
+      <a-entity id="pista_principal"
+                geometry="primitive: plane"
+                material="color: #4a4a4a"
+                position="0 -49.95 0"
+                rotation="-90 0 0"
+                scale="30 260 1">
+      </a-entity>
+
+      <a-entity id="linea_central_1"
                 geometry="primitive: plane"
                 material="color: #ffffff"
-                position="0 -10.0 -140"
-                rotation="0 0 0"
-                scale="120 90 1">
+                position="0 -49.9 -80"
+                rotation="-90 0 0"
+                scale="1 15 1">
       </a-entity>
 
-      <a-entity id="chair_row_1_a"
-                gltf-model="./assets/models/furniture/chair_basic.glb"
-                position="-50 -42.0 -50"
-                rotation="0 0 0"
-                scale="1 1 1">
+      <a-entity id="linea_central_2"
+                geometry="primitive: plane"
+                material="color: #ffffff"
+                position="0 -49.9 -40"
+                rotation="-90 0 0"
+                scale="1 15 1">
       </a-entity>
 
-      <a-entity id="chair_row_1_b"
-                gltf-model="./assets/models/furniture/chair_basic.glb"
-                position="0 -42.0 -50"
-                rotation="0 0 0"
-                scale="1 1 1">
+      <a-entity id="linea_central_3"
+                geometry="primitive: plane"
+                material="color: #ffffff"
+                position="0 -49.9 0"
+                rotation="-90 0 0"
+                scale="1 15 1">
       </a-entity>
 
-      <a-entity id="chair_row_1_c"
-                gltf-model="./assets/models/furniture/chair_basic.glb"
-                position="50 -42.0 -50"
-                rotation="0 0 0"
-                scale="1 1 1">
+      <a-entity id="linea_central_4"
+                geometry="primitive: plane"
+                material="color: #ffffff"
+                position="0 -49.9 40"
+                rotation="-90 0 0"
+                scale="1 15 1">
       </a-entity>
 
-      <a-entity id="chair_row_2_a"
-                gltf-model="./assets/models/furniture/chair_basic.glb"
-                position="-50 -42.0 -100"
-                rotation="0 0 0"
-                scale="1 1 1">
+      <a-entity id="linea_central_5"
+                geometry="primitive: plane"
+                material="color: #ffffff"
+                position="0 -49.9 80"
+                rotation="-90 0 0"
+                scale="1 15 1">
       </a-entity>
 
-      <a-entity id="chair_row_2_b"
-                gltf-model="./assets/models/furniture/chair_basic.glb"
-                position="0 -42.0 -100"
-                rotation="0 0 0"
-                scale="1 1 1">
+      <a-entity id="cesped_izquierdo"
+                geometry="primitive: plane"
+                material="color: #4caf50"
+                position="-55 -49.98 0"
+                rotation="-90 0 0"
+                scale="70 260 1">
       </a-entity>
 
-      <a-entity id="chair_row_2_c"
-                gltf-model="./assets/models/furniture/chair_basic.glb"
-                position="50 -42.0 -100"
-                rotation="0 0 0"
-                scale="1 1 1">
+      <a-entity id="cesped_derecho"
+                geometry="primitive: plane"
+                material="color: #4caf50"
+                position="55 -49.98 0"
+                rotation="-90 0 0"
+                scale="70 260 1">
       </a-entity>
 
-      <a-entity id="chair_row_3_a"
-                gltf-model="./assets/models/furniture/chair_basic.glb"
-                position="-50 -42.0 -150"
+      <a-entity id="terminal_cuerpo"
+                geometry="primitive: box"
+                material="color: #d0d8e0"
+                position="-55 -38.0 -80"
                 rotation="0 0 0"
-                scale="1 1 1">
+                scale="55 24 40">
       </a-entity>
 
-      <a-entity id="chair_row_3_b"
-                gltf-model="./assets/models/furniture/chair_basic.glb"
-                position="0 -42.0 -150"
+      <a-entity id="terminal_techo"
+                geometry="primitive: box"
+                material="color: #b0bec5"
+                position="-55 -25.0 -80"
                 rotation="0 0 0"
-                scale="1 1 1">
+                scale="58 3 43">
       </a-entity>
 
-      <a-entity id="chair_row_3_c"
-                gltf-model="./assets/models/furniture/chair_basic.glb"
-                position="50 -42.0 -150"
-                rotation="0 0 0"
-                scale="1 1 1">
+      <a-entity id="terminal_ventana_1"
+                geometry="primitive: plane"
+                material="color: #90caf9"
+                position="-27.4 -36.0 -80"
+                rotation="0 -90 0"
+                scale="8 6 1">
       </a-entity>
 
-      <a-sky color="#000000"></a-sky>
-      <a-entity star-sky></a-entity>
+      <a-entity id="terminal_ventana_2"
+                geometry="primitive: plane"
+                material="color: #90caf9"
+                position="-27.4 -36.0 -70"
+                rotation="0 -90 0"
+                scale="8 6 1">
+      </a-entity>
+
+      <a-entity id="terminal_ventana_3"
+                geometry="primitive: plane"
+                material="color: #90caf9"
+                position="-27.4 -36.0 -90"
+                rotation="0 -90 0"
+                scale="8 6 1">
+      </a-entity>
+
+      <a-entity id="terminal_puerta"
+                geometry="primitive: box"
+                material="color: #78909c"
+                position="-27.3 -45.0 -80"
+                rotation="0 0 0"
+                scale="0.5 10 6">
+      </a-entity>
+
+      <a-entity id="torre_base"
+                geometry="primitive: cylinder"
+                material="color: #cfd8dc"
+                position="-60 -30.0 -55"
+                rotation="0 0 0"
+                scale="4 40 4">
+      </a-entity>
+
+      <a-entity id="torre_cabina"
+                geometry="primitive: cylinder"
+                material="color: #b0bec5"
+                position="-60 -6.0 -55"
+                rotation="0 0 0"
+                scale="6 6 6">
+      </a-entity>
+
+      <a-entity id="torre_techo"
+                geometry="primitive: cone"
+                material="color: #90a4ae"
+                position="-60 0.0 -55"
+                rotation="0 0 0"
+                scale="7 5 7">
+      </a-entity>
+
+      <a-entity id="torre_ventana_cabina"
+                geometry="primitive: cylinder"
+                material="color: #80d8ff"
+                position="-60 -6.0 -55"
+                rotation="0 0 0"
+                scale="5.8 4 5.8">
+      </a-entity>
+
+      <a-entity id="avion1_fuselaje"
+                geometry="primitive: cylinder"
+                material="color: #eceff1"
+                position="0 -45.0 -60"
+                rotation="0 0 90"
+                scale="5 28 5">
+      </a-entity>
+
+      <a-entity id="avion1_nariz"
+                geometry="primitive: cone"
+                material="color: #eceff1"
+                position="27 -45.0 -60"
+                rotation="0 0 -90"
+                scale="5 8 5">
+      </a-entity>
+
+      <a-entity id="avion1_cola_vertical"
+                geometry="primitive: box"
+                material="color: #1565c0"
+                position="-20 -39.0 -60"
+                rotation="0 0 0"
+                scale="5 10 1.5">
+      </a-entity>
+
+      <a-entity id="avion1_ala_izquierda"
+                geometry="primitive: box"
+                material="color: #cfd8dc"
+                position="2 -45.0 -50"
+                rotation="0 5 0"
+                scale="12 1 22">
+      </a-entity>
+
+      <a-entity id="avion1_ala_derecha"
+                geometry="primitive: box"
+                material="color: #cfd8dc"
+                position="2 -45.0 -70"
+                rotation="0 -5 0"
+                scale="12 1 22">
+      </a-entity>
+
+      <a-entity id="avion1_motor_izq"
+                geometry="primitive: cylinder"
+                material="color: #90a4ae"
+                position="5 -46.5 -47"
+                rotation="0 0 90"
+                scale="2 5 2">
+      </a-entity>
+
+      <a-entity id="avion1_motor_der"
+                geometry="primitive: cylinder"
+                material="color: #90a4ae"
+                position="5 -46.5 -73"
+                rotation="0 0 90"
+                scale="2 5 2">
+      </a-entity>
+
+      <a-entity id="avion1_franja"
+                geometry="primitive: cylinder"
+                material="color: #1565c0"
+                position="10 -42.5 -60"
+                rotation="0 0 90"
+                scale="0.8 18 5.1">
+      </a-entity>
+
+      <a-entity id="avion1_ventana_1"
+                geometry="primitive: sphere"
+                material="color: #80d8ff"
+                position="18 -43.0 -57"
+                rotation="0 0 0"
+                scale="1.2 1 0.3">
+      </a-entity>
+
+      <a-entity id="avion1_ventana_2"
+                geometry="primitive: sphere"
+                material="color: #80d8ff"
+                position="12 -43.0 -57"
+                rotation="0 0 0"
+                scale="1.2 1 0.3">
+      </a-entity>
+
+      <a-entity id="avion1_ventana_3"
+                geometry="primitive: sphere"
+                material="color: #80d8ff"
+                position="6 -43.0 -57"
+                rotation="0 0 0"
+                scale="1.2 1 0.3">
+      </a-entity>
+
+      <a-entity id="avion2_fuselaje"
+                geometry="primitive: cylinder"
+                material="color: #fafafa"
+                position="-35 -46.0 60"
+                rotation="0 0 90"
+                scale="4 22 4">
+      </a-entity>
+
+      <a-entity id="avion2_nariz"
+                geometry="primitive: cone"
+                material="color: #fafafa"
+                position="-13 -46.0 60"
+                rotation="0 0 -90"
+                scale="4 6 4">
+      </a-entity>
+
+      <a-entity id="avion2_cola_vertical"
+                geometry="primitive: box"
+                material="color: #e53935"
+                position="-53 -41.0 60"
+                rotation="0 0 0"
+                scale="4 8 1.2">
+      </a-entity>
+
+      <a-entity id="avion2_ala_izquierda"
+                geometry="primitive: box"
+                material="color: #e0e0e0"
+                position="-35 -46.0 70"
+                rotation="0 -5 0"
+                scale="10 0.8 18">
+      </a-entity>
+
+      <a-entity id="avion2_ala_derecha"
+                geometry="primitive: box"
+                material="color: #e0e0e0"
+                position="-35 -46.0 50"
+                rotation="0 5 0"
+                scale="10 0.8 18">
+      </a-entity>
+
+      <a-entity id="avion2_motor_izq"
+                geometry="primitive: cylinder"
+                material="color: #78909c"
+                position="-33 -47.2 73"
+                rotation="0 0 90"
+                scale="1.6 4 1.6">
+      </a-entity>
+
+      <a-entity id="avion2_motor_der"
+                geometry="primitive: cylinder"
+                material="color: #78909c"
+                position="-33 -47.2 47"
+                rotation="0 0 90"
+                scale="1.6 4 1.6">
+      </a-entity>
+
+      <a-entity id="avion2_franja"
+                geometry="primitive: cylinder"
+                material="color: #e53935"
+                position="-28 -44.0 60"
+                rotation="0 0 90"
+                scale="0.6 14 4.1">
+      </a-entity>
+
+      <a-entity id="avion3_fuselaje"
+                geometry="primitive: cylinder"
+                material="color: #e3f2fd"
+                position="50 5.0 30"
+                rotation="-15 30 90"
+                scale="4 24 4">
+      </a-entity>
+
+      <a-entity id="avion3_nariz"
+                geometry="primitive: cone"
+                material="color: #e3f2fd"
+                position="61 10.0 18"
+                rotation="-15 30 -90"
+                scale="4 7 4">
+      </a-entity>
+
+      <a-entity id="avion3_cola_vertical"
+                geometry="primitive: box"
+                material="color: #ff6f00"
+                position="38 12.0 41"
+                rotation="-15 30 0"
+                scale="4 8 1.2">
+      </a-entity>
+
+      <a-entity id="avion3_ala_izquierda"
+                geometry="primitive: box"
+                material="color: #bbdefb"
+                position="42 5.0 40"
+                rotation="-15 30 0"
+                scale="9 0.8 16">
+      </a-entity>
+
+      <a-entity id="avion3_ala_derecha"
+                geometry="primitive: box"
+                material="color: #bbdefb"
+                position="58 5.0 20"
+                rotation="-15 30 0"
+                scale="9 0.8 16">
+      </a-entity>
+
+      <a-entity id="luz_pista_1"
+                geometry="primitive: cylinder"
+                material="color: #ffff00"
+                position="16 -48.0 -120"
+                rotation="0 0 0"
+                scale="0.5 4 0.5">
+      </a-entity>
+
+      <a-entity id="luz_pista_2"
+                geometry="primitive: cylinder"
+                material="color: #ffff00"
+                position="16 -48.0 -60"
+                rotation="0 0 0"
+                scale="0.5 4 0.5">
+      </a-entity>
+
+      <a-entity id="luz_pista_3"
+                geometry="primitive: cylinder"
+                material="color: #ffff00"
+                position="16 -48.0 0"
+                rotation="0 0 0"
+                scale="0.5 4 0.5">
+      </a-entity>
+
+      <a-entity id="luz_pista_4"
+                geometry="primitive: cylinder"
+                material="color: #ffff00"
+                position="16 -48.0 60"
+                rotation="0 0 0"
+                scale="0.5 4 0.5">
+      </a-entity>
+
+      <a-entity id="luz_pista_5"
+                geometry="primitive: cylinder"
+                material="color: #ffff00"
+                position="16 -48.0 120"
+                rotation="0 0 0"
+                scale="0.5 4 0.5">
+      </a-entity>
+
+      <a-entity id="luz_pista_6"
+                geometry="primitive: cylinder"
+                material="color: #ffff00"
+                position="-16 -48.0 -120"
+                rotation="0 0 0"
+                scale="0.5 4 0.5">
+      </a-entity>
+
+      <a-entity id="luz_pista_7"
+                geometry="primitive: cylinder"
+                material="color: #ffff00"
+                position="-16 -48.0 -60"
+                rotation="0 0 0"
+                scale="0.5 4 0.5">
+      </a-entity>
+
+      <a-entity id="luz_pista_8"
+                geometry="primitive: cylinder"
+                material="color: #ffff00"
+                position="-16 -48.0 0"
+                rotation="0 0 0"
+                scale="0.5 4 0.5">
+      </a-entity>
+
+      <a-entity id="luz_pista_9"
+                geometry="primitive: cylinder"
+                material="color: #ffff00"
+                position="-16 -48.0 60"
+                rotation="0 0 0"
+                scale="0.5 4 0.5">
+      </a-entity>
+
+      <a-entity id="luz_pista_10"
+                geometry="primitive: cylinder"
+                material="color: #ffff00"
+                position="-16 -48.0 120"
+                rotation="0 0 0"
+                scale="0.5 4 0.5">
+      </a-entity>
+
+      <a-entity id="hangar_cuerpo"
+                geometry="primitive: box"
+                material="color: #b0bec5"
+                position="60 -36.0 -90"
+                rotation="0 0 0"
+                scale="38 28 35">
+      </a-entity>
+
+      <a-entity id="hangar_techo"
+                geometry="primitive: cylinder"
+                material="color: #90a4ae"
+                position="60 -20.0 -90"
+                rotation="0 0 90"
+                scale="16 38 16">
+      </a-entity>
+
+      <a-entity id="hangar_puerta"
+                geometry="primitive: box"
+                material="color: #546e7a"
+                position="79.5 -38.0 -90"
+                rotation="0 0 0"
+                scale="1 22 28">
+      </a-entity>
+
+      <a-entity id="vehiculo_base"
+                geometry="primitive: box"
+                material="color: #f9a825"
+                position="28 -48.0 80"
+                rotation="0 0 0"
+                scale="8 4 14">
+      </a-entity>
+
+      <a-entity id="vehiculo_cabina"
+                geometry="primitive: box"
+                material="color: #f9a825"
+                position="28 -44.0 75"
+                rotation="0 0 0"
+                scale="7 4 6">
+      </a-entity>
+
+      <a-entity id="vehiculo_rueda_1"
+                geometry="primitive: torus"
+                material="color: #212121"
+                position="23 -49.0 85"
+                rotation="90 0 0"
+                scale="1.5 1.5 0.6">
+      </a-entity>
+
+      <a-entity id="vehiculo_rueda_2"
+                geometry="primitive: torus"
+                material="color: #212121"
+                position="33 -49.0 85"
+                rotation="90 0 0"
+                scale="1.5 1.5 0.6">
+      </a-entity>
+
+      <a-entity id="vehiculo_rueda_3"
+                geometry="primitive: torus"
+                material="color: #212121"
+                position="23 -49.0 75"
+                rotation="90 0 0"
+                scale="1.5 1.5 0.6">
+      </a-entity>
+
+      <a-entity id="vehiculo_rueda_4"
+                geometry="primitive: torus"
+                material="color: #212121"
+                position="33 -49.0 75"
+                rotation="90 0 0"
+                scale="1.5 1.5 0.6">
+      </a-entity>
+
+      <a-sky color="#87CEEB"></a-sky>
 
     </a-scene>
   </body>
