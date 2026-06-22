@@ -35,8 +35,8 @@
           east: glass;
           south: wall;
           west: wall;
-          floorTexture: ./assets/floor-texture.jpg;
-          wallTexture: ;
+          floorTexture: ./assets/stone.jpg;
+          wallTexture: ./assets/stone.jpg;
           ceilingTexture: ;
         ">
       </a-entity>
@@ -52,492 +52,972 @@
       </a-entity>
 
 
-      <a-entity id="pista_principal"
+      <a-entity id="cesped_central"
                 geometry="primitive: plane"
-                material="color: #4a4a4a"
+                material="color: #4caf50"
                 position="0 -49.95 0"
                 rotation="-90 0 0"
-                scale="30 260 1">
+                scale="180 280 1">
       </a-entity>
 
-      <a-entity id="linea_central_1"
+      <a-entity id="camino_principal"
                 geometry="primitive: plane"
-                material="color: #ffffff"
-                position="0 -49.9 -80"
-                rotation="-90 0 0"
-                scale="1 15 1">
-      </a-entity>
-
-      <a-entity id="linea_central_2"
-                geometry="primitive: plane"
-                material="color: #ffffff"
-                position="0 -49.9 -40"
-                rotation="-90 0 0"
-                scale="1 15 1">
-      </a-entity>
-
-      <a-entity id="linea_central_3"
-                geometry="primitive: plane"
-                material="color: #ffffff"
+                material="color: #d2b48c"
                 position="0 -49.9 0"
                 rotation="-90 0 0"
-                scale="1 15 1">
+                scale="12 280 1">
       </a-entity>
 
-      <a-entity id="linea_central_4"
+      <a-entity id="camino_transversal"
                 geometry="primitive: plane"
-                material="color: #ffffff"
-                position="0 -49.9 40"
+                material="color: #d2b48c"
+                position="0 -49.9 0"
                 rotation="-90 0 0"
-                scale="1 15 1">
+                scale="180 12 1">
       </a-entity>
 
-      <a-entity id="linea_central_5"
-                geometry="primitive: plane"
-                material="color: #ffffff"
-                position="0 -49.9 80"
-                rotation="-90 0 0"
-                scale="1 15 1">
-      </a-entity>
-
-      <a-entity id="cesped_izquierdo"
-                geometry="primitive: plane"
-                material="color: #4caf50"
-                position="-55 -49.98 0"
-                rotation="-90 0 0"
-                scale="70 260 1">
-      </a-entity>
-
-      <a-entity id="cesped_derecho"
-                geometry="primitive: plane"
-                material="color: #4caf50"
-                position="55 -49.98 0"
-                rotation="-90 0 0"
-                scale="70 260 1">
-      </a-entity>
-
-      <a-entity id="terminal_cuerpo"
+      <a-entity id="elefante_cuerpo"
                 geometry="primitive: box"
-                material="color: #d0d8e0"
-                position="-55 -38.0 -80"
+                material="color: #808080"
+                position="-55 -40.0 -100"
                 rotation="0 0 0"
-                scale="55 24 40">
+                scale="20 18 25">
       </a-entity>
 
-      <a-entity id="terminal_techo"
-                geometry="primitive: box"
-                material="color: #b0bec5"
-                position="-55 -25.0 -80"
+      <a-entity id="elefante_cabeza"
+                geometry="primitive: sphere"
+                material="color: #808080"
+                position="-55 -30.0 -118"
                 rotation="0 0 0"
-                scale="58 3 43">
+                scale="12 12 12">
       </a-entity>
 
-      <a-entity id="terminal_ventana_1"
-                geometry="primitive: plane"
-                material="color: #90caf9"
-                position="-27.4 -36.0 -80"
-                rotation="0 -90 0"
-                scale="8 6 1">
-      </a-entity>
-
-      <a-entity id="terminal_ventana_2"
-                geometry="primitive: plane"
-                material="color: #90caf9"
-                position="-27.4 -36.0 -70"
-                rotation="0 -90 0"
-                scale="8 6 1">
-      </a-entity>
-
-      <a-entity id="terminal_ventana_3"
-                geometry="primitive: plane"
-                material="color: #90caf9"
-                position="-27.4 -36.0 -90"
-                rotation="0 -90 0"
-                scale="8 6 1">
-      </a-entity>
-
-      <a-entity id="terminal_puerta"
-                geometry="primitive: box"
-                material="color: #78909c"
-                position="-27.3 -45.0 -80"
-                rotation="0 0 0"
-                scale="0.5 10 6">
-      </a-entity>
-
-      <a-entity id="torre_base"
+      <a-entity id="elefante_trompa"
                 geometry="primitive: cylinder"
-                material="color: #cfd8dc"
-                position="-60 -30.0 -55"
-                rotation="0 0 0"
-                scale="4 40 4">
+                material="color: #707070"
+                position="-55 -40.0 -128"
+                rotation="30 0 0"
+                scale="3 16 3">
       </a-entity>
 
-      <a-entity id="torre_cabina"
+      <a-entity id="elefante_oreja_izq"
+                geometry="primitive: sphere"
+                material="color: #707070"
+                position="-63 -28.0 -116"
+                rotation="0 0 0"
+                scale="7 7 2">
+      </a-entity>
+
+      <a-entity id="elefante_oreja_der"
+                geometry="primitive: sphere"
+                material="color: #707070"
+                position="-47 -28.0 -116"
+                rotation="0 0 0"
+                scale="7 7 2">
+      </a-entity>
+
+      <a-entity id="elefante_pata_delantera_izq"
                 geometry="primitive: cylinder"
-                material="color: #b0bec5"
-                position="-60 -6.0 -55"
+                material="color: #808080"
+                position="-62 -46.0 -107"
                 rotation="0 0 0"
-                scale="6 6 6">
+                scale="4 8 4">
       </a-entity>
 
-      <a-entity id="torre_techo"
+      <a-entity id="elefante_pata_delantera_der"
+                geometry="primitive: cylinder"
+                material="color: #808080"
+                position="-48 -46.0 -107"
+                rotation="0 0 0"
+                scale="4 8 4">
+      </a-entity>
+
+      <a-entity id="elefante_pata_trasera_izq"
+                geometry="primitive: cylinder"
+                material="color: #808080"
+                position="-62 -46.0 -93"
+                rotation="0 0 0"
+                scale="4 8 4">
+      </a-entity>
+
+      <a-entity id="elefante_pata_trasera_der"
+                geometry="primitive: cylinder"
+                material="color: #808080"
+                position="-48 -46.0 -93"
+                rotation="0 0 0"
+                scale="4 8 4">
+      </a-entity>
+
+      <a-entity id="elefante_ojo_izq"
+                geometry="primitive: sphere"
+                material="color: #111111"
+                position="-59 -28.0 -123"
+                rotation="0 0 0"
+                scale="1.5 1.5 1.5">
+      </a-entity>
+
+      <a-entity id="elefante_ojo_der"
+                geometry="primitive: sphere"
+                material="color: #111111"
+                position="-51 -28.0 -123"
+                rotation="0 0 0"
+                scale="1.5 1.5 1.5">
+      </a-entity>
+
+      <a-entity id="jirafa_cuerpo"
+                geometry="primitive: box"
+                material="color: #e8a020"
+                position="55 -36.0 -100"
+                rotation="0 0 0"
+                scale="12 18 18">
+      </a-entity>
+
+      <a-entity id="jirafa_cuello"
+                geometry="primitive: cylinder"
+                material="color: #e8a020"
+                position="55 -12.0 -107"
+                rotation="10 0 0"
+                scale="4 30 4">
+      </a-entity>
+
+      <a-entity id="jirafa_cabeza"
+                geometry="primitive: box"
+                material="color: #e8a020"
+                position="55 8.0 -112"
+                rotation="0 0 0"
+                scale="7 6 10">
+      </a-entity>
+
+      <a-entity id="jirafa_manchas_1"
+                geometry="primitive: box"
+                material="color: #8b4513"
+                position="50 -32.0 -97"
+                rotation="0 0 0"
+                scale="4 5 4">
+      </a-entity>
+
+      <a-entity id="jirafa_manchas_2"
+                geometry="primitive: box"
+                material="color: #8b4513"
+                position="59 -38.0 -103"
+                rotation="0 0 0"
+                scale="3 4 3">
+      </a-entity>
+
+      <a-entity id="jirafa_manchas_3"
+                geometry="primitive: box"
+                material="color: #8b4513"
+                position="54 -30.0 -107"
+                rotation="0 0 0"
+                scale="3 4 3">
+      </a-entity>
+
+      <a-entity id="jirafa_pata_1"
+                geometry="primitive: cylinder"
+                material="color: #c8801a"
+                position="49 -46.0 -95"
+                rotation="0 0 0"
+                scale="2 10 2">
+      </a-entity>
+
+      <a-entity id="jirafa_pata_2"
+                geometry="primitive: cylinder"
+                material="color: #c8801a"
+                position="61 -46.0 -95"
+                rotation="0 0 0"
+                scale="2 10 2">
+      </a-entity>
+
+      <a-entity id="jirafa_pata_3"
+                geometry="primitive: cylinder"
+                material="color: #c8801a"
+                position="49 -46.0 -107"
+                rotation="0 0 0"
+                scale="2 10 2">
+      </a-entity>
+
+      <a-entity id="jirafa_pata_4"
+                geometry="primitive: cylinder"
+                material="color: #c8801a"
+                position="61 -46.0 -107"
+                rotation="0 0 0"
+                scale="2 10 2">
+      </a-entity>
+
+      <a-entity id="jirafa_ojo_izq"
+                geometry="primitive: sphere"
+                material="color: #111111"
+                position="51 10.0 -117"
+                rotation="0 0 0"
+                scale="1.2 1.2 1.2">
+      </a-entity>
+
+      <a-entity id="jirafa_ojo_der"
+                geometry="primitive: sphere"
+                material="color: #111111"
+                position="59 10.0 -117"
+                rotation="0 0 0"
+                scale="1.2 1.2 1.2">
+      </a-entity>
+
+      <a-entity id="leon_cuerpo"
+                geometry="primitive: box"
+                material="color: #d4a017"
+                position="-55 -43.0 90"
+                rotation="0 0 0"
+                scale="16 12 20">
+      </a-entity>
+
+      <a-entity id="leon_cabeza"
+                geometry="primitive: sphere"
+                material="color: #d4a017"
+                position="-55 -36.0 103"
+                rotation="0 0 0"
+                scale="10 10 10">
+      </a-entity>
+
+      <a-entity id="leon_melena"
+                geometry="primitive: sphere"
+                material="color: #8b4513"
+                position="-55 -36.0 103"
+                rotation="0 0 0"
+                scale="13 13 12">
+      </a-entity>
+
+      <a-entity id="leon_cara"
+                geometry="primitive: sphere"
+                material="color: #d4a017"
+                position="-55 -36.0 110"
+                rotation="0 0 0"
+                scale="8 8 6">
+      </a-entity>
+
+      <a-entity id="leon_ojo_izq"
+                geometry="primitive: sphere"
+                material="color: #111111"
+                position="-58 -33.0 115"
+                rotation="0 0 0"
+                scale="1.5 1.5 1.5">
+      </a-entity>
+
+      <a-entity id="leon_ojo_der"
+                geometry="primitive: sphere"
+                material="color: #111111"
+                position="-52 -33.0 115"
+                rotation="0 0 0"
+                scale="1.5 1.5 1.5">
+      </a-entity>
+
+      <a-entity id="leon_nariz"
+                geometry="primitive: sphere"
+                material="color: #c06020"
+                position="-55 -37.0 116"
+                rotation="0 0 0"
+                scale="2 1.5 1.5">
+      </a-entity>
+
+      <a-entity id="leon_pata_1"
+                geometry="primitive: cylinder"
+                material="color: #c49010"
+                position="-62 -47.0 84"
+                rotation="0 0 0"
+                scale="3 7 3">
+      </a-entity>
+
+      <a-entity id="leon_pata_2"
+                geometry="primitive: cylinder"
+                material="color: #c49010"
+                position="-48 -47.0 84"
+                rotation="0 0 0"
+                scale="3 7 3">
+      </a-entity>
+
+      <a-entity id="leon_pata_3"
+                geometry="primitive: cylinder"
+                material="color: #c49010"
+                position="-62 -47.0 96"
+                rotation="0 0 0"
+                scale="3 7 3">
+      </a-entity>
+
+      <a-entity id="leon_pata_4"
+                geometry="primitive: cylinder"
+                material="color: #c49010"
+                position="-48 -47.0 96"
+                rotation="0 0 0"
+                scale="3 7 3">
+      </a-entity>
+
+      <a-entity id="leon_cola"
+                geometry="primitive: cylinder"
+                material="color: #8b4513"
+                position="-55 -40.0 78"
+                rotation="40 0 0"
+                scale="1.5 12 1.5">
+      </a-entity>
+
+      <a-entity id="oso_cuerpo"
+                geometry="primitive: box"
+                material="color: #6b3a2a"
+                position="55 -40.0 90"
+                rotation="0 0 0"
+                scale="16 18 16">
+      </a-entity>
+
+      <a-entity id="oso_cabeza"
+                geometry="primitive: sphere"
+                material="color: #6b3a2a"
+                position="55 -26.0 100"
+                rotation="0 0 0"
+                scale="10 10 10">
+      </a-entity>
+
+      <a-entity id="oso_hocico"
+                geometry="primitive: sphere"
+                material="color: #c8a080"
+                position="55 -28.0 109"
+                rotation="0 0 0"
+                scale="5 4 4">
+      </a-entity>
+
+      <a-entity id="oso_ojo_izq"
+                geometry="primitive: sphere"
+                material="color: #111111"
+                position="51 -23.0 109"
+                rotation="0 0 0"
+                scale="1.5 1.5 1.5">
+      </a-entity>
+
+      <a-entity id="oso_ojo_der"
+                geometry="primitive: sphere"
+                material="color: #111111"
+                position="59 -23.0 109"
+                rotation="0 0 0"
+                scale="1.5 1.5 1.5">
+      </a-entity>
+
+      <a-entity id="oso_nariz"
+                geometry="primitive: sphere"
+                material="color: #111111"
+                position="55 -27.0 113"
+                rotation="0 0 0"
+                scale="2 1.5 1.5">
+      </a-entity>
+
+      <a-entity id="oso_oreja_izq"
+                geometry="primitive: sphere"
+                material="color: #5a2a1a"
+                position="48 -18.0 99"
+                rotation="0 0 0"
+                scale="4 4 3">
+      </a-entity>
+
+      <a-entity id="oso_oreja_der"
+                geometry="primitive: sphere"
+                material="color: #5a2a1a"
+                position="62 -18.0 99"
+                rotation="0 0 0"
+                scale="4 4 3">
+      </a-entity>
+
+      <a-entity id="oso_pata_1"
+                geometry="primitive: cylinder"
+                material="color: #5a2a1a"
+                position="49 -47.0 86"
+                rotation="0 0 0"
+                scale="4 8 4">
+      </a-entity>
+
+      <a-entity id="oso_pata_2"
+                geometry="primitive: cylinder"
+                material="color: #5a2a1a"
+                position="61 -47.0 86"
+                rotation="0 0 0"
+                scale="4 8 4">
+      </a-entity>
+
+      <a-entity id="oso_pata_3"
+                geometry="primitive: cylinder"
+                material="color: #5a2a1a"
+                position="49 -47.0 96"
+                rotation="0 0 0"
+                scale="4 8 4">
+      </a-entity>
+
+      <a-entity id="oso_pata_4"
+                geometry="primitive: cylinder"
+                material="color: #5a2a1a"
+                position="61 -47.0 96"
+                rotation="0 0 0"
+                scale="4 8 4">
+      </a-entity>
+
+      <a-entity id="serpiente_cuerpo_1"
+                geometry="primitive: cylinder"
+                material="color: #2e8b57"
+                position="-20 -47.0 -20"
+                rotation="90 30 0"
+                scale="3 18 3">
+      </a-entity>
+
+      <a-entity id="serpiente_cuerpo_2"
+                geometry="primitive: cylinder"
+                material="color: #2e8b57"
+                position="-10 -47.0 -30"
+                rotation="90 60 0"
+                scale="3 18 3">
+      </a-entity>
+
+      <a-entity id="serpiente_cuerpo_3"
+                geometry="primitive: cylinder"
+                material="color: #2e8b57"
+                position="5 -47.0 -25"
+                rotation="90 10 0"
+                scale="3 16 3">
+      </a-entity>
+
+      <a-entity id="serpiente_cabeza"
+                geometry="primitive: box"
+                material="color: #1a6b3a"
+                position="15 -44.0 -18"
+                rotation="0 -30 0"
+                scale="5 4 7">
+      </a-entity>
+
+      <a-entity id="serpiente_ojo_izq"
+                geometry="primitive: sphere"
+                material="color: #ffff00"
+                position="12 -42.0 -13"
+                rotation="0 0 0"
+                scale="1.2 1.2 1.2">
+      </a-entity>
+
+      <a-entity id="serpiente_ojo_der"
+                geometry="primitive: sphere"
+                material="color: #ffff00"
+                position="18 -42.0 -13"
+                rotation="0 0 0"
+                scale="1.2 1.2 1.2">
+      </a-entity>
+
+      <a-entity id="flamenco_1_cuerpo"
+                geometry="primitive: sphere"
+                material="color: #ff69b4"
+                position="65 -38.0 -20"
+                rotation="0 0 0"
+                scale="6 8 6">
+      </a-entity>
+
+      <a-entity id="flamenco_1_cuello"
+                geometry="primitive: cylinder"
+                material="color: #ff69b4"
+                position="65 -26.0 -20"
+                rotation="10 0 0"
+                scale="2 14 2">
+      </a-entity>
+
+      <a-entity id="flamenco_1_cabeza"
+                geometry="primitive: sphere"
+                material="color: #ff69b4"
+                position="65 -16.0 -23"
+                rotation="0 0 0"
+                scale="4 4 4">
+      </a-entity>
+
+      <a-entity id="flamenco_1_pico"
                 geometry="primitive: cone"
-                material="color: #90a4ae"
-                position="-60 0.0 -55"
+                material="color: #ff8c00"
+                position="65 -17.0 -27"
+                rotation="80 0 0"
+                scale="1.5 4 1.5">
+      </a-entity>
+
+      <a-entity id="flamenco_1_pata"
+                geometry="primitive: cylinder"
+                material="color: #ff8c00"
+                position="65 -46.0 -20"
+                rotation="0 0 0"
+                scale="1 9 1">
+      </a-entity>
+
+      <a-entity id="flamenco_2_cuerpo"
+                geometry="primitive: sphere"
+                material="color: #ff69b4"
+                position="75 -38.0 -10"
+                rotation="0 0 0"
+                scale="6 8 6">
+      </a-entity>
+
+      <a-entity id="flamenco_2_cuello"
+                geometry="primitive: cylinder"
+                material="color: #ff69b4"
+                position="75 -26.0 -10"
+                rotation="-10 0 0"
+                scale="2 14 2">
+      </a-entity>
+
+      <a-entity id="flamenco_2_cabeza"
+                geometry="primitive: sphere"
+                material="color: #ff69b4"
+                position="75 -16.0 -7"
+                rotation="0 0 0"
+                scale="4 4 4">
+      </a-entity>
+
+      <a-entity id="flamenco_2_pata"
+                geometry="primitive: cylinder"
+                material="color: #ff8c00"
+                position="75 -46.0 -10"
+                rotation="0 0 0"
+                scale="1 9 1">
+      </a-entity>
+
+      <a-entity id="mono_cuerpo"
+                geometry="primitive: box"
+                material="color: #8b6914"
+                position="-65 -42.0 -10"
+                rotation="0 20 0"
+                scale="8 10 7">
+      </a-entity>
+
+      <a-entity id="mono_cabeza"
+                geometry="primitive: sphere"
+                material="color: #8b6914"
+                position="-65 -30.0 -14"
+                rotation="0 0 0"
+                scale="7 7 7">
+      </a-entity>
+
+      <a-entity id="mono_cara"
+                geometry="primitive: sphere"
+                material="color: #c8a060"
+                position="-65 -31.0 -20"
+                rotation="0 0 0"
+                scale="5 4.5 3">
+      </a-entity>
+
+      <a-entity id="mono_ojo_izq"
+                geometry="primitive: sphere"
+                material="color: #111111"
+                position="-68 -29.0 -22"
+                rotation="0 0 0"
+                scale="1.2 1.2 1.2">
+      </a-entity>
+
+      <a-entity id="mono_ojo_der"
+                geometry="primitive: sphere"
+                material="color: #111111"
+                position="-62 -29.0 -22"
+                rotation="0 0 0"
+                scale="1.2 1.2 1.2">
+      </a-entity>
+
+      <a-entity id="mono_nariz"
+                geometry="primitive: sphere"
+                material="color: #a07040"
+                position="-65 -32.0 -23"
+                rotation="0 0 0"
+                scale="1.5 1 1">
+      </a-entity>
+
+      <a-entity id="mono_oreja_izq"
+                geometry="primitive: sphere"
+                material="color: #c8a060"
+                position="-72 -29.0 -14"
+                rotation="0 0 0"
+                scale="3 3 2">
+      </a-entity>
+
+      <a-entity id="mono_oreja_der"
+                geometry="primitive: sphere"
+                material="color: #c8a060"
+                position="-58 -29.0 -14"
+                rotation="0 0 0"
+                scale="3 3 2">
+      </a-entity>
+
+      <a-entity id="mono_brazo_izq"
+                geometry="primitive: cylinder"
+                material="color: #8b6914"
+                position="-75 -40.0 -10"
+                rotation="0 0 30"
+                scale="2 10 2">
+      </a-entity>
+
+      <a-entity id="mono_brazo_der"
+                geometry="primitive: cylinder"
+                material="color: #8b6914"
+                position="-55 -40.0 -10"
+                rotation="0 0 -30"
+                scale="2 10 2">
+      </a-entity>
+
+      <a-entity id="mono_pata_izq"
+                geometry="primitive: cylinder"
+                material="color: #7a5810"
+                position="-68 -47.0 -8"
+                rotation="0 0 0"
+                scale="2 7 2">
+      </a-entity>
+
+      <a-entity id="mono_pata_der"
+                geometry="primitive: cylinder"
+                material="color: #7a5810"
+                position="-62 -47.0 -8"
+                rotation="0 0 0"
+                scale="2 7 2">
+      </a-entity>
+
+      <a-entity id="cocodrilo_cuerpo"
+                geometry="primitive: box"
+                material="color: #2d6a2d"
+                position="20 -47.0 50"
+                rotation="0 15 0"
+                scale="8 5 25">
+      </a-entity>
+
+      <a-entity id="cocodrilo_cabeza"
+                geometry="primitive: box"
+                material="color: #2d6a2d"
+                position="22 -46.0 63"
+                rotation="0 15 0"
+                scale="7 4 12">
+      </a-entity>
+
+      <a-entity id="cocodrilo_mandibula"
+                geometry="primitive: box"
+                material="color: #3a8a3a"
+                position="22 -48.5 63"
+                rotation="0 15 0"
+                scale="6 2 11">
+      </a-entity>
+
+      <a-entity id="cocodrilo_ojo_izq"
+                geometry="primitive: sphere"
+                material="color: #ffff00"
+                position="18 -43.0 61"
+                rotation="0 0 0"
+                scale="2 2 2">
+      </a-entity>
+
+      <a-entity id="cocodrilo_ojo_der"
+                geometry="primitive: sphere"
+                material="color: #ffff00"
+                position="26 -43.0 63"
+                rotation="0 0 0"
+                scale="2 2 2">
+      </a-entity>
+
+      <a-entity id="cocodrilo_cola"
+                geometry="primitive: cone"
+                material="color: #1d5a1d"
+                position="17 -47.0 35"
+                rotation="-90 15 0"
+                scale="4 12 4">
+      </a-entity>
+
+      <a-entity id="cocodrilo_pata_1"
+                geometry="primitive: box"
+                material="color: #1d5a1d"
+                position="12 -49.0 52"
+                rotation="0 0 0"
+                scale="4 2 6">
+      </a-entity>
+
+      <a-entity id="cocodrilo_pata_2"
+                geometry="primitive: box"
+                material="color: #1d5a1d"
+                position="28 -49.0 54"
+                rotation="0 0 0"
+                scale="4 2 6">
+      </a-entity>
+
+      <a-entity id="arbol_1_tronco"
+                geometry="primitive: cylinder"
+                material="color: #5c3317"
+                position="-75 -42.0 -120"
+                rotation="0 0 0"
+                scale="4 16 4">
+      </a-entity>
+
+      <a-entity id="arbol_1_copa"
+                geometry="primitive: sphere"
+                material="color: #228b22"
+                position="-75 -26.0 -120"
+                rotation="0 0 0"
+                scale="16 16 16">
+      </a-entity>
+
+      <a-entity id="arbol_2_tronco"
+                geometry="primitive: cylinder"
+                material="color: #5c3317"
+                position="80 -42.0 -130"
+                rotation="0 0 0"
+                scale="4 16 4">
+      </a-entity>
+
+      <a-entity id="arbol_2_copa"
+                geometry="primitive: sphere"
+                material="color: #228b22"
+                position="80 -26.0 -130"
+                rotation="0 0 0"
+                scale="16 16 16">
+      </a-entity>
+
+      <a-entity id="arbol_3_tronco"
+                geometry="primitive: cylinder"
+                material="color: #5c3317"
+                position="-80 -42.0 120"
+                rotation="0 0 0"
+                scale="4 16 4">
+      </a-entity>
+
+      <a-entity id="arbol_3_copa"
+                geometry="primitive: sphere"
+                material="color: #228b22"
+                position="-80 -26.0 120"
+                rotation="0 0 0"
+                scale="16 16 16">
+      </a-entity>
+
+      <a-entity id="arbol_4_tronco"
+                geometry="primitive: cylinder"
+                material="color: #5c3317"
+                position="78 -42.0 110"
+                rotation="0 0 0"
+                scale="4 16 4">
+      </a-entity>
+
+      <a-entity id="arbol_4_copa"
+                geometry="primitive: sphere"
+                material="color: #228b22"
+                position="78 -26.0 110"
+                rotation="0 0 0"
+                scale="16 16 16">
+      </a-entity>
+
+      <a-entity id="arbol_5_tronco"
+                geometry="primitive: cylinder"
+                material="color: #5c3317"
+                position="0 -42.0 -130"
+                rotation="0 0 0"
+                scale="4 16 4">
+      </a-entity>
+
+      <a-entity id="arbol_5_copa"
+                geometry="primitive: sphere"
+                material="color: #1a7a1a"
+                position="0 -26.0 -130"
+                rotation="0 0 0"
+                scale="18 18 18">
+      </a-entity>
+
+      <a-entity id="arbol_6_tronco"
+                geometry="primitive: cylinder"
+                material="color: #5c3317"
+                position="30 -42.0 130"
+                rotation="0 0 0"
+                scale="4 16 4">
+      </a-entity>
+
+      <a-entity id="arbol_6_copa"
+                geometry="primitive: sphere"
+                material="color: #2a9a2a"
+                position="30 -26.0 130"
+                rotation="0 0 0"
+                scale="16 16 16">
+      </a-entity>
+
+      <a-entity id="estanque_agua"
+                geometry="primitive: plane"
+                material="color: #1e90ff"
+                position="0 -49.85 0"
+                rotation="-90 0 0"
+                scale="30 30 1">
+      </a-entity>
+
+      <a-entity id="estanque_borde"
+                geometry="primitive: torus"
+                material="color: #8b7355"
+                position="0 -49.0 0"
+                rotation="-90 0 0"
+                scale="18 18 2">
+      </a-entity>
+
+      <a-entity id="cartel_entrada_poste"
+                geometry="primitive: cylinder"
+                material="color: #8b4513"
+                position="-15 -42.0 130"
+                rotation="0 0 0"
+                scale="2 16 2">
+      </a-entity>
+
+      <a-entity id="cartel_entrada_tabla"
+                geometry="primitive: box"
+                material="color: #228b22"
+                position="-15 -30.0 130"
+                rotation="0 0 0"
+                scale="20 8 2">
+      </a-entity>
+
+      <a-entity id="cartel_entrada_poste_2"
+                geometry="primitive: cylinder"
+                material="color: #8b4513"
+                position="15 -42.0 130"
+                rotation="0 0 0"
+                scale="2 16 2">
+      </a-entity>
+
+      <a-entity id="valla_norte_izq"
+                geometry="primitive: box"
+                material="color: #c8a060"
+                position="-35 -45.0 -55"
+                rotation="0 0 0"
+                scale="55 8 2">
+      </a-entity>
+
+      <a-entity id="valla_norte_der"
+                geometry="primitive: box"
+                material="color: #c8a060"
+                position="35 -45.0 -55"
+                rotation="0 0 0"
+                scale="55 8 2">
+      </a-entity>
+
+      <a-entity id="valla_sur_izq"
+                geometry="primitive: box"
+                material="color: #c8a060"
+                position="-35 -45.0 55"
+                rotation="0 0 0"
+                scale="55 8 2">
+      </a-entity>
+
+      <a-entity id="valla_sur_der"
+                geometry="primitive: box"
+                material="color: #c8a060"
+                position="35 -45.0 55"
+                rotation="0 0 0"
+                scale="55 8 2">
+      </a-entity>
+
+      <a-entity id="valla_lateral_oeste"
+                geometry="primitive: box"
+                material="color: #c8a060"
+                position="-75 -45.0 0"
+                rotation="0 90 0"
+                scale="100 8 2">
+      </a-entity>
+
+      <a-entity id="valla_lateral_este"
+                geometry="primitive: box"
+                material="color: #c8a060"
+                position="75 -45.0 0"
+                rotation="0 90 0"
+                scale="100 8 2">
+      </a-entity>
+
+      <a-entity id="roca_1"
+                geometry="primitive: sphere"
+                material="color: #808080"
+                position="-40 -47.0 30"
+                rotation="0 0 0"
+                scale="6 4 7">
+      </a-entity>
+
+      <a-entity id="roca_2"
+                geometry="primitive: sphere"
+                material="color: #707070"
+                position="40 -48.0 -30"
+                rotation="0 0 0"
+                scale="5 3 6">
+      </a-entity>
+
+      <a-entity id="roca_3"
+                geometry="primitive: sphere"
+                material="color: #909090"
+                position="-30 -48.0 -70"
+                rotation="0 0 0"
+                scale="4 3 5">
+      </a-entity>
+
+      <a-entity id="arbusto_1"
+                geometry="primitive: sphere"
+                material="color: #32a832"
+                position="-45 -46.0 -80"
+                rotation="0 0 0"
+                scale="8 6 8">
+      </a-entity>
+
+      <a-entity id="arbusto_2"
+                geometry="primitive: sphere"
+                material="color: #28a028"
+                position="42 -46.0 70"
                 rotation="0 0 0"
                 scale="7 5 7">
       </a-entity>
 
-      <a-entity id="torre_ventana_cabina"
-                geometry="primitive: cylinder"
-                material="color: #80d8ff"
-                position="-60 -6.0 -55"
-                rotation="0 0 0"
-                scale="5.8 4 5.8">
-      </a-entity>
-
-      <a-entity id="avion1_fuselaje"
-                geometry="primitive: cylinder"
-                material="color: #eceff1"
-                position="0 -45.0 -60"
-                rotation="0 0 90"
-                scale="5 28 5">
-      </a-entity>
-
-      <a-entity id="avion1_nariz"
-                geometry="primitive: cone"
-                material="color: #eceff1"
-                position="27 -45.0 -60"
-                rotation="0 0 -90"
-                scale="5 8 5">
-      </a-entity>
-
-      <a-entity id="avion1_cola_vertical"
-                geometry="primitive: box"
-                material="color: #1565c0"
-                position="-20 -39.0 -60"
-                rotation="0 0 0"
-                scale="5 10 1.5">
-      </a-entity>
-
-      <a-entity id="avion1_ala_izquierda"
-                geometry="primitive: box"
-                material="color: #cfd8dc"
-                position="2 -45.0 -50"
-                rotation="0 5 0"
-                scale="12 1 22">
-      </a-entity>
-
-      <a-entity id="avion1_ala_derecha"
-                geometry="primitive: box"
-                material="color: #cfd8dc"
-                position="2 -45.0 -70"
-                rotation="0 -5 0"
-                scale="12 1 22">
-      </a-entity>
-
-      <a-entity id="avion1_motor_izq"
-                geometry="primitive: cylinder"
-                material="color: #90a4ae"
-                position="5 -46.5 -47"
-                rotation="0 0 90"
-                scale="2 5 2">
-      </a-entity>
-
-      <a-entity id="avion1_motor_der"
-                geometry="primitive: cylinder"
-                material="color: #90a4ae"
-                position="5 -46.5 -73"
-                rotation="0 0 90"
-                scale="2 5 2">
-      </a-entity>
-
-      <a-entity id="avion1_franja"
-                geometry="primitive: cylinder"
-                material="color: #1565c0"
-                position="10 -42.5 -60"
-                rotation="0 0 90"
-                scale="0.8 18 5.1">
-      </a-entity>
-
-      <a-entity id="avion1_ventana_1"
+      <a-entity id="arbusto_3"
                 geometry="primitive: sphere"
-                material="color: #80d8ff"
-                position="18 -43.0 -57"
+                material="color: #3ab03a"
+                position="-30 -47.0 110"
                 rotation="0 0 0"
-                scale="1.2 1 0.3">
+                scale="6 5 6">
       </a-entity>
 
-      <a-entity id="avion1_ventana_2"
+      <a-entity id="arbusto_4"
                 geometry="primitive: sphere"
-                material="color: #80d8ff"
-                position="12 -43.0 -57"
+                material="color: #25952a"
+                position="35 -47.0 -110"
                 rotation="0 0 0"
-                scale="1.2 1 0.3">
+                scale="8 6 8">
       </a-entity>
 
-      <a-entity id="avion1_ventana_3"
-                geometry="primitive: sphere"
-                material="color: #80d8ff"
-                position="6 -43.0 -57"
-                rotation="0 0 0"
-                scale="1.2 1 0.3">
-      </a-entity>
-
-      <a-entity id="avion2_fuselaje"
-                geometry="primitive: cylinder"
-                material="color: #fafafa"
-                position="-35 -46.0 60"
-                rotation="0 0 90"
-                scale="4 22 4">
-      </a-entity>
-
-      <a-entity id="avion2_nariz"
-                geometry="primitive: cone"
-                material="color: #fafafa"
-                position="-13 -46.0 60"
-                rotation="0 0 -90"
-                scale="4 6 4">
-      </a-entity>
-
-      <a-entity id="avion2_cola_vertical"
+      <a-entity id="banco_1_asiento"
                 geometry="primitive: box"
-                material="color: #e53935"
-                position="-53 -41.0 60"
+                material="color: #a0522d"
+                position="-20 -45.0 25"
                 rotation="0 0 0"
-                scale="4 8 1.2">
+                scale="12 2 4">
       </a-entity>
 
-      <a-entity id="avion2_ala_izquierda"
+      <a-entity id="banco_1_pata_izq"
                 geometry="primitive: box"
-                material="color: #e0e0e0"
-                position="-35 -46.0 70"
-                rotation="0 -5 0"
-                scale="10 0.8 18">
+                material="color: #8b4513"
+                position="-25 -48.0 25"
+                rotation="0 0 0"
+                scale="2 4 4">
       </a-entity>
 
-      <a-entity id="avion2_ala_derecha"
+      <a-entity id="banco_1_pata_der"
                 geometry="primitive: box"
-                material="color: #e0e0e0"
-                position="-35 -46.0 50"
-                rotation="0 5 0"
-                scale="10 0.8 18">
+                material="color: #8b4513"
+                position="-15 -48.0 25"
+                rotation="0 0 0"
+                scale="2 4 4">
       </a-entity>
 
-      <a-entity id="avion2_motor_izq"
-                geometry="primitive: cylinder"
-                material="color: #78909c"
-                position="-33 -47.2 73"
-                rotation="0 0 90"
-                scale="1.6 4 1.6">
-      </a-entity>
-
-      <a-entity id="avion2_motor_der"
-                geometry="primitive: cylinder"
-                material="color: #78909c"
-                position="-33 -47.2 47"
-                rotation="0 0 90"
-                scale="1.6 4 1.6">
-      </a-entity>
-
-      <a-entity id="avion2_franja"
-                geometry="primitive: cylinder"
-                material="color: #e53935"
-                position="-28 -44.0 60"
-                rotation="0 0 90"
-                scale="0.6 14 4.1">
-      </a-entity>
-
-      <a-entity id="avion3_fuselaje"
-                geometry="primitive: cylinder"
-                material="color: #e3f2fd"
-                position="50 5.0 30"
-                rotation="-15 30 90"
-                scale="4 24 4">
-      </a-entity>
-
-      <a-entity id="avion3_nariz"
-                geometry="primitive: cone"
-                material="color: #e3f2fd"
-                position="61 10.0 18"
-                rotation="-15 30 -90"
-                scale="4 7 4">
-      </a-entity>
-
-      <a-entity id="avion3_cola_vertical"
+      <a-entity id="banco_2_asiento"
                 geometry="primitive: box"
-                material="color: #ff6f00"
-                position="38 12.0 41"
-                rotation="-15 30 0"
-                scale="4 8 1.2">
+                material="color: #a0522d"
+                position="20 -45.0 -25"
+                rotation="0 0 0"
+                scale="12 2 4">
       </a-entity>
 
-      <a-entity id="avion3_ala_izquierda"
+      <a-entity id="banco_2_pata_izq"
                 geometry="primitive: box"
-                material="color: #bbdefb"
-                position="42 5.0 40"
-                rotation="-15 30 0"
-                scale="9 0.8 16">
+                material="color: #8b4513"
+                position="15 -48.0 -25"
+                rotation="0 0 0"
+                scale="2 4 4">
       </a-entity>
 
-      <a-entity id="avion3_ala_derecha"
+      <a-entity id="banco_2_pata_der"
                 geometry="primitive: box"
-                material="color: #bbdefb"
-                position="58 5.0 20"
-                rotation="-15 30 0"
-                scale="9 0.8 16">
-      </a-entity>
-
-      <a-entity id="luz_pista_1"
-                geometry="primitive: cylinder"
-                material="color: #ffff00"
-                position="16 -48.0 -120"
+                material="color: #8b4513"
+                position="25 -48.0 -25"
                 rotation="0 0 0"
-                scale="0.5 4 0.5">
-      </a-entity>
-
-      <a-entity id="luz_pista_2"
-                geometry="primitive: cylinder"
-                material="color: #ffff00"
-                position="16 -48.0 -60"
-                rotation="0 0 0"
-                scale="0.5 4 0.5">
-      </a-entity>
-
-      <a-entity id="luz_pista_3"
-                geometry="primitive: cylinder"
-                material="color: #ffff00"
-                position="16 -48.0 0"
-                rotation="0 0 0"
-                scale="0.5 4 0.5">
-      </a-entity>
-
-      <a-entity id="luz_pista_4"
-                geometry="primitive: cylinder"
-                material="color: #ffff00"
-                position="16 -48.0 60"
-                rotation="0 0 0"
-                scale="0.5 4 0.5">
-      </a-entity>
-
-      <a-entity id="luz_pista_5"
-                geometry="primitive: cylinder"
-                material="color: #ffff00"
-                position="16 -48.0 120"
-                rotation="0 0 0"
-                scale="0.5 4 0.5">
-      </a-entity>
-
-      <a-entity id="luz_pista_6"
-                geometry="primitive: cylinder"
-                material="color: #ffff00"
-                position="-16 -48.0 -120"
-                rotation="0 0 0"
-                scale="0.5 4 0.5">
-      </a-entity>
-
-      <a-entity id="luz_pista_7"
-                geometry="primitive: cylinder"
-                material="color: #ffff00"
-                position="-16 -48.0 -60"
-                rotation="0 0 0"
-                scale="0.5 4 0.5">
-      </a-entity>
-
-      <a-entity id="luz_pista_8"
-                geometry="primitive: cylinder"
-                material="color: #ffff00"
-                position="-16 -48.0 0"
-                rotation="0 0 0"
-                scale="0.5 4 0.5">
-      </a-entity>
-
-      <a-entity id="luz_pista_9"
-                geometry="primitive: cylinder"
-                material="color: #ffff00"
-                position="-16 -48.0 60"
-                rotation="0 0 0"
-                scale="0.5 4 0.5">
-      </a-entity>
-
-      <a-entity id="luz_pista_10"
-                geometry="primitive: cylinder"
-                material="color: #ffff00"
-                position="-16 -48.0 120"
-                rotation="0 0 0"
-                scale="0.5 4 0.5">
-      </a-entity>
-
-      <a-entity id="hangar_cuerpo"
-                geometry="primitive: box"
-                material="color: #b0bec5"
-                position="60 -36.0 -90"
-                rotation="0 0 0"
-                scale="38 28 35">
-      </a-entity>
-
-      <a-entity id="hangar_techo"
-                geometry="primitive: cylinder"
-                material="color: #90a4ae"
-                position="60 -20.0 -90"
-                rotation="0 0 90"
-                scale="16 38 16">
-      </a-entity>
-
-      <a-entity id="hangar_puerta"
-                geometry="primitive: box"
-                material="color: #546e7a"
-                position="79.5 -38.0 -90"
-                rotation="0 0 0"
-                scale="1 22 28">
-      </a-entity>
-
-      <a-entity id="vehiculo_base"
-                geometry="primitive: box"
-                material="color: #f9a825"
-                position="28 -48.0 80"
-                rotation="0 0 0"
-                scale="8 4 14">
-      </a-entity>
-
-      <a-entity id="vehiculo_cabina"
-                geometry="primitive: box"
-                material="color: #f9a825"
-                position="28 -44.0 75"
-                rotation="0 0 0"
-                scale="7 4 6">
-      </a-entity>
-
-      <a-entity id="vehiculo_rueda_1"
-                geometry="primitive: torus"
-                material="color: #212121"
-                position="23 -49.0 85"
-                rotation="90 0 0"
-                scale="1.5 1.5 0.6">
-      </a-entity>
-
-      <a-entity id="vehiculo_rueda_2"
-                geometry="primitive: torus"
-                material="color: #212121"
-                position="33 -49.0 85"
-                rotation="90 0 0"
-                scale="1.5 1.5 0.6">
-      </a-entity>
-
-      <a-entity id="vehiculo_rueda_3"
-                geometry="primitive: torus"
-                material="color: #212121"
-                position="23 -49.0 75"
-                rotation="90 0 0"
-                scale="1.5 1.5 0.6">
-      </a-entity>
-
-      <a-entity id="vehiculo_rueda_4"
-                geometry="primitive: torus"
-                material="color: #212121"
-                position="33 -49.0 75"
-                rotation="90 0 0"
-                scale="1.5 1.5 0.6">
+                scale="2 4 4">
       </a-entity>
 
       <a-sky color="#87CEEB"></a-sky>
