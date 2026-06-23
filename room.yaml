@@ -2,22 +2,22 @@ room:
   width: 200
   depth: 300
   height: 100
-  ceiling: false
+  ceiling: true
   walls:
-    north: barrier
-    east: barrier
-    south: barrier
-    west: barrier
+    north: wall
+    east: wall
+    south: wall
+    west: wall
   textures:
-    floor: ./assets/stone.jpg
-    wall: ./assets/stone.jpg
+    floor: ./assets/floor-texture.jpg
+    wall: ''
     ceiling: ''
   entryPoint:
     x: -10
     'y': 2
     z: 20
   environment:
-    skyColor: '#1a0a2e'
+    skyColor: '#000000'
     stars: true
   lights:
     - type: ambient
@@ -27,9 +27,724 @@ room:
       color: '#ebd9e9'
       intensity: 0.3
   objects:
-    - name: suelo_castillo
+    - name: pantalla_fondo
       primitive: plane
-      color: '#7a7060'
+      color: '#e8e8e8'
+      position:
+        x: 0
+        'y': 55
+        z: -139
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 80
+        'y': 45
+        z: 1
+    - name: marco_pantalla
+      primitive: box
+      color: '#222222'
+      position:
+        x: 0
+        'y': 55
+        z: -140
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 84
+        'y': 49
+        z: 1
+    - name: texto_proyecto_linea1
+      primitive: box
+      color: '#3366cc'
+      position:
+        x: -20
+        'y': 62
+        z: -138
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 30
+        'y': 3
+        z: 0.5
+    - name: texto_proyecto_linea2
+      primitive: box
+      color: '#3366cc'
+      position:
+        x: 0
+        'y': 55
+        z: -138
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 50
+        'y': 3
+        z: 0.5
+    - name: texto_proyecto_linea3
+      primitive: box
+      color: '#3366cc'
+      position:
+        x: -5
+        'y': 48
+        z: -138
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 40
+        'y': 3
+        z: 0.5
+    - name: tarima
+      primitive: box
+      color: '#8B6914'
+      position:
+        x: 0
+        'y': 3
+        z: -100
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 30
+        'y': 6
+        z: 20
+    - name: atril_base
+      primitive: box
+      color: '#5a3e10'
+      position:
+        x: 0
+        'y': 12
+        z: -102
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 12
+        'y': 14
+        z: 8
+    - name: atril_superficie
+      primitive: box
+      color: '#6b4a14'
+      position:
+        x: 0
+        'y': 20
+        z: -104
+      rotation:
+        x: -15
+        'y': 0
+        z: 0
+      scale:
+        x: 14
+        'y': 1.5
+        z: 10
+    - name: estudiante_cuerpo
+      primitive: box
+      color: '#1a3a6b'
+      position:
+        x: 0
+        'y': 30
+        z: -95
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 8
+        'y': 16
+        z: 5
+    - name: estudiante_cabeza
+      primitive: sphere
+      color: '#f5c5a3'
+      position:
+        x: 0
+        'y': 45
+        z: -95
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 5
+        'y': 5
+        z: 5
+    - name: estudiante_ojo_izq
+      primitive: sphere
+      color: '#222222'
+      position:
+        x: -1.5
+        'y': 46
+        z: -92
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 0.8
+        'y': 0.8
+        z: 0.8
+    - name: estudiante_ojo_der
+      primitive: sphere
+      color: '#222222'
+      position:
+        x: 1.5
+        'y': 46
+        z: -92
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 0.8
+        'y': 0.8
+        z: 0.8
+    - name: estudiante_boca
+      primitive: box
+      color: '#c0605a'
+      position:
+        x: 0
+        'y': 43.5
+        z: -92
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 2
+        'y': 0.6
+        z: 0.5
+    - name: estudiante_brazo_izq
+      primitive: box
+      color: '#1a3a6b'
+      position:
+        x: -8
+        'y': 32
+        z: -97
+      rotation:
+        x: 0
+        'y': 0
+        z: 35
+      scale:
+        x: 3
+        'y': 12
+        z: 3
+    - name: estudiante_brazo_der
+      primitive: box
+      color: '#1a3a6b'
+      position:
+        x: 8
+        'y': 30
+        z: -95
+      rotation:
+        x: 0
+        'y': 0
+        z: -15
+      scale:
+        x: 3
+        'y': 10
+        z: 3
+    - name: estudiante_pierna_izq
+      primitive: box
+      color: '#2c2c6b'
+      position:
+        x: -2.5
+        'y': 14
+        z: -95
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 10
+        z: 3
+    - name: estudiante_pierna_der
+      primitive: box
+      color: '#2c2c6b'
+      position:
+        x: 2.5
+        'y': 14
+        z: -95
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 3
+        'y': 10
+        z: 3
+    - name: mesa_alumno_1_1
+      model: table_red
+      position:
+        x: -50
+        'y': 0
+        z: -30
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 1
+        'y': 1
+        z: 1
+    - name: mesa_alumno_1_2
+      model: table_red
+      position:
+        x: 0
+        'y': 0
+        z: -30
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 1
+        'y': 1
+        z: 1
+    - name: mesa_alumno_1_3
+      model: table_red
+      position:
+        x: 50
+        'y': 0
+        z: -30
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 1
+        'y': 1
+        z: 1
+    - name: mesa_alumno_2_1
+      model: table_red
+      position:
+        x: -50
+        'y': 0
+        z: 20
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 1
+        'y': 1
+        z: 1
+    - name: mesa_alumno_2_2
+      model: table_red
+      position:
+        x: 0
+        'y': 0
+        z: 20
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 1
+        'y': 1
+        z: 1
+    - name: mesa_alumno_2_3
+      model: table_red
+      position:
+        x: 50
+        'y': 0
+        z: 20
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 1
+        'y': 1
+        z: 1
+    - name: mesa_alumno_3_1
+      model: table_red
+      position:
+        x: -50
+        'y': 0
+        z: 70
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 1
+        'y': 1
+        z: 1
+    - name: mesa_alumno_3_2
+      model: table_red
+      position:
+        x: 0
+        'y': 0
+        z: 70
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 1
+        'y': 1
+        z: 1
+    - name: mesa_alumno_3_3
+      model: table_red
+      position:
+        x: 50
+        'y': 0
+        z: 70
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 1
+        'y': 1
+        z: 1
+    - name: silla_alumno_1_1
+      model: chair_basic
+      position:
+        x: -50
+        'y': 0
+        z: -15
+      rotation:
+        x: 0
+        'y': 180
+        z: 0
+      scale:
+        x: 1
+        'y': 1
+        z: 1
+    - name: silla_alumno_1_2
+      model: chair_basic
+      position:
+        x: 0
+        'y': 0
+        z: -15
+      rotation:
+        x: 0
+        'y': 180
+        z: 0
+      scale:
+        x: 1
+        'y': 1
+        z: 1
+    - name: silla_alumno_1_3
+      model: chair_basic
+      position:
+        x: 50
+        'y': 0
+        z: -15
+      rotation:
+        x: 0
+        'y': 180
+        z: 0
+      scale:
+        x: 1
+        'y': 1
+        z: 1
+    - name: silla_alumno_2_1
+      model: chair_basic
+      position:
+        x: -50
+        'y': 0
+        z: 35
+      rotation:
+        x: 0
+        'y': 180
+        z: 0
+      scale:
+        x: 1
+        'y': 1
+        z: 1
+    - name: silla_alumno_2_2
+      model: chair_basic
+      position:
+        x: 0
+        'y': 0
+        z: 35
+      rotation:
+        x: 0
+        'y': 180
+        z: 0
+      scale:
+        x: 1
+        'y': 1
+        z: 1
+    - name: silla_alumno_2_3
+      model: chair_basic
+      position:
+        x: 50
+        'y': 0
+        z: 35
+      rotation:
+        x: 0
+        'y': 180
+        z: 0
+      scale:
+        x: 1
+        'y': 1
+        z: 1
+    - name: silla_alumno_3_1
+      model: chair_basic
+      position:
+        x: -50
+        'y': 0
+        z: 85
+      rotation:
+        x: 0
+        'y': 180
+        z: 0
+      scale:
+        x: 1
+        'y': 1
+        z: 1
+    - name: silla_alumno_3_2
+      model: chair_basic
+      position:
+        x: 0
+        'y': 0
+        z: 85
+      rotation:
+        x: 0
+        'y': 180
+        z: 0
+      scale:
+        x: 1
+        'y': 1
+        z: 1
+    - name: silla_alumno_3_3
+      model: chair_basic
+      position:
+        x: 50
+        'y': 0
+        z: 85
+      rotation:
+        x: 0
+        'y': 180
+        z: 0
+      scale:
+        x: 1
+        'y': 1
+        z: 1
+    - name: alumno_1_1_cuerpo
+      primitive: box
+      color: '#c0392b'
+      position:
+        x: -50
+        'y': 20
+        z: -15
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 5
+        'y': 8
+        z: 4
+    - name: alumno_1_1_cabeza
+      primitive: sphere
+      color: '#f5c5a3'
+      position:
+        x: -50
+        'y': 30
+        z: -15
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 4
+        'y': 4
+        z: 4
+    - name: alumno_1_2_cuerpo
+      primitive: box
+      color: '#27ae60'
+      position:
+        x: 0
+        'y': 20
+        z: -15
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 5
+        'y': 8
+        z: 4
+    - name: alumno_1_2_cabeza
+      primitive: sphere
+      color: '#e8b48a'
+      position:
+        x: 0
+        'y': 30
+        z: -15
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 4
+        'y': 4
+        z: 4
+    - name: alumno_1_3_cuerpo
+      primitive: box
+      color: '#8e44ad'
+      position:
+        x: 50
+        'y': 20
+        z: -15
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 5
+        'y': 8
+        z: 4
+    - name: alumno_1_3_cabeza
+      primitive: sphere
+      color: '#f5c5a3'
+      position:
+        x: 50
+        'y': 30
+        z: -15
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 4
+        'y': 4
+        z: 4
+    - name: alumno_2_1_cuerpo
+      primitive: box
+      color: '#e67e22'
+      position:
+        x: -50
+        'y': 20
+        z: 35
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 5
+        'y': 8
+        z: 4
+    - name: alumno_2_1_cabeza
+      primitive: sphere
+      color: '#d4a574'
+      position:
+        x: -50
+        'y': 30
+        z: 35
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 4
+        'y': 4
+        z: 4
+    - name: alumno_2_2_cuerpo
+      primitive: box
+      color: '#2980b9'
+      position:
+        x: 0
+        'y': 20
+        z: 35
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 5
+        'y': 8
+        z: 4
+    - name: alumno_2_2_cabeza
+      primitive: sphere
+      color: '#f5c5a3'
+      position:
+        x: 0
+        'y': 30
+        z: 35
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 4
+        'y': 4
+        z: 4
+    - name: alumno_2_3_cuerpo
+      primitive: box
+      color: '#16a085'
+      position:
+        x: 50
+        'y': 20
+        z: 35
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 5
+        'y': 8
+        z: 4
+    - name: alumno_2_3_cabeza
+      primitive: sphere
+      color: '#e8b48a'
+      position:
+        x: 50
+        'y': 30
+        z: 35
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 4
+        'y': 4
+        z: 4
+    - name: lampara_aula_izq
+      model: lamp_floor
+      position:
+        x: -75
+        'y': 0
+        z: -120
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 1
+        'y': 1
+        z: 1
+    - name: lampara_aula_der
+      model: lamp_floor
+      position:
+        x: 75
+        'y': 0
+        z: -120
+      rotation:
+        x: 0
+        'y': 0
+        z: 0
+      scale:
+        x: 1
+        'y': 1
+        z: 1
+    - name: suelo_aula
+      primitive: plane
+      color: '#c8b89a'
       position:
         x: 0
         'y': 0.1
@@ -40,1610 +755,35 @@ room:
         z: 0
       scale:
         x: 180
-        'y': 260
+        'y': 280
         z: 1
-    - name: muralla_norte
-      primitive: box
-      color: '#8a7a6a'
-      position:
-        x: 0
-        'y': 15
-        z: -120
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 160
-        'y': 30
-        z: 8
-    - name: almena_norte_1
-      primitive: box
-      color: '#9a8a7a'
-      position:
-        x: -70
-        'y': 33
-        z: -120
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 6
-        'y': 6
-        z: 8
-    - name: almena_norte_2
-      primitive: box
-      color: '#9a8a7a'
-      position:
-        x: -50
-        'y': 33
-        z: -120
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 6
-        'y': 6
-        z: 8
-    - name: almena_norte_3
-      primitive: box
-      color: '#9a8a7a'
-      position:
-        x: -30
-        'y': 33
-        z: -120
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 6
-        'y': 6
-        z: 8
-    - name: almena_norte_4
-      primitive: box
-      color: '#9a8a7a'
-      position:
-        x: -10
-        'y': 33
-        z: -120
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 6
-        'y': 6
-        z: 8
-    - name: almena_norte_5
-      primitive: box
-      color: '#9a8a7a'
-      position:
-        x: 10
-        'y': 33
-        z: -120
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 6
-        'y': 6
-        z: 8
-    - name: almena_norte_6
-      primitive: box
-      color: '#9a8a7a'
-      position:
-        x: 30
-        'y': 33
-        z: -120
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 6
-        'y': 6
-        z: 8
-    - name: almena_norte_7
-      primitive: box
-      color: '#9a8a7a'
-      position:
-        x: 50
-        'y': 33
-        z: -120
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 6
-        'y': 6
-        z: 8
-    - name: almena_norte_8
-      primitive: box
-      color: '#9a8a7a'
-      position:
-        x: 70
-        'y': 33
-        z: -120
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 6
-        'y': 6
-        z: 8
-    - name: muralla_sur
-      primitive: box
-      color: '#8a7a6a'
-      position:
-        x: 0
-        'y': 15
-        z: 120
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 160
-        'y': 30
-        z: 8
-    - name: almena_sur_1
-      primitive: box
-      color: '#9a8a7a'
-      position:
-        x: -70
-        'y': 33
-        z: 120
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 6
-        'y': 6
-        z: 8
-    - name: almena_sur_2
-      primitive: box
-      color: '#9a8a7a'
-      position:
-        x: -50
-        'y': 33
-        z: 120
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 6
-        'y': 6
-        z: 8
-    - name: almena_sur_3
-      primitive: box
-      color: '#9a8a7a'
-      position:
-        x: -30
-        'y': 33
-        z: 120
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 6
-        'y': 6
-        z: 8
-    - name: almena_sur_4
-      primitive: box
-      color: '#9a8a7a'
-      position:
-        x: -10
-        'y': 33
-        z: 120
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 6
-        'y': 6
-        z: 8
-    - name: almena_sur_5
-      primitive: box
-      color: '#9a8a7a'
-      position:
-        x: 10
-        'y': 33
-        z: 120
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 6
-        'y': 6
-        z: 8
-    - name: almena_sur_6
-      primitive: box
-      color: '#9a8a7a'
-      position:
-        x: 30
-        'y': 33
-        z: 120
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 6
-        'y': 6
-        z: 8
-    - name: almena_sur_7
-      primitive: box
-      color: '#9a8a7a'
-      position:
-        x: 50
-        'y': 33
-        z: 120
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 6
-        'y': 6
-        z: 8
-    - name: almena_sur_8
-      primitive: box
-      color: '#9a8a7a'
-      position:
-        x: 70
-        'y': 33
-        z: 120
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 6
-        'y': 6
-        z: 8
-    - name: muralla_oeste
-      primitive: box
-      color: '#8a7a6a'
-      position:
-        x: -80
-        'y': 15
-        z: 0
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 8
-        'y': 30
-        z: 240
-    - name: muralla_este
-      primitive: box
-      color: '#8a7a6a'
-      position:
-        x: 80
-        'y': 15
-        z: 0
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 8
-        'y': 30
-        z: 240
-    - name: torre_noroeste_base
-      primitive: cylinder
-      color: '#7a6a5a'
-      position:
-        x: -75
-        'y': 30
-        z: -115
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 14
-        'y': 60
-        z: 14
-    - name: torre_noroeste_techo
-      primitive: cone
-      color: '#8b0000'
-      position:
-        x: -75
-        'y': 65
-        z: -115
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 16
-        'y': 20
-        z: 16
-    - name: torre_noroeste_almena_1
-      primitive: box
-      color: '#9a8a7a'
-      position:
-        x: -82
-        'y': 62
-        z: -115
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 4
-        'y': 5
-        z: 4
-    - name: torre_noroeste_almena_2
-      primitive: box
-      color: '#9a8a7a'
-      position:
-        x: -68
-        'y': 62
-        z: -115
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 4
-        'y': 5
-        z: 4
-    - name: torre_noroeste_almena_3
-      primitive: box
-      color: '#9a8a7a'
-      position:
-        x: -75
-        'y': 62
-        z: -108
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 4
-        'y': 5
-        z: 4
-    - name: torre_noroeste_almena_4
-      primitive: box
-      color: '#9a8a7a'
-      position:
-        x: -75
-        'y': 62
-        z: -122
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 4
-        'y': 5
-        z: 4
-    - name: ventana_noroeste
-      primitive: box
-      color: '#2a2a3a'
-      position:
-        x: -68
-        'y': 35
-        z: -115
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 1
-        'y': 6
-        z: 3
-    - name: torre_noreste_base
-      primitive: cylinder
-      color: '#7a6a5a'
-      position:
-        x: 75
-        'y': 30
-        z: -115
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 14
-        'y': 60
-        z: 14
-    - name: torre_noreste_techo
-      primitive: cone
-      color: '#8b0000'
-      position:
-        x: 75
-        'y': 65
-        z: -115
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 16
-        'y': 20
-        z: 16
-    - name: torre_noreste_almena_1
-      primitive: box
-      color: '#9a8a7a'
-      position:
-        x: 82
-        'y': 62
-        z: -115
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 4
-        'y': 5
-        z: 4
-    - name: torre_noreste_almena_2
-      primitive: box
-      color: '#9a8a7a'
-      position:
-        x: 68
-        'y': 62
-        z: -115
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 4
-        'y': 5
-        z: 4
-    - name: torre_noreste_almena_3
-      primitive: box
-      color: '#9a8a7a'
-      position:
-        x: 75
-        'y': 62
-        z: -108
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 4
-        'y': 5
-        z: 4
-    - name: torre_noreste_almena_4
-      primitive: box
-      color: '#9a8a7a'
-      position:
-        x: 75
-        'y': 62
-        z: -122
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 4
-        'y': 5
-        z: 4
-    - name: ventana_noreste
-      primitive: box
-      color: '#2a2a3a'
-      position:
-        x: 68
-        'y': 35
-        z: -115
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 1
-        'y': 6
-        z: 3
-    - name: torre_suroeste_base
-      primitive: cylinder
-      color: '#7a6a5a'
-      position:
-        x: -75
-        'y': 30
-        z: 115
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 14
-        'y': 60
-        z: 14
-    - name: torre_suroeste_techo
-      primitive: cone
-      color: '#8b0000'
-      position:
-        x: -75
-        'y': 65
-        z: 115
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 16
-        'y': 20
-        z: 16
-    - name: torre_suroeste_almena_1
-      primitive: box
-      color: '#9a8a7a'
-      position:
-        x: -82
-        'y': 62
-        z: 115
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 4
-        'y': 5
-        z: 4
-    - name: torre_suroeste_almena_2
-      primitive: box
-      color: '#9a8a7a'
-      position:
-        x: -68
-        'y': 62
-        z: 115
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 4
-        'y': 5
-        z: 4
-    - name: torre_suroeste_almena_3
-      primitive: box
-      color: '#9a8a7a'
-      position:
-        x: -75
-        'y': 62
-        z: 108
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 4
-        'y': 5
-        z: 4
-    - name: torre_suroeste_almena_4
-      primitive: box
-      color: '#9a8a7a'
-      position:
-        x: -75
-        'y': 62
-        z: 122
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 4
-        'y': 5
-        z: 4
-    - name: ventana_suroeste
-      primitive: box
-      color: '#2a2a3a'
-      position:
-        x: -68
-        'y': 35
-        z: 115
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 1
-        'y': 6
-        z: 3
-    - name: torre_sureste_base
-      primitive: cylinder
-      color: '#7a6a5a'
-      position:
-        x: 75
-        'y': 30
-        z: 115
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 14
-        'y': 60
-        z: 14
-    - name: torre_sureste_techo
-      primitive: cone
-      color: '#8b0000'
-      position:
-        x: 75
-        'y': 65
-        z: 115
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 16
-        'y': 20
-        z: 16
-    - name: torre_sureste_almena_1
-      primitive: box
-      color: '#9a8a7a'
-      position:
-        x: 82
-        'y': 62
-        z: 115
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 4
-        'y': 5
-        z: 4
-    - name: torre_sureste_almena_2
-      primitive: box
-      color: '#9a8a7a'
-      position:
-        x: 68
-        'y': 62
-        z: 115
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 4
-        'y': 5
-        z: 4
-    - name: torre_sureste_almena_3
-      primitive: box
-      color: '#9a8a7a'
-      position:
-        x: 75
-        'y': 62
-        z: 108
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 4
-        'y': 5
-        z: 4
-    - name: torre_sureste_almena_4
-      primitive: box
-      color: '#9a8a7a'
-      position:
-        x: 75
-        'y': 62
-        z: 122
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 4
-        'y': 5
-        z: 4
-    - name: ventana_sureste
-      primitive: box
-      color: '#2a2a3a'
-      position:
-        x: 68
-        'y': 35
-        z: 115
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 1
-        'y': 6
-        z: 3
-    - name: torreon_base
-      primitive: box
-      color: '#6a5a4a'
-      position:
-        x: 0
-        'y': 35
-        z: -40
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 30
-        'y': 70
-        z: 30
-    - name: torreon_techo
-      primitive: cone
-      color: '#6b0000'
-      position:
-        x: 0
-        'y': 76
-        z: -40
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 34
-        'y': 24
-        z: 34
-    - name: torreon_almena_n
-      primitive: box
-      color: '#9a8a7a'
-      position:
-        x: 0
-        'y': 74
-        z: -55
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 5
-        'y': 6
-        z: 4
-    - name: torreon_almena_s
-      primitive: box
-      color: '#9a8a7a'
-      position:
-        x: 0
-        'y': 74
-        z: -25
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 5
-        'y': 6
-        z: 4
-    - name: torreon_almena_e
-      primitive: box
-      color: '#9a8a7a'
-      position:
-        x: 15
-        'y': 74
-        z: -40
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 4
-        'y': 6
-        z: 5
-    - name: torreon_almena_o
-      primitive: box
-      color: '#9a8a7a'
-      position:
-        x: -15
-        'y': 74
-        z: -40
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 4
-        'y': 6
-        z: 5
-    - name: torreon_ventana_norte
-      primitive: box
-      color: '#1a1a2e'
-      position:
-        x: 0
-        'y': 45
-        z: -55.5
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 5
-        'y': 10
-        z: 1
-    - name: torreon_ventana_sur
-      primitive: box
-      color: '#1a1a2e'
-      position:
-        x: 0
-        'y': 45
-        z: -24.5
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 5
-        'y': 10
-        z: 1
-    - name: puerta_arco_izquierda
-      primitive: box
-      color: '#6a5a4a'
-      position:
-        x: -8
-        'y': 12
-        z: 120
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 6
-        'y': 24
-        z: 10
-    - name: puerta_arco_derecha
-      primitive: box
-      color: '#6a5a4a'
-      position:
-        x: 8
-        'y': 12
-        z: 120
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 6
-        'y': 24
-        z: 10
-    - name: puerta_arco_superior
-      primitive: box
-      color: '#6a5a4a'
-      position:
-        x: 0
-        'y': 26
-        z: 120
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 22
-        'y': 6
-        z: 10
-    - name: puerta_arco_curva
-      primitive: cylinder
-      color: '#6a5a4a'
-      position:
-        x: 0
-        'y': 26
-        z: 120
-      rotation:
-        x: 90
-        'y': 0
-        z: 0
-      scale:
-        x: 11
-        'y': 10
-        z: 11
-    - name: puente_tablero
-      primitive: box
-      color: '#5a4030'
-      position:
-        x: 0
-        'y': 1
-        z: 132
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 14
-        'y': 2
-        z: 26
-    - name: puente_baranda_izquierda
-      primitive: box
-      color: '#4a3020'
-      position:
-        x: -8
-        'y': 4
-        z: 132
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 2
-        'y': 4
-        z: 26
-    - name: puente_baranda_derecha
-      primitive: box
-      color: '#4a3020'
-      position:
-        x: 8
-        'y': 4
-        z: 132
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 2
-        'y': 4
-        z: 26
-    - name: puente_pilar_izq
-      primitive: cylinder
-      color: '#7a6a5a'
-      position:
-        x: -8
-        'y': 8
-        z: 143
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 2
-        'y': 16
-        z: 2
-    - name: puente_pilar_der
-      primitive: cylinder
-      color: '#7a6a5a'
-      position:
-        x: 8
-        'y': 8
-        z: 143
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 2
-        'y': 16
-        z: 2
-    - name: puente_cadena_izq
-      primitive: box
-      color: '#3a3a3a'
-      position:
-        x: -8
-        'y': 14
-        z: 132
-      rotation:
-        x: 30
-        'y': 0
-        z: 0
-      scale:
-        x: 1
-        'y': 1
-        z: 26
-    - name: puente_cadena_der
-      primitive: box
-      color: '#3a3a3a'
-      position:
-        x: 8
-        'y': 14
-        z: 132
-      rotation:
-        x: 30
-        'y': 0
-        z: 0
-      scale:
-        x: 1
-        'y': 1
-        z: 26
-    - name: foso_agua
+    - name: pizarra_lateral
       primitive: plane
-      color: '#1a3a5a'
+      color: '#2d6a2d'
       position:
-        x: 0
-        'y': 0.05
-        z: 138
+        x: -99
+        'y': 50
+        z: -60
       rotation:
-        x: -90
-        'y': 0
+        x: 0
+        'y': 90
         z: 0
       scale:
         x: 40
-        'y': 20
+        'y': 30
         z: 1
-    - name: estandarte_noroeste_palo
-      primitive: cylinder
-      color: '#4a3010'
-      position:
-        x: -75
-        'y': 82
-        z: -115
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 0.5
-        'y': 16
-        z: 0.5
-    - name: estandarte_noroeste_tela
-      primitive: plane
-      color: '#cc0000'
-      position:
-        x: -71
-        'y': 84
-        z: -115
-      rotation:
-        x: 0
-        'y': 90
-        z: 0
-      scale:
-        x: 8
-        'y': 12
-        z: 1
-    - name: estandarte_noroeste_simbolo
+    - name: pizarra_lateral_marco
       primitive: box
-      color: '#ffd700'
+      color: '#5a3a1a'
       position:
-        x: -70.5
-        'y': 85
-        z: -115
-      rotation:
-        x: 0
-        'y': 90
-        z: 0
-      scale:
-        x: 0.2
-        'y': 4
-        z: 4
-    - name: estandarte_noreste_palo
-      primitive: cylinder
-      color: '#4a3010'
-      position:
-        x: 75
-        'y': 82
-        z: -115
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 0.5
-        'y': 16
-        z: 0.5
-    - name: estandarte_noreste_tela
-      primitive: plane
-      color: '#cc0000'
-      position:
-        x: 71
-        'y': 84
-        z: -115
-      rotation:
-        x: 0
-        'y': 90
-        z: 0
-      scale:
-        x: 8
-        'y': 12
-        z: 1
-    - name: estandarte_noreste_simbolo
-      primitive: box
-      color: '#ffd700'
-      position:
-        x: 70.5
-        'y': 85
-        z: -115
-      rotation:
-        x: 0
-        'y': 90
-        z: 0
-      scale:
-        x: 0.2
-        'y': 4
-        z: 4
-    - name: estandarte_torreon_palo
-      primitive: cylinder
-      color: '#4a3010'
-      position:
-        x: 0
-        'y': 92
-        z: -40
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 0.6
-        'y': 18
-        z: 0.6
-    - name: estandarte_torreon_tela
-      primitive: plane
-      color: '#8b0000'
-      position:
-        x: 5
-        'y': 95
-        z: -40
-      rotation:
-        x: 0
-        'y': 90
-        z: 0
-      scale:
-        x: 10
-        'y': 14
-        z: 1
-    - name: estandarte_torreon_simbolo_h
-      primitive: box
-      color: '#ffd700'
-      position:
-        x: 4.8
-        'y': 96
-        z: -40
-      rotation:
-        x: 0
-        'y': 90
-        z: 0
-      scale:
-        x: 0.2
-        'y': 2
-        z: 6
-    - name: estandarte_torreon_simbolo_v
-      primitive: box
-      color: '#ffd700'
-      position:
-        x: 4.8
-        'y': 96
-        z: -40
-      rotation:
-        x: 0
-        'y': 90
-        z: 0
-      scale:
-        x: 0.2
-        'y': 6
-        z: 2
-    - name: estandarte_puerta_izq_palo
-      primitive: cylinder
-      color: '#4a3010'
-      position:
-        x: -14
-        'y': 36
-        z: 120
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 0.5
-        'y': 12
-        z: 0.5
-    - name: estandarte_puerta_izq_tela
-      primitive: plane
-      color: '#cc0000'
-      position:
-        x: -18
-        'y': 37
-        z: 120
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 7
-        'y': 10
-        z: 1
-    - name: estandarte_puerta_der_palo
-      primitive: cylinder
-      color: '#4a3010'
-      position:
-        x: 14
-        'y': 36
-        z: 120
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 0.5
-        'y': 12
-        z: 0.5
-    - name: estandarte_puerta_der_tela
-      primitive: plane
-      color: '#cc0000'
-      position:
-        x: 18
-        'y': 37
-        z: 120
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 7
-        'y': 10
-        z: 1
-    - name: cuartel_cuerpo
-      primitive: box
-      color: '#7a6a5a'
-      position:
-        x: -30
-        'y': 12
-        z: 30
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 28
-        'y': 24
-        z: 20
-    - name: cuartel_techo
-      primitive: box
-      color: '#5a4030'
-      position:
-        x: -30
-        'y': 25
-        z: 30
-      rotation:
-        x: 0
-        'y': 15
-        z: 0
-      scale:
-        x: 30
-        'y': 6
-        z: 22
-    - name: cuartel_puerta
-      primitive: box
-      color: '#3a2010'
-      position:
-        x: -30
-        'y': 7
-        z: 40.5
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 6
-        'y': 12
-        z: 1
-    - name: cuartel_ventana_1
-      primitive: box
-      color: '#1a1a2e'
-      position:
-        x: -40
-        'y': 14
-        z: 40.5
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 4
-        'y': 6
-        z: 1
-    - name: cuartel_ventana_2
-      primitive: box
-      color: '#1a1a2e'
-      position:
-        x: -20
-        'y': 14
-        z: 40.5
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 4
-        'y': 6
-        z: 1
-    - name: capilla_cuerpo
-      primitive: box
-      color: '#8a7a6a'
-      position:
-        x: 35
-        'y': 14
-        z: 20
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 20
-        'y': 28
-        z: 16
-    - name: capilla_campanario
-      primitive: box
-      color: '#7a6a5a'
-      position:
-        x: 35
-        'y': 36
-        z: 20
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 8
-        'y': 16
-        z: 8
-    - name: capilla_campanario_techo
-      primitive: cone
-      color: '#5a4030'
-      position:
-        x: 35
+        x: -100
         'y': 50
-        z: 20
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 10
-        'y': 12
-        z: 10
-    - name: capilla_cruz_v
-      primitive: box
-      color: '#ffd700'
-      position:
-        x: 35
-        'y': 58
-        z: 20
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 1.5
-        'y': 8
-        z: 1.5
-    - name: capilla_cruz_h
-      primitive: box
-      color: '#ffd700'
-      position:
-        x: 35
-        'y': 61
-        z: 20
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 5
-        'y': 1.5
-        z: 1.5
-    - name: capilla_puerta
-      primitive: box
-      color: '#3a2010'
-      position:
-        x: 35
-        'y': 8
-        z: 28.5
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 5
-        'y': 14
-        z: 1
-    - name: capilla_ventana_rosetón
-      primitive: circle
-      color: '#4a90d9'
-      position:
-        x: 35
-        'y': 20
-        z: 28.5
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 4
-        'y': 4
-        z: 1
-    - name: pozo_borde
-      primitive: torus
-      color: '#8a7a6a'
-      position:
-        x: 10
-        'y': 3
-        z: -10
-      rotation:
-        x: 90
-        'y': 0
-        z: 0
-      scale:
-        x: 5
-        'y': 5
-        z: 2
-    - name: pozo_interior
-      primitive: cylinder
-      color: '#2a2a2a'
-      position:
-        x: 10
-        'y': 1
-        z: -10
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 4
-        'y': 3
-        z: 4
-    - name: pozo_soporte_izq
-      primitive: cylinder
-      color: '#5a4030'
-      position:
-        x: 7
-        'y': 8
-        z: -10
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 0.8
-        'y': 10
-        z: 0.8
-    - name: pozo_soporte_der
-      primitive: cylinder
-      color: '#5a4030'
-      position:
-        x: 13
-        'y': 8
-        z: -10
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 0.8
-        'y': 10
-        z: 0.8
-    - name: pozo_viga
-      primitive: box
-      color: '#5a4030'
-      position:
-        x: 10
-        'y': 14
-        z: -10
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 8
-        'y': 1.5
-        z: 1.5
-    - name: antorcha_1_palo
-      primitive: cylinder
-      color: '#5a4030'
-      position:
-        x: -20
-        'y': 15
-        z: 118
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 0.6
-        'y': 5
-        z: 0.6
-    - name: antorcha_1_fuego
-      primitive: cone
-      color: '#ff6600'
-      position:
-        x: -20
-        'y': 19
-        z: 118
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 1.5
-        'y': 4
-        z: 1.5
-    - name: antorcha_2_palo
-      primitive: cylinder
-      color: '#5a4030'
-      position:
-        x: 20
-        'y': 15
-        z: 118
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 0.6
-        'y': 5
-        z: 0.6
-    - name: antorcha_2_fuego
-      primitive: cone
-      color: '#ff6600'
-      position:
-        x: 20
-        'y': 19
-        z: 118
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 1.5
-        'y': 4
-        z: 1.5
-    - name: antorcha_3_palo
-      primitive: cylinder
-      color: '#5a4030'
-      position:
-        x: -50
-        'y': 15
         z: -60
       rotation:
         x: 0
-        'y': 0
+        'y': 90
         z: 0
       scale:
-        x: 0.6
-        'y': 5
-        z: 0.6
-    - name: antorcha_3_fuego
-      primitive: cone
-      color: '#ff8800'
-      position:
-        x: -50
-        'y': 19
-        z: -60
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 1.5
-        'y': 4
-        z: 1.5
-    - name: antorcha_4_palo
-      primitive: cylinder
-      color: '#5a4030'
-      position:
-        x: 55
-        'y': 15
-        z: -55
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 0.6
-        'y': 5
-        z: 0.6
-    - name: antorcha_4_fuego
-      primitive: cone
-      color: '#ff8800'
-      position:
-        x: 55
-        'y': 19
-        z: -55
-      rotation:
-        x: 0
-        'y': 0
-        z: 0
-      scale:
-        x: 1.5
-        'y': 4
-        z: 1.5
+        x: 44
+        'y': 34
+        z: 1
