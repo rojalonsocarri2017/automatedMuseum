@@ -30,13 +30,13 @@
           width: 200;
           depth: 300;
           height: 100;
-          ceiling: false;
-          north: barrier;
-          east: barrier;
-          south: barrier;
-          west: barrier;
-          floorTexture: ./assets/stone.jpg;
-          wallTexture: ./assets/stone.jpg;
+          ceiling: true;
+          north: wall;
+          east: wall;
+          south: wall;
+          west: wall;
+          floorTexture: ./assets/floor-texture.jpg;
+          wallTexture: ;
           ceilingTexture: ;
         ">
       </a-entity>
@@ -52,871 +52,403 @@
       </a-entity>
 
 
-      <a-entity id="suelo_castillo"
+      <a-entity id="pantalla_fondo"
                 geometry="primitive: plane"
-                material="color: #7a7060"
+                material="color: #e8e8e8"
+                position="0 5.0 -139"
+                rotation="0 0 0"
+                scale="80 45 1">
+      </a-entity>
+
+      <a-entity id="marco_pantalla"
+                geometry="primitive: box"
+                material="color: #222222"
+                position="0 5.0 -140"
+                rotation="0 0 0"
+                scale="84 49 1">
+      </a-entity>
+
+      <a-entity id="texto_proyecto_linea1"
+                geometry="primitive: box"
+                material="color: #3366cc"
+                position="-20 12.0 -138"
+                rotation="0 0 0"
+                scale="30 3 0.5">
+      </a-entity>
+
+      <a-entity id="texto_proyecto_linea2"
+                geometry="primitive: box"
+                material="color: #3366cc"
+                position="0 5.0 -138"
+                rotation="0 0 0"
+                scale="50 3 0.5">
+      </a-entity>
+
+      <a-entity id="texto_proyecto_linea3"
+                geometry="primitive: box"
+                material="color: #3366cc"
+                position="-5 -2.0 -138"
+                rotation="0 0 0"
+                scale="40 3 0.5">
+      </a-entity>
+
+      <a-entity id="tarima"
+                geometry="primitive: box"
+                material="color: #8B6914"
+                position="0 -47.0 -100"
+                rotation="0 0 0"
+                scale="30 6 20">
+      </a-entity>
+
+      <a-entity id="atril_base"
+                geometry="primitive: box"
+                material="color: #5a3e10"
+                position="0 -38.0 -102"
+                rotation="0 0 0"
+                scale="12 14 8">
+      </a-entity>
+
+      <a-entity id="atril_superficie"
+                geometry="primitive: box"
+                material="color: #6b4a14"
+                position="0 -30.0 -104"
+                rotation="-15 0 0"
+                scale="14 1.5 10">
+      </a-entity>
+
+      <a-entity id="estudiante_cuerpo"
+                geometry="primitive: box"
+                material="color: #1a3a6b"
+                position="0 -20.0 -95"
+                rotation="0 0 0"
+                scale="8 16 5">
+      </a-entity>
+
+      <a-entity id="estudiante_cabeza"
+                geometry="primitive: sphere"
+                material="color: #f5c5a3"
+                position="0 -5.0 -95"
+                rotation="0 0 0"
+                scale="5 5 5">
+      </a-entity>
+
+      <a-entity id="estudiante_ojo_izq"
+                geometry="primitive: sphere"
+                material="color: #222222"
+                position="-1.5 -4.0 -92"
+                rotation="0 0 0"
+                scale="0.8 0.8 0.8">
+      </a-entity>
+
+      <a-entity id="estudiante_ojo_der"
+                geometry="primitive: sphere"
+                material="color: #222222"
+                position="1.5 -4.0 -92"
+                rotation="0 0 0"
+                scale="0.8 0.8 0.8">
+      </a-entity>
+
+      <a-entity id="estudiante_boca"
+                geometry="primitive: box"
+                material="color: #c0605a"
+                position="0 -6.5 -92"
+                rotation="0 0 0"
+                scale="2 0.6 0.5">
+      </a-entity>
+
+      <a-entity id="estudiante_brazo_izq"
+                geometry="primitive: box"
+                material="color: #1a3a6b"
+                position="-8 -18.0 -97"
+                rotation="0 0 35"
+                scale="3 12 3">
+      </a-entity>
+
+      <a-entity id="estudiante_brazo_der"
+                geometry="primitive: box"
+                material="color: #1a3a6b"
+                position="8 -20.0 -95"
+                rotation="0 0 -15"
+                scale="3 10 3">
+      </a-entity>
+
+      <a-entity id="estudiante_pierna_izq"
+                geometry="primitive: box"
+                material="color: #2c2c6b"
+                position="-2.5 -36.0 -95"
+                rotation="0 0 0"
+                scale="3 10 3">
+      </a-entity>
+
+      <a-entity id="estudiante_pierna_der"
+                geometry="primitive: box"
+                material="color: #2c2c6b"
+                position="2.5 -36.0 -95"
+                rotation="0 0 0"
+                scale="3 10 3">
+      </a-entity>
+
+      <a-entity id="mesa_alumno_1_1"
+                gltf-model="./assets/models/furniture/table_red.glb"
+                position="-50 -56.0 -30"
+                rotation="0 0 0"
+                scale="1 1 1">
+      </a-entity>
+
+      <a-entity id="mesa_alumno_1_2"
+                gltf-model="./assets/models/furniture/table_red.glb"
+                position="0 -56.0 -30"
+                rotation="0 0 0"
+                scale="1 1 1">
+      </a-entity>
+
+      <a-entity id="mesa_alumno_1_3"
+                gltf-model="./assets/models/furniture/table_red.glb"
+                position="50 -56.0 -30"
+                rotation="0 0 0"
+                scale="1 1 1">
+      </a-entity>
+
+      <a-entity id="mesa_alumno_2_1"
+                gltf-model="./assets/models/furniture/table_red.glb"
+                position="-50 -56.0 20"
+                rotation="0 0 0"
+                scale="1 1 1">
+      </a-entity>
+
+      <a-entity id="mesa_alumno_2_2"
+                gltf-model="./assets/models/furniture/table_red.glb"
+                position="0 -56.0 20"
+                rotation="0 0 0"
+                scale="1 1 1">
+      </a-entity>
+
+      <a-entity id="mesa_alumno_2_3"
+                gltf-model="./assets/models/furniture/table_red.glb"
+                position="50 -56.0 20"
+                rotation="0 0 0"
+                scale="1 1 1">
+      </a-entity>
+
+      <a-entity id="mesa_alumno_3_1"
+                gltf-model="./assets/models/furniture/table_red.glb"
+                position="-50 -56.0 70"
+                rotation="0 0 0"
+                scale="1 1 1">
+      </a-entity>
+
+      <a-entity id="mesa_alumno_3_2"
+                gltf-model="./assets/models/furniture/table_red.glb"
+                position="0 -56.0 70"
+                rotation="0 0 0"
+                scale="1 1 1">
+      </a-entity>
+
+      <a-entity id="mesa_alumno_3_3"
+                gltf-model="./assets/models/furniture/table_red.glb"
+                position="50 -56.0 70"
+                rotation="0 0 0"
+                scale="1 1 1">
+      </a-entity>
+
+      <a-entity id="silla_alumno_1_1"
+                gltf-model="./assets/models/furniture/chair_basic.glb"
+                position="-50 -42.0 -15"
+                rotation="0 180 0"
+                scale="1 1 1">
+      </a-entity>
+
+      <a-entity id="silla_alumno_1_2"
+                gltf-model="./assets/models/furniture/chair_basic.glb"
+                position="0 -42.0 -15"
+                rotation="0 180 0"
+                scale="1 1 1">
+      </a-entity>
+
+      <a-entity id="silla_alumno_1_3"
+                gltf-model="./assets/models/furniture/chair_basic.glb"
+                position="50 -42.0 -15"
+                rotation="0 180 0"
+                scale="1 1 1">
+      </a-entity>
+
+      <a-entity id="silla_alumno_2_1"
+                gltf-model="./assets/models/furniture/chair_basic.glb"
+                position="-50 -42.0 35"
+                rotation="0 180 0"
+                scale="1 1 1">
+      </a-entity>
+
+      <a-entity id="silla_alumno_2_2"
+                gltf-model="./assets/models/furniture/chair_basic.glb"
+                position="0 -42.0 35"
+                rotation="0 180 0"
+                scale="1 1 1">
+      </a-entity>
+
+      <a-entity id="silla_alumno_2_3"
+                gltf-model="./assets/models/furniture/chair_basic.glb"
+                position="50 -42.0 35"
+                rotation="0 180 0"
+                scale="1 1 1">
+      </a-entity>
+
+      <a-entity id="silla_alumno_3_1"
+                gltf-model="./assets/models/furniture/chair_basic.glb"
+                position="-50 -42.0 85"
+                rotation="0 180 0"
+                scale="1 1 1">
+      </a-entity>
+
+      <a-entity id="silla_alumno_3_2"
+                gltf-model="./assets/models/furniture/chair_basic.glb"
+                position="0 -42.0 85"
+                rotation="0 180 0"
+                scale="1 1 1">
+      </a-entity>
+
+      <a-entity id="silla_alumno_3_3"
+                gltf-model="./assets/models/furniture/chair_basic.glb"
+                position="50 -42.0 85"
+                rotation="0 180 0"
+                scale="1 1 1">
+      </a-entity>
+
+      <a-entity id="alumno_1_1_cuerpo"
+                geometry="primitive: box"
+                material="color: #c0392b"
+                position="-50 -30.0 -15"
+                rotation="0 0 0"
+                scale="5 8 4">
+      </a-entity>
+
+      <a-entity id="alumno_1_1_cabeza"
+                geometry="primitive: sphere"
+                material="color: #f5c5a3"
+                position="-50 -20.0 -15"
+                rotation="0 0 0"
+                scale="4 4 4">
+      </a-entity>
+
+      <a-entity id="alumno_1_2_cuerpo"
+                geometry="primitive: box"
+                material="color: #27ae60"
+                position="0 -30.0 -15"
+                rotation="0 0 0"
+                scale="5 8 4">
+      </a-entity>
+
+      <a-entity id="alumno_1_2_cabeza"
+                geometry="primitive: sphere"
+                material="color: #e8b48a"
+                position="0 -20.0 -15"
+                rotation="0 0 0"
+                scale="4 4 4">
+      </a-entity>
+
+      <a-entity id="alumno_1_3_cuerpo"
+                geometry="primitive: box"
+                material="color: #8e44ad"
+                position="50 -30.0 -15"
+                rotation="0 0 0"
+                scale="5 8 4">
+      </a-entity>
+
+      <a-entity id="alumno_1_3_cabeza"
+                geometry="primitive: sphere"
+                material="color: #f5c5a3"
+                position="50 -20.0 -15"
+                rotation="0 0 0"
+                scale="4 4 4">
+      </a-entity>
+
+      <a-entity id="alumno_2_1_cuerpo"
+                geometry="primitive: box"
+                material="color: #e67e22"
+                position="-50 -30.0 35"
+                rotation="0 0 0"
+                scale="5 8 4">
+      </a-entity>
+
+      <a-entity id="alumno_2_1_cabeza"
+                geometry="primitive: sphere"
+                material="color: #d4a574"
+                position="-50 -20.0 35"
+                rotation="0 0 0"
+                scale="4 4 4">
+      </a-entity>
+
+      <a-entity id="alumno_2_2_cuerpo"
+                geometry="primitive: box"
+                material="color: #2980b9"
+                position="0 -30.0 35"
+                rotation="0 0 0"
+                scale="5 8 4">
+      </a-entity>
+
+      <a-entity id="alumno_2_2_cabeza"
+                geometry="primitive: sphere"
+                material="color: #f5c5a3"
+                position="0 -20.0 35"
+                rotation="0 0 0"
+                scale="4 4 4">
+      </a-entity>
+
+      <a-entity id="alumno_2_3_cuerpo"
+                geometry="primitive: box"
+                material="color: #16a085"
+                position="50 -30.0 35"
+                rotation="0 0 0"
+                scale="5 8 4">
+      </a-entity>
+
+      <a-entity id="alumno_2_3_cabeza"
+                geometry="primitive: sphere"
+                material="color: #e8b48a"
+                position="50 -20.0 35"
+                rotation="0 0 0"
+                scale="4 4 4">
+      </a-entity>
+
+      <a-entity id="lampara_aula_izq"
+                gltf-model="./assets/models/furniture/lamp_floor.glb"
+                position="-75 -43.0 -120"
+                rotation="0 0 0"
+                scale="6 6 6">
+      </a-entity>
+
+      <a-entity id="lampara_aula_der"
+                gltf-model="./assets/models/furniture/lamp_floor.glb"
+                position="75 -43.0 -120"
+                rotation="0 0 0"
+                scale="6 6 6">
+      </a-entity>
+
+      <a-entity id="suelo_aula"
+                geometry="primitive: plane"
+                material="color: #c8b89a"
                 position="0 -49.9 0"
                 rotation="-90 0 0"
-                scale="180 260 1">
+                scale="180 280 1">
       </a-entity>
 
-      <a-entity id="muralla_norte"
-                geometry="primitive: box"
-                material="color: #8a7a6a"
-                position="0 -35.0 -120"
-                rotation="0 0 0"
-                scale="160 30 8">
-      </a-entity>
-
-      <a-entity id="almena_norte_1"
-                geometry="primitive: box"
-                material="color: #9a8a7a"
-                position="-70 -17.0 -120"
-                rotation="0 0 0"
-                scale="6 6 8">
-      </a-entity>
-
-      <a-entity id="almena_norte_2"
-                geometry="primitive: box"
-                material="color: #9a8a7a"
-                position="-50 -17.0 -120"
-                rotation="0 0 0"
-                scale="6 6 8">
-      </a-entity>
-
-      <a-entity id="almena_norte_3"
-                geometry="primitive: box"
-                material="color: #9a8a7a"
-                position="-30 -17.0 -120"
-                rotation="0 0 0"
-                scale="6 6 8">
-      </a-entity>
-
-      <a-entity id="almena_norte_4"
-                geometry="primitive: box"
-                material="color: #9a8a7a"
-                position="-10 -17.0 -120"
-                rotation="0 0 0"
-                scale="6 6 8">
-      </a-entity>
-
-      <a-entity id="almena_norte_5"
-                geometry="primitive: box"
-                material="color: #9a8a7a"
-                position="10 -17.0 -120"
-                rotation="0 0 0"
-                scale="6 6 8">
-      </a-entity>
-
-      <a-entity id="almena_norte_6"
-                geometry="primitive: box"
-                material="color: #9a8a7a"
-                position="30 -17.0 -120"
-                rotation="0 0 0"
-                scale="6 6 8">
-      </a-entity>
-
-      <a-entity id="almena_norte_7"
-                geometry="primitive: box"
-                material="color: #9a8a7a"
-                position="50 -17.0 -120"
-                rotation="0 0 0"
-                scale="6 6 8">
-      </a-entity>
-
-      <a-entity id="almena_norte_8"
-                geometry="primitive: box"
-                material="color: #9a8a7a"
-                position="70 -17.0 -120"
-                rotation="0 0 0"
-                scale="6 6 8">
-      </a-entity>
-
-      <a-entity id="muralla_sur"
-                geometry="primitive: box"
-                material="color: #8a7a6a"
-                position="0 -35.0 120"
-                rotation="0 0 0"
-                scale="160 30 8">
-      </a-entity>
-
-      <a-entity id="almena_sur_1"
-                geometry="primitive: box"
-                material="color: #9a8a7a"
-                position="-70 -17.0 120"
-                rotation="0 0 0"
-                scale="6 6 8">
-      </a-entity>
-
-      <a-entity id="almena_sur_2"
-                geometry="primitive: box"
-                material="color: #9a8a7a"
-                position="-50 -17.0 120"
-                rotation="0 0 0"
-                scale="6 6 8">
-      </a-entity>
-
-      <a-entity id="almena_sur_3"
-                geometry="primitive: box"
-                material="color: #9a8a7a"
-                position="-30 -17.0 120"
-                rotation="0 0 0"
-                scale="6 6 8">
-      </a-entity>
-
-      <a-entity id="almena_sur_4"
-                geometry="primitive: box"
-                material="color: #9a8a7a"
-                position="-10 -17.0 120"
-                rotation="0 0 0"
-                scale="6 6 8">
-      </a-entity>
-
-      <a-entity id="almena_sur_5"
-                geometry="primitive: box"
-                material="color: #9a8a7a"
-                position="10 -17.0 120"
-                rotation="0 0 0"
-                scale="6 6 8">
-      </a-entity>
-
-      <a-entity id="almena_sur_6"
-                geometry="primitive: box"
-                material="color: #9a8a7a"
-                position="30 -17.0 120"
-                rotation="0 0 0"
-                scale="6 6 8">
-      </a-entity>
-
-      <a-entity id="almena_sur_7"
-                geometry="primitive: box"
-                material="color: #9a8a7a"
-                position="50 -17.0 120"
-                rotation="0 0 0"
-                scale="6 6 8">
-      </a-entity>
-
-      <a-entity id="almena_sur_8"
-                geometry="primitive: box"
-                material="color: #9a8a7a"
-                position="70 -17.0 120"
-                rotation="0 0 0"
-                scale="6 6 8">
-      </a-entity>
-
-      <a-entity id="muralla_oeste"
-                geometry="primitive: box"
-                material="color: #8a7a6a"
-                position="-80 -35.0 0"
-                rotation="0 0 0"
-                scale="8 30 240">
-      </a-entity>
-
-      <a-entity id="muralla_este"
-                geometry="primitive: box"
-                material="color: #8a7a6a"
-                position="80 -35.0 0"
-                rotation="0 0 0"
-                scale="8 30 240">
-      </a-entity>
-
-      <a-entity id="torre_noroeste_base"
-                geometry="primitive: cylinder"
-                material="color: #7a6a5a"
-                position="-75 -20.0 -115"
-                rotation="0 0 0"
-                scale="14 60 14">
-      </a-entity>
-
-      <a-entity id="torre_noroeste_techo"
-                geometry="primitive: cone"
-                material="color: #8b0000"
-                position="-75 15.0 -115"
-                rotation="0 0 0"
-                scale="16 20 16">
-      </a-entity>
-
-      <a-entity id="torre_noroeste_almena_1"
-                geometry="primitive: box"
-                material="color: #9a8a7a"
-                position="-82 12.0 -115"
-                rotation="0 0 0"
-                scale="4 5 4">
-      </a-entity>
-
-      <a-entity id="torre_noroeste_almena_2"
-                geometry="primitive: box"
-                material="color: #9a8a7a"
-                position="-68 12.0 -115"
-                rotation="0 0 0"
-                scale="4 5 4">
-      </a-entity>
-
-      <a-entity id="torre_noroeste_almena_3"
-                geometry="primitive: box"
-                material="color: #9a8a7a"
-                position="-75 12.0 -108"
-                rotation="0 0 0"
-                scale="4 5 4">
-      </a-entity>
-
-      <a-entity id="torre_noroeste_almena_4"
-                geometry="primitive: box"
-                material="color: #9a8a7a"
-                position="-75 12.0 -122"
-                rotation="0 0 0"
-                scale="4 5 4">
-      </a-entity>
-
-      <a-entity id="ventana_noroeste"
-                geometry="primitive: box"
-                material="color: #2a2a3a"
-                position="-68 -15.0 -115"
-                rotation="0 0 0"
-                scale="1 6 3">
-      </a-entity>
-
-      <a-entity id="torre_noreste_base"
-                geometry="primitive: cylinder"
-                material="color: #7a6a5a"
-                position="75 -20.0 -115"
-                rotation="0 0 0"
-                scale="14 60 14">
-      </a-entity>
-
-      <a-entity id="torre_noreste_techo"
-                geometry="primitive: cone"
-                material="color: #8b0000"
-                position="75 15.0 -115"
-                rotation="0 0 0"
-                scale="16 20 16">
-      </a-entity>
-
-      <a-entity id="torre_noreste_almena_1"
-                geometry="primitive: box"
-                material="color: #9a8a7a"
-                position="82 12.0 -115"
-                rotation="0 0 0"
-                scale="4 5 4">
-      </a-entity>
-
-      <a-entity id="torre_noreste_almena_2"
-                geometry="primitive: box"
-                material="color: #9a8a7a"
-                position="68 12.0 -115"
-                rotation="0 0 0"
-                scale="4 5 4">
-      </a-entity>
-
-      <a-entity id="torre_noreste_almena_3"
-                geometry="primitive: box"
-                material="color: #9a8a7a"
-                position="75 12.0 -108"
-                rotation="0 0 0"
-                scale="4 5 4">
-      </a-entity>
-
-      <a-entity id="torre_noreste_almena_4"
-                geometry="primitive: box"
-                material="color: #9a8a7a"
-                position="75 12.0 -122"
-                rotation="0 0 0"
-                scale="4 5 4">
-      </a-entity>
-
-      <a-entity id="ventana_noreste"
-                geometry="primitive: box"
-                material="color: #2a2a3a"
-                position="68 -15.0 -115"
-                rotation="0 0 0"
-                scale="1 6 3">
-      </a-entity>
-
-      <a-entity id="torre_suroeste_base"
-                geometry="primitive: cylinder"
-                material="color: #7a6a5a"
-                position="-75 -20.0 115"
-                rotation="0 0 0"
-                scale="14 60 14">
-      </a-entity>
-
-      <a-entity id="torre_suroeste_techo"
-                geometry="primitive: cone"
-                material="color: #8b0000"
-                position="-75 15.0 115"
-                rotation="0 0 0"
-                scale="16 20 16">
-      </a-entity>
-
-      <a-entity id="torre_suroeste_almena_1"
-                geometry="primitive: box"
-                material="color: #9a8a7a"
-                position="-82 12.0 115"
-                rotation="0 0 0"
-                scale="4 5 4">
-      </a-entity>
-
-      <a-entity id="torre_suroeste_almena_2"
-                geometry="primitive: box"
-                material="color: #9a8a7a"
-                position="-68 12.0 115"
-                rotation="0 0 0"
-                scale="4 5 4">
-      </a-entity>
-
-      <a-entity id="torre_suroeste_almena_3"
-                geometry="primitive: box"
-                material="color: #9a8a7a"
-                position="-75 12.0 108"
-                rotation="0 0 0"
-                scale="4 5 4">
-      </a-entity>
-
-      <a-entity id="torre_suroeste_almena_4"
-                geometry="primitive: box"
-                material="color: #9a8a7a"
-                position="-75 12.0 122"
-                rotation="0 0 0"
-                scale="4 5 4">
-      </a-entity>
-
-      <a-entity id="ventana_suroeste"
-                geometry="primitive: box"
-                material="color: #2a2a3a"
-                position="-68 -15.0 115"
-                rotation="0 0 0"
-                scale="1 6 3">
-      </a-entity>
-
-      <a-entity id="torre_sureste_base"
-                geometry="primitive: cylinder"
-                material="color: #7a6a5a"
-                position="75 -20.0 115"
-                rotation="0 0 0"
-                scale="14 60 14">
-      </a-entity>
-
-      <a-entity id="torre_sureste_techo"
-                geometry="primitive: cone"
-                material="color: #8b0000"
-                position="75 15.0 115"
-                rotation="0 0 0"
-                scale="16 20 16">
-      </a-entity>
-
-      <a-entity id="torre_sureste_almena_1"
-                geometry="primitive: box"
-                material="color: #9a8a7a"
-                position="82 12.0 115"
-                rotation="0 0 0"
-                scale="4 5 4">
-      </a-entity>
-
-      <a-entity id="torre_sureste_almena_2"
-                geometry="primitive: box"
-                material="color: #9a8a7a"
-                position="68 12.0 115"
-                rotation="0 0 0"
-                scale="4 5 4">
-      </a-entity>
-
-      <a-entity id="torre_sureste_almena_3"
-                geometry="primitive: box"
-                material="color: #9a8a7a"
-                position="75 12.0 108"
-                rotation="0 0 0"
-                scale="4 5 4">
-      </a-entity>
-
-      <a-entity id="torre_sureste_almena_4"
-                geometry="primitive: box"
-                material="color: #9a8a7a"
-                position="75 12.0 122"
-                rotation="0 0 0"
-                scale="4 5 4">
-      </a-entity>
-
-      <a-entity id="ventana_sureste"
-                geometry="primitive: box"
-                material="color: #2a2a3a"
-                position="68 -15.0 115"
-                rotation="0 0 0"
-                scale="1 6 3">
-      </a-entity>
-
-      <a-entity id="torreon_base"
-                geometry="primitive: box"
-                material="color: #6a5a4a"
-                position="0 -15.0 -40"
-                rotation="0 0 0"
-                scale="30 70 30">
-      </a-entity>
-
-      <a-entity id="torreon_techo"
-                geometry="primitive: cone"
-                material="color: #6b0000"
-                position="0 26.0 -40"
-                rotation="0 0 0"
-                scale="34 24 34">
-      </a-entity>
-
-      <a-entity id="torreon_almena_n"
-                geometry="primitive: box"
-                material="color: #9a8a7a"
-                position="0 24.0 -55"
-                rotation="0 0 0"
-                scale="5 6 4">
-      </a-entity>
-
-      <a-entity id="torreon_almena_s"
-                geometry="primitive: box"
-                material="color: #9a8a7a"
-                position="0 24.0 -25"
-                rotation="0 0 0"
-                scale="5 6 4">
-      </a-entity>
-
-      <a-entity id="torreon_almena_e"
-                geometry="primitive: box"
-                material="color: #9a8a7a"
-                position="15 24.0 -40"
-                rotation="0 0 0"
-                scale="4 6 5">
-      </a-entity>
-
-      <a-entity id="torreon_almena_o"
-                geometry="primitive: box"
-                material="color: #9a8a7a"
-                position="-15 24.0 -40"
-                rotation="0 0 0"
-                scale="4 6 5">
-      </a-entity>
-
-      <a-entity id="torreon_ventana_norte"
-                geometry="primitive: box"
-                material="color: #1a1a2e"
-                position="0 -5.0 -55.5"
-                rotation="0 0 0"
-                scale="5 10 1">
-      </a-entity>
-
-      <a-entity id="torreon_ventana_sur"
-                geometry="primitive: box"
-                material="color: #1a1a2e"
-                position="0 -5.0 -24.5"
-                rotation="0 0 0"
-                scale="5 10 1">
-      </a-entity>
-
-      <a-entity id="puerta_arco_izquierda"
-                geometry="primitive: box"
-                material="color: #6a5a4a"
-                position="-8 -38.0 120"
-                rotation="0 0 0"
-                scale="6 24 10">
-      </a-entity>
-
-      <a-entity id="puerta_arco_derecha"
-                geometry="primitive: box"
-                material="color: #6a5a4a"
-                position="8 -38.0 120"
-                rotation="0 0 0"
-                scale="6 24 10">
-      </a-entity>
-
-      <a-entity id="puerta_arco_superior"
-                geometry="primitive: box"
-                material="color: #6a5a4a"
-                position="0 -24.0 120"
-                rotation="0 0 0"
-                scale="22 6 10">
-      </a-entity>
-
-      <a-entity id="puerta_arco_curva"
-                geometry="primitive: cylinder"
-                material="color: #6a5a4a"
-                position="0 -24.0 120"
-                rotation="90 0 0"
-                scale="11 10 11">
-      </a-entity>
-
-      <a-entity id="puente_tablero"
-                geometry="primitive: box"
-                material="color: #5a4030"
-                position="0 -49.0 132"
-                rotation="0 0 0"
-                scale="14 2 26">
-      </a-entity>
-
-      <a-entity id="puente_baranda_izquierda"
-                geometry="primitive: box"
-                material="color: #4a3020"
-                position="-8 -46.0 132"
-                rotation="0 0 0"
-                scale="2 4 26">
-      </a-entity>
-
-      <a-entity id="puente_baranda_derecha"
-                geometry="primitive: box"
-                material="color: #4a3020"
-                position="8 -46.0 132"
-                rotation="0 0 0"
-                scale="2 4 26">
-      </a-entity>
-
-      <a-entity id="puente_pilar_izq"
-                geometry="primitive: cylinder"
-                material="color: #7a6a5a"
-                position="-8 -42.0 143"
-                rotation="0 0 0"
-                scale="2 16 2">
-      </a-entity>
-
-      <a-entity id="puente_pilar_der"
-                geometry="primitive: cylinder"
-                material="color: #7a6a5a"
-                position="8 -42.0 143"
-                rotation="0 0 0"
-                scale="2 16 2">
-      </a-entity>
-
-      <a-entity id="puente_cadena_izq"
-                geometry="primitive: box"
-                material="color: #3a3a3a"
-                position="-8 -36.0 132"
-                rotation="30 0 0"
-                scale="1 1 26">
-      </a-entity>
-
-      <a-entity id="puente_cadena_der"
-                geometry="primitive: box"
-                material="color: #3a3a3a"
-                position="8 -36.0 132"
-                rotation="30 0 0"
-                scale="1 1 26">
-      </a-entity>
-
-      <a-entity id="foso_agua"
+      <a-entity id="pizarra_lateral"
                 geometry="primitive: plane"
-                material="color: #1a3a5a"
-                position="0 -49.95 138"
-                rotation="-90 0 0"
-                scale="40 20 1">
-      </a-entity>
-
-      <a-entity id="estandarte_noroeste_palo"
-                geometry="primitive: cylinder"
-                material="color: #4a3010"
-                position="-75 32.0 -115"
-                rotation="0 0 0"
-                scale="0.5 16 0.5">
-      </a-entity>
-
-      <a-entity id="estandarte_noroeste_tela"
-                geometry="primitive: plane"
-                material="color: #cc0000"
-                position="-71 34.0 -115"
+                material="color: #2d6a2d"
+                position="-99 0.0 -60"
                 rotation="0 90 0"
-                scale="8 12 1">
+                scale="40 30 1">
       </a-entity>
 
-      <a-entity id="estandarte_noroeste_simbolo"
+      <a-entity id="pizarra_lateral_marco"
                 geometry="primitive: box"
-                material="color: #ffd700"
-                position="-70.5 35.0 -115"
+                material="color: #5a3a1a"
+                position="-100 0.0 -60"
                 rotation="0 90 0"
-                scale="0.2 4 4">
+                scale="44 34 1">
       </a-entity>
 
-      <a-entity id="estandarte_noreste_palo"
-                geometry="primitive: cylinder"
-                material="color: #4a3010"
-                position="75 32.0 -115"
-                rotation="0 0 0"
-                scale="0.5 16 0.5">
-      </a-entity>
-
-      <a-entity id="estandarte_noreste_tela"
-                geometry="primitive: plane"
-                material="color: #cc0000"
-                position="71 34.0 -115"
-                rotation="0 90 0"
-                scale="8 12 1">
-      </a-entity>
-
-      <a-entity id="estandarte_noreste_simbolo"
-                geometry="primitive: box"
-                material="color: #ffd700"
-                position="70.5 35.0 -115"
-                rotation="0 90 0"
-                scale="0.2 4 4">
-      </a-entity>
-
-      <a-entity id="estandarte_torreon_palo"
-                geometry="primitive: cylinder"
-                material="color: #4a3010"
-                position="0 42.0 -40"
-                rotation="0 0 0"
-                scale="0.6 18 0.6">
-      </a-entity>
-
-      <a-entity id="estandarte_torreon_tela"
-                geometry="primitive: plane"
-                material="color: #8b0000"
-                position="5 45.0 -40"
-                rotation="0 90 0"
-                scale="10 14 1">
-      </a-entity>
-
-      <a-entity id="estandarte_torreon_simbolo_h"
-                geometry="primitive: box"
-                material="color: #ffd700"
-                position="4.8 46.0 -40"
-                rotation="0 90 0"
-                scale="0.2 2 6">
-      </a-entity>
-
-      <a-entity id="estandarte_torreon_simbolo_v"
-                geometry="primitive: box"
-                material="color: #ffd700"
-                position="4.8 46.0 -40"
-                rotation="0 90 0"
-                scale="0.2 6 2">
-      </a-entity>
-
-      <a-entity id="estandarte_puerta_izq_palo"
-                geometry="primitive: cylinder"
-                material="color: #4a3010"
-                position="-14 -14.0 120"
-                rotation="0 0 0"
-                scale="0.5 12 0.5">
-      </a-entity>
-
-      <a-entity id="estandarte_puerta_izq_tela"
-                geometry="primitive: plane"
-                material="color: #cc0000"
-                position="-18 -13.0 120"
-                rotation="0 0 0"
-                scale="7 10 1">
-      </a-entity>
-
-      <a-entity id="estandarte_puerta_der_palo"
-                geometry="primitive: cylinder"
-                material="color: #4a3010"
-                position="14 -14.0 120"
-                rotation="0 0 0"
-                scale="0.5 12 0.5">
-      </a-entity>
-
-      <a-entity id="estandarte_puerta_der_tela"
-                geometry="primitive: plane"
-                material="color: #cc0000"
-                position="18 -13.0 120"
-                rotation="0 0 0"
-                scale="7 10 1">
-      </a-entity>
-
-      <a-entity id="cuartel_cuerpo"
-                geometry="primitive: box"
-                material="color: #7a6a5a"
-                position="-30 -38.0 30"
-                rotation="0 0 0"
-                scale="28 24 20">
-      </a-entity>
-
-      <a-entity id="cuartel_techo"
-                geometry="primitive: box"
-                material="color: #5a4030"
-                position="-30 -25.0 30"
-                rotation="0 15 0"
-                scale="30 6 22">
-      </a-entity>
-
-      <a-entity id="cuartel_puerta"
-                geometry="primitive: box"
-                material="color: #3a2010"
-                position="-30 -43.0 40.5"
-                rotation="0 0 0"
-                scale="6 12 1">
-      </a-entity>
-
-      <a-entity id="cuartel_ventana_1"
-                geometry="primitive: box"
-                material="color: #1a1a2e"
-                position="-40 -36.0 40.5"
-                rotation="0 0 0"
-                scale="4 6 1">
-      </a-entity>
-
-      <a-entity id="cuartel_ventana_2"
-                geometry="primitive: box"
-                material="color: #1a1a2e"
-                position="-20 -36.0 40.5"
-                rotation="0 0 0"
-                scale="4 6 1">
-      </a-entity>
-
-      <a-entity id="capilla_cuerpo"
-                geometry="primitive: box"
-                material="color: #8a7a6a"
-                position="35 -36.0 20"
-                rotation="0 0 0"
-                scale="20 28 16">
-      </a-entity>
-
-      <a-entity id="capilla_campanario"
-                geometry="primitive: box"
-                material="color: #7a6a5a"
-                position="35 -14.0 20"
-                rotation="0 0 0"
-                scale="8 16 8">
-      </a-entity>
-
-      <a-entity id="capilla_campanario_techo"
-                geometry="primitive: cone"
-                material="color: #5a4030"
-                position="35 0.0 20"
-                rotation="0 0 0"
-                scale="10 12 10">
-      </a-entity>
-
-      <a-entity id="capilla_cruz_v"
-                geometry="primitive: box"
-                material="color: #ffd700"
-                position="35 8.0 20"
-                rotation="0 0 0"
-                scale="1.5 8 1.5">
-      </a-entity>
-
-      <a-entity id="capilla_cruz_h"
-                geometry="primitive: box"
-                material="color: #ffd700"
-                position="35 11.0 20"
-                rotation="0 0 0"
-                scale="5 1.5 1.5">
-      </a-entity>
-
-      <a-entity id="capilla_puerta"
-                geometry="primitive: box"
-                material="color: #3a2010"
-                position="35 -42.0 28.5"
-                rotation="0 0 0"
-                scale="5 14 1">
-      </a-entity>
-
-      <a-entity id="capilla_ventana_rosetón"
-                geometry="primitive: circle"
-                material="color: #4a90d9"
-                position="35 -30.0 28.5"
-                rotation="0 0 0"
-                scale="4 4 1">
-      </a-entity>
-
-      <a-entity id="pozo_borde"
-                geometry="primitive: torus"
-                material="color: #8a7a6a"
-                position="10 -47.0 -10"
-                rotation="90 0 0"
-                scale="5 5 2">
-      </a-entity>
-
-      <a-entity id="pozo_interior"
-                geometry="primitive: cylinder"
-                material="color: #2a2a2a"
-                position="10 -49.0 -10"
-                rotation="0 0 0"
-                scale="4 3 4">
-      </a-entity>
-
-      <a-entity id="pozo_soporte_izq"
-                geometry="primitive: cylinder"
-                material="color: #5a4030"
-                position="7 -42.0 -10"
-                rotation="0 0 0"
-                scale="0.8 10 0.8">
-      </a-entity>
-
-      <a-entity id="pozo_soporte_der"
-                geometry="primitive: cylinder"
-                material="color: #5a4030"
-                position="13 -42.0 -10"
-                rotation="0 0 0"
-                scale="0.8 10 0.8">
-      </a-entity>
-
-      <a-entity id="pozo_viga"
-                geometry="primitive: box"
-                material="color: #5a4030"
-                position="10 -36.0 -10"
-                rotation="0 0 0"
-                scale="8 1.5 1.5">
-      </a-entity>
-
-      <a-entity id="antorcha_1_palo"
-                geometry="primitive: cylinder"
-                material="color: #5a4030"
-                position="-20 -35.0 118"
-                rotation="0 0 0"
-                scale="0.6 5 0.6">
-      </a-entity>
-
-      <a-entity id="antorcha_1_fuego"
-                geometry="primitive: cone"
-                material="color: #ff6600"
-                position="-20 -31.0 118"
-                rotation="0 0 0"
-                scale="1.5 4 1.5">
-      </a-entity>
-
-      <a-entity id="antorcha_2_palo"
-                geometry="primitive: cylinder"
-                material="color: #5a4030"
-                position="20 -35.0 118"
-                rotation="0 0 0"
-                scale="0.6 5 0.6">
-      </a-entity>
-
-      <a-entity id="antorcha_2_fuego"
-                geometry="primitive: cone"
-                material="color: #ff6600"
-                position="20 -31.0 118"
-                rotation="0 0 0"
-                scale="1.5 4 1.5">
-      </a-entity>
-
-      <a-entity id="antorcha_3_palo"
-                geometry="primitive: cylinder"
-                material="color: #5a4030"
-                position="-50 -35.0 -60"
-                rotation="0 0 0"
-                scale="0.6 5 0.6">
-      </a-entity>
-
-      <a-entity id="antorcha_3_fuego"
-                geometry="primitive: cone"
-                material="color: #ff8800"
-                position="-50 -31.0 -60"
-                rotation="0 0 0"
-                scale="1.5 4 1.5">
-      </a-entity>
-
-      <a-entity id="antorcha_4_palo"
-                geometry="primitive: cylinder"
-                material="color: #5a4030"
-                position="55 -35.0 -55"
-                rotation="0 0 0"
-                scale="0.6 5 0.6">
-      </a-entity>
-
-      <a-entity id="antorcha_4_fuego"
-                geometry="primitive: cone"
-                material="color: #ff8800"
-                position="55 -31.0 -55"
-                rotation="0 0 0"
-                scale="1.5 4 1.5">
-      </a-entity>
-
-      <a-sky color="#1a0a2e"></a-sky>
+      <a-sky color="#000000"></a-sky>
       <a-entity star-sky></a-entity>
 
     </a-scene>
